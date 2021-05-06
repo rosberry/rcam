@@ -1,0 +1,32 @@
+name: MyFramework
+options:
+  bundleIdPrefix: com.rosberry
+targets:
+  MyFramework:
+    type: framework
+    platform: iOS
+    sources: [Sources/MyFramework]
+    info:
+      path: MyFramework.xcodeproj/MyFramework.plist
+  MyFrameworkTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "12.0"
+    sources: [Tests/MyFrameworkTests]
+    info:
+      path: MyFramework.xcodeproj/MyFrameworkTests.plist
+    postCompileScripts:
+      - script: swiftlint
+        name: Swiftlint
+  Example:
+    type: application
+    platform: iOS
+    deploymentTarget: "12.0"
+    sources: [Sources/Example]
+    info:
+      path: MyFramework.xcodeproj/Example.plist
+    dependencies:
+      - target: MyFramework
+    postCompileScripts:
+      - script: swiftlint
+        name: Swiftlint
