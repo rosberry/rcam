@@ -15,13 +15,13 @@ jobs:
         uses: actions/checkout@master
       - name: Build and Test
         run: |
-          cd MyFramework
-          xcodebuild clean build test -project MyFramework.xcodeproj -scheme MyFramework -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          cd Rcam
+          xcodebuild clean build test -project Rcam.xcodeproj -scheme Rcam -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
         env: 
          destination: ${{ matrix.destination }}
       - name: Update Code Coverage
         run: |
-          bash <(curl -s https://codecov.io/bash) -J 'MyFramework'
+          bash <(curl -s https://codecov.io/bash) -J 'Rcam'
       - name: Update docs
         run: |
           gem install jazzy

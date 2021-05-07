@@ -1,4 +1,4 @@
 author: Rosberry
 author_url: https://rosberry.com
-github_url: https://github.com/rosberry/MyFramework
-xcodebuild_arguments: [-workspace, 'MyFramework.xcworkspace', -scheme, 'MyFramework']
+github_url: https://github.com/rosberry/Rcam
+xcodebuild_arguments: [-workspace, 'Rcam.xcworkspace', -scheme, 'Rcam']

@@ -1,0 +1,513 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2E43818DE7EC1BF2C0232817 /* Rcam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35189C2A2390F683ABEFDEC /* Rcam.framework */; };
+		367B758D6BE15974F6F3D08A /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2ABADF7B2EB872CAD03DD5 /* ExampleViewController.swift */; };
+		53D928E0C28733303E2176CA /* Rcam.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C35189C2A2390F683ABEFDEC /* Rcam.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		61FD273C1CC03D34CD1A8C43 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F93E921E746157019856A7 /* XCTestManifests.swift */; };
+		8466DDAF84AE6191D7FAF2AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57A76763ABF7BDBC26B2D6F /* AppDelegate.swift */; };
+		CB535DF20E5DB844DB8BB3E3 /* RcamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB92FA485B028B3B9F93292 /* RcamTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5D5BF0C0F19C5CF3C8AE0300 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCB23A8B419CD6BF9FC6AE96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50F42E89F5FC776DC827A429;
+			remoteInfo = Rcam;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0AE71BD10A9ABB1B2ADF190A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				53D928E0C28733303E2176CA /* Rcam.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4A22D35593478373DCFF41BC /* Example.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BB92FA485B028B3B9F93292 /* RcamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcamTests.swift; sourceTree = "<group>"; };
+		A39732480DCE7C253EFD70F1 /* RcamTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RcamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C35189C2A2390F683ABEFDEC /* Rcam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Rcam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4F93E921E746157019856A7 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		D57A76763ABF7BDBC26B2D6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DE2ABADF7B2EB872CAD03DD5 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FC13C827448057B1037AD175 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E43818DE7EC1BF2C0232817 /* Rcam.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2028882D154125601B72F1E4 = {
+			isa = PBXGroup;
+			children = (
+				F90E9BCA27A74D12C8A41628 /* Example */,
+				30F49E393A6C76CD0B1ED8A4 /* Rcam */,
+				475449E8585D8C7D3966089C /* RcamTests */,
+				7FDA6447F0BA6E21E1B00045 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		30F49E393A6C76CD0B1ED8A4 /* Rcam */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Rcam;
+			path = Sources/Rcam;
+			sourceTree = "<group>";
+		};
+		475449E8585D8C7D3966089C /* RcamTests */ = {
+			isa = PBXGroup;
+			children = (
+				6BB92FA485B028B3B9F93292 /* RcamTests.swift */,
+				C4F93E921E746157019856A7 /* XCTestManifests.swift */,
+			);
+			name = RcamTests;
+			path = Tests/RcamTests;
+			sourceTree = "<group>";
+		};
+		7FDA6447F0BA6E21E1B00045 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4A22D35593478373DCFF41BC /* Example.app */,
+				C35189C2A2390F683ABEFDEC /* Rcam.framework */,
+				A39732480DCE7C253EFD70F1 /* RcamTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F90E9BCA27A74D12C8A41628 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				D57A76763ABF7BDBC26B2D6F /* AppDelegate.swift */,
+				DE2ABADF7B2EB872CAD03DD5 /* ExampleViewController.swift */,
+			);
+			name = Example;
+			path = Sources/Example;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50F42E89F5FC776DC827A429 /* Rcam */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94A80234A6F09CB0778BFC2B /* Build configuration list for PBXNativeTarget "Rcam" */;
+			buildPhases = (
+				55C8F05E8757EDCE8D165E72 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Rcam;
+			productName = Rcam;
+			productReference = C35189C2A2390F683ABEFDEC /* Rcam.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A44215D68FDB93E086664B62 /* RcamTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 590EC5910AE0EC61E81271EB /* Build configuration list for PBXNativeTarget "RcamTests" */;
+			buildPhases = (
+				451EC774E8BBF8133992BD92 /* Sources */,
+				E55F0ADBBB4BF2D48810E9A3 /* Swiftlint */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RcamTests;
+			productName = RcamTests;
+			productReference = A39732480DCE7C253EFD70F1 /* RcamTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D41FBBCB12C5BA469C48919D /* Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1FEB1FD32C960E0C03A1B4C /* Build configuration list for PBXNativeTarget "Example" */;
+			buildPhases = (
+				DE8D7C62B5D9196BF974D30F /* Sources */,
+				97F40995677ECA000A7BF547 /* Swiftlint */,
+				FC13C827448057B1037AD175 /* Frameworks */,
+				0AE71BD10A9ABB1B2ADF190A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1B7497BCE64EBA0182FC472 /* PBXTargetDependency */,
+			);
+			name = Example;
+			productName = Example;
+			productReference = 4A22D35593478373DCFF41BC /* Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BCB23A8B419CD6BF9FC6AE96 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+			};
+			buildConfigurationList = 3FAF1842C6C01F2145F16C56 /* Build configuration list for PBXProject "Rcam" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2028882D154125601B72F1E4;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D41FBBCB12C5BA469C48919D /* Example */,
+				50F42E89F5FC776DC827A429 /* Rcam */,
+				A44215D68FDB93E086664B62 /* RcamTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		97F40995677ECA000A7BF547 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = swiftlint;
+		};
+		E55F0ADBBB4BF2D48810E9A3 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = swiftlint;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		451EC774E8BBF8133992BD92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB535DF20E5DB844DB8BB3E3 /* RcamTests.swift in Sources */,
+				61FD273C1CC03D34CD1A8C43 /* XCTestManifests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55C8F05E8757EDCE8D165E72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE8D7C62B5D9196BF974D30F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8466DDAF84AE6191D7FAF2AA /* AppDelegate.swift in Sources */,
+				367B758D6BE15974F6F3D08A /* ExampleViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1B7497BCE64EBA0182FC472 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50F42E89F5FC776DC827A429 /* Rcam */;
+			targetProxy = 5D5BF0C0F19C5CF3C8AE0300 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		06F4EE1C2CB73603ABBBFCDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Rcam.xcodeproj/RcamTests.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.RcamTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4168EEC09D1CE37B9A925EA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4D64393D6E10595EA81C12AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Rcam.xcodeproj/Rcam.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.Rcam;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		597320BE1A1C77B3EE9BD0BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6C8C9E7FFE6B03A41A4E4EA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Rcam.xcodeproj/RcamTests.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.RcamTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AE9B320EFFEE6B01FFB6AEB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Rcam.xcodeproj/Example.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.Example;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B75117EBF54DB469A02263D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Rcam.xcodeproj/Rcam.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.Rcam;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		EE21155D5857F11956D92CC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Rcam.xcodeproj/Example.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.Example;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3FAF1842C6C01F2145F16C56 /* Build configuration list for PBXProject "Rcam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4168EEC09D1CE37B9A925EA1 /* Debug */,
+				597320BE1A1C77B3EE9BD0BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		590EC5910AE0EC61E81271EB /* Build configuration list for PBXNativeTarget "RcamTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06F4EE1C2CB73603ABBBFCDF /* Debug */,
+				6C8C9E7FFE6B03A41A4E4EA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "";
+		};
+		94A80234A6F09CB0778BFC2B /* Build configuration list for PBXNativeTarget "Rcam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B75117EBF54DB469A02263D2 /* Debug */,
+				4D64393D6E10595EA81C12AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "";
+		};
+		C1FEB1FD32C960E0C03A1B4C /* Build configuration list for PBXNativeTarget "Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE21155D5857F11956D92CC2 /* Debug */,
+				AE9B320EFFEE6B01FFB6AEB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "";
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BCB23A8B419CD6BF9FC6AE96 /* Project object */;
+}

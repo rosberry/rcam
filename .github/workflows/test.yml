@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@master
       - name: Build and test
         run: |
-          cd MyFramework
-          xcodebuild clean test -project MyFramework.xcodeproj -scheme MyFramework -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          cd Rcam
+          xcodebuild clean test -project Rcam.xcodeproj -scheme Rcam -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
         env: 
          destination: ${{ matrix.destination }}
