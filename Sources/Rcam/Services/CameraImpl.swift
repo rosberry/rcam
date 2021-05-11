@@ -136,10 +136,10 @@ final class CameraImpl: Camera {
         setupAudioSession(for: session)
 
         do {
-//            let cameraInput = try AVCaptureDeviceInput(device: camera)
-//            if session.canAddInput(cameraInput) {
-//                session.addInput(cameraInput)
-//            }
+            let cameraInput = try AVCaptureDeviceInput(device: camera)
+            if session.canAddInput(cameraInput) {
+                session.addInput(cameraInput)
+            }
 
             let micSession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInMicrophone], mediaType: .audio, position: .unspecified)
             for device in micSession.devices {

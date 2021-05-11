@@ -30,7 +30,7 @@ public protocol Camera: class {
 
     func startSession()
     func stopSession()
-    
+
     func flipCamera() throws
     func updateFocalPoint(with point: CGPoint)
 

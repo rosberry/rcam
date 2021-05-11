@@ -1,6 +1,7 @@
 //
 //  Copyright © 2020 Rosberry. All rights reserved.
 //
+
 import UIKit
 
 final class ExampleViewController: UIViewController {
@@ -10,13 +11,13 @@ final class ExampleViewController: UIViewController {
         label.text = "Greetings, traveller"
         return label
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(greetingLabel)
         view.backgroundColor = .white
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         greetingLabel.sizeToFit()
