@@ -6,38 +6,11 @@ import UIKit
 import AVFoundation
 import Framezilla
 
-//public protocol CameraViewInput: class {
-//    func display(_ buffer: CVPixelBuffer)
-//    func displayErrorWithDescription(_ description: String)
-//}
-
-public protocol CameraViewOutput: class {
-
-    var zoomLevel: CGFloat? { get }
-    var zoomRange: ClosedRange<CGFloat>? { get }
-    var videoRecordingStartDelay: TimeInterval { get }
-
-    func viewDidLoad()
-    func filterChangedToNone()
-    func filterChangedToCold()
-    func filterChangedToWarm()
-    func captureButtonTouchedDown()
-    func captureButtonTouchedUp()
-    func flipCameraEventTriggered()
-    func flashEventTriggered()
-    func torchEventTriggered()
-    func changeAspectEventTriggered()
-    func updateFocusPoint(with point: CGPoint)
-    func zoomEventTriggered(zoomLevel: CGFloat)
-}
-
 public final class RCamViewController: UIViewController {
 
     private enum Constants {
         static let zoomLevelDistance: CGFloat = 300
     }
-
-    private let output: CameraViewOutput?
 
     public override var prefersStatusBarHidden: Bool {
         true
@@ -54,6 +27,8 @@ public final class RCamViewController: UIViewController {
         return pinchGestureRecognizer
     }()
 
+    private let cameraService: Camera = CameraImpl()
+
     // MARK: - Subviews
 
     private lazy var cameraPreviewLayer: AVCaptureVideoPreviewLayer = .init()
@@ -63,33 +38,6 @@ public final class RCamViewController: UIViewController {
         return view
     }()
     private lazy var cameraContainerView: UIView = .init()
-
-    private lazy var noneFilterButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(noneFilterButtonPressed), for: .touchUpInside)
-        button.setTitle("N", for: .normal)
-        button.backgroundColor = .white
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        return button
-    }()
-
-    private lazy var coldFilterButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(coldFilterButtonPressed), for: .touchUpInside)
-        button.setTitle("C", for: .normal)
-        button.backgroundColor = .white
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        return button
-    }()
-
-    private lazy var warmFilterButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(warmFilterButtonPressed), for: .touchUpInside)
-        button.setTitle("W", for: .normal)
-        button.backgroundColor = .white
-        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
-        return button
-    }()
 
     private lazy var captureButton: UIButton = {
         let button = UIButton(type: .system)
@@ -109,9 +57,11 @@ public final class RCamViewController: UIViewController {
         return button
     }()
 
-    private lazy var aspectButton: UIButton = {
+    private lazy var flipCameraButton: UIButton = {
         let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(aspectButtonPressed), for: .touchUpInside)
+        button.setTitle("FLIP", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(flipCameraButtonPressed), for: .touchUpInside)
         button.backgroundColor = .white
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
         return button
@@ -123,10 +73,11 @@ public final class RCamViewController: UIViewController {
         return view
     }()
 
+    private lazy var resultImageView: UIImageView = .init()
+
     // MARK: - Lifecycle
 
-    public init(output: CameraViewOutput?) {
-        self.output = output
+    public init() {
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -149,12 +100,6 @@ public final class RCamViewController: UIViewController {
         tapGestureRecognizer.cancelsTouchesInView = false
         cameraContainerView.addGestureRecognizer(tapGestureRecognizer)
 
-        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewDoubleTapped))
-        doubleTapGestureRecognizer.numberOfTapsRequired = 2
-        doubleTapGestureRecognizer.delegate = self
-        doubleTapGestureRecognizer.cancelsTouchesInView = false
-        cameraContainerView.addGestureRecognizer(doubleTapGestureRecognizer)
-
         cameraContainerView.addGestureRecognizer(pinchGestureRecognizer)
 
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(captureButtonLongPressed))
@@ -166,13 +111,12 @@ public final class RCamViewController: UIViewController {
         cameraContainerView.addSubview(cameraView)
         view.addSubview(cameraContainerView)
         view.addSubview(captureButton)
-        view.addSubview(noneFilterButton)
-        view.addSubview(coldFilterButton)
-        view.addSubview(warmFilterButton)
         view.addSubview(flashCameraButton)
-        view.addSubview(aspectButton)
+        view.addSubview(flipCameraButton)
+        view.addSubview(resultImageView)
 
-        output?.viewDidLoad()
+        cameraService.startSession()
+        cameraPreviewLayer.session = cameraService.captureSession
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -202,27 +146,6 @@ public final class RCamViewController: UIViewController {
                  .centerX().bottom(to: view.nui_safeArea.bottom, inset: 64)
         }
 
-        let filterButtonsSide = 48
-        noneFilterButton.configureFrame { maker in
-            maker.size(width: filterButtonsSide, height: filterButtonsSide)
-                 .cornerRadius(byHalf: .height)
-                 .centerX().bottom(to: captureButton.nui_top, inset: 32)
-        }
-
-        coldFilterButton.configureFrame { maker in
-            maker.size(width: filterButtonsSide, height: filterButtonsSide)
-                 .cornerRadius(byHalf: .height)
-                 .bottom(to: noneFilterButton.nui_bottom)
-                 .right(to: noneFilterButton.nui_left, inset: 24)
-        }
-
-        warmFilterButton.configureFrame { maker in
-            maker.size(width: filterButtonsSide, height: filterButtonsSide)
-                 .cornerRadius(byHalf: .height)
-                 .bottom(to: noneFilterButton.nui_bottom)
-                 .left(to: noneFilterButton.nui_right, inset: 24)
-        }
-
         flashCameraButton.configureFrame { maker in
             maker.size(width: 76, height: 36)
                  .cornerRadius(byHalf: .height)
@@ -230,41 +153,54 @@ public final class RCamViewController: UIViewController {
                  .right(inset: 24)
         }
 
-        aspectButton.configureFrame { maker in
+        flipCameraButton.configureFrame { maker in
             maker.size(width: 76, height: 36)
                  .cornerRadius(byHalf: .height)
                  .right(inset: 24)
                  .centerY(to: captureButton.nui_centerY)
         }
+
+        resultImageView.configureFrame { maker in
+            maker.left().top(to: view.nui_safeArea.top, inset: 10).size(width: 100, height: 200)
+        }
     }
 
     // MARK: - Actions
 
-    @objc private func noneFilterButtonPressed() {
-        output?.filterChangedToNone()
-    }
-
-    @objc private func coldFilterButtonPressed() {
-        output?.filterChangedToCold()
-    }
-
-    @objc private func warmFilterButtonPressed() {
-        output?.filterChangedToWarm()
-    }
-
     @objc private func captureButtonTouchedDown() {
-        output?.captureButtonTouchedDown()
     }
 
     @objc private func captureButtonTouchedUp() {
-        output?.captureButtonTouchedUp()
+        cameraService.capturePhoto { pixelBuffer, orientation in
+            guard let pixelBuffer = pixelBuffer,
+                  let orientation = orientation,
+                  let uiImageOrientation = UIImage.Orientation(rawValue: Int(orientation)) else {
+                return
+            }
+
+            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+            let context = CIContext()
+            guard let cgImage = context.createCGImage(ciImage, from: .init(x: 0,
+                                                                           y: 0,
+                                                                           width: CVPixelBufferGetWidth(pixelBuffer),
+                                                                           height: CVPixelBufferGetHeight(pixelBuffer))) else {
+                return
+            }
+            self.resultImageView.image = UIImage(cgImage: cgImage, scale: 1, orientation: uiImageOrientation)
+        }
     }
 
     @objc private func flashCameraButtonPressed() {
-        output?.torchEventTriggered()
+        flashCameraButton.isSelected.toggle()
+        if flashCameraButton.isSelected {
+            cameraService.torchMode = .on
+        }
+        else {
+            cameraService.torchMode = .off
+        }
     }
 
-    @objc private func aspectButtonPressed() {
+    @objc private func flipCameraButtonPressed() {
         guard let cameraSnapshotView = cameraContainerView.snapshotView(afterScreenUpdates: true) else {
             return
         }
@@ -280,7 +216,7 @@ public final class RCamViewController: UIViewController {
         UIView.animate(withDuration: 0.4, animations: {
             blurView.effect = UIBlurEffect(style: .prominent)
         }, completion: { _ in
-            self.output?.changeAspectEventTriggered()
+            try? self.cameraService.flipCamera()
             UIView.animate(withDuration: 0.2, animations: {
                 cameraSnapshotView.frame = self.cameraContainerView.frame
             }, completion: { _ in
@@ -317,52 +253,25 @@ public final class RCamViewController: UIViewController {
 
         let normalizedPoint = CGPoint(x: point.x / cameraContainerView.bounds.width,
                                       y: point.y / cameraContainerView.bounds.height)
-        output?.updateFocusPoint(with: normalizedPoint)
-    }
-
-    @objc private func viewDoubleTapped() {
-        output?.flipCameraEventTriggered()
+        cameraService.updateFocalPoint(with: normalizedPoint)
     }
 
     @objc private func viewPinched(recognizer: UIPinchGestureRecognizer) {
         switch recognizer.state {
             case .began:
-                if let zoomLevel = output?.zoomLevel {
+                if let zoomLevel = cameraService.zoomLevel {
                     recognizer.scale = zoomLevel
                 }
             case .changed:
                 let scale = recognizer.scale
-                output?.zoomEventTriggered(zoomLevel: scale)
+                cameraService.zoomLevel = scale
             default:
                 break
         }
     }
 
     @objc private func captureButtonLongPressed(recognizer: UILongPressGestureRecognizer) {
-        guard let zoomLevel = output?.zoomLevel,
-              let zoomRange = output?.zoomRange else {
-            return
-        }
-        let point = recognizer.location(in: captureButton)
-        let minZoomLevel = zoomRange.lowerBound
-        let zoomRangeSpread = zoomRange.upperBound - minZoomLevel
 
-        switch recognizer.state {
-        case .began:
-            pinchGestureRecognizer.isEnabled = false
-            let zoomPercent = (zoomLevel - minZoomLevel) / zoomRangeSpread
-            initialLongPressZoomRelativeValue = deCubicEaseIn(zoomPercent) * Constants.zoomLevelDistance
-            initialLongPressGesturePoint = point
-        case .changed:
-            let distance = max(initialLongPressZoomRelativeValue,
-                               initialLongPressZoomRelativeValue + (initialLongPressGesturePoint.y - point.y))
-            let normalizedZoomLevel = distance / Constants.zoomLevelDistance
-            output?.zoomEventTriggered(zoomLevel: cubicEaseIn(normalizedZoomLevel) * zoomRangeSpread + minZoomLevel)
-        case .ended, .failed, .cancelled:
-            pinchGestureRecognizer.isEnabled = true
-        default:
-            break
-        }
     }
 
     private func cubicEaseIn<T: FloatingPoint>(_ x: T) -> T {
@@ -373,17 +282,6 @@ public final class RCamViewController: UIViewController {
         pow(x, CGFloat(1) / CGFloat(3))
     }
 }
-
-// MARK: - CameraViewInput
-
-//extension CameraViewController: CameraViewInput {
-//
-//    public func displayErrorWithDescription(_ description: String) {
-//        let alertController = UIAlertController(title: "Error", message: description, preferredStyle: .alert)
-//        alertController.addAction(.init(title: "OK", style: .default))
-//        present(alertController, animated: true)
-//    }
-//}
 
 // MARK: - UIGestureRecognizerDelegate
 

@@ -169,7 +169,7 @@ final class CameraImpl: Camera {
             print(error)
         }
     }
-    
+
     func stopSession() {
         captureSession?.stopRunning()
     }
