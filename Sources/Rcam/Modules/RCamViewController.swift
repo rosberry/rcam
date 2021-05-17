@@ -6,6 +6,10 @@ import UIKit
 import AVFoundation
 import Framezilla
 
+protocol RCamViewControllerDelegate: class {
+    func rCamViewController(_ viewController: RCamViewController, imageCaptured image: UIImage)
+}
+
 public final class RCamViewController: UIViewController {
 
     private enum Constants {
@@ -15,6 +19,8 @@ public final class RCamViewController: UIViewController {
     public override var prefersStatusBarHidden: Bool {
         true
     }
+
+    weak var delegate: RCamViewControllerDelegate?
 
     var focusViewTimer: Timer?
     private var initialLongPressGesturePoint: CGPoint = .zero
