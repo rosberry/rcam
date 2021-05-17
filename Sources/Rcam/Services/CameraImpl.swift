@@ -4,21 +4,21 @@
 
 import AVFoundation
 
-typealias BufferHandler = (CMSampleBuffer) -> Void
+public typealias BufferHandler = (CMSampleBuffer) -> Void
 
-final class CameraImpl: Camera {
+public final class CameraImpl: Camera {
 
     private enum Constants {
         static let lowBrightnessThreshold: Double = -0.18
     }
 
-    private(set) var captureSession: AVCaptureSession?
-    var videoBuffersHandler: BufferHandler?
-    var audioBuffersHandler: BufferHandler?
+    private(set) public var captureSession: AVCaptureSession?
+    public var videoBuffersHandler: BufferHandler?
+    public var audioBuffersHandler: BufferHandler?
     var photoOutputHandler: PhotoHandler?
-    private(set) var recommendedAudioSettings: [AnyHashable: Any]?
-    private(set) var recommendedVideoSettings: [AnyHashable: Any]?
-    var isTorchAvailable: Bool = true
+    private(set) public var recommendedAudioSettings: [AnyHashable: Any]?
+    private(set) public var recommendedVideoSettings: [AnyHashable: Any]?
+    public var isTorchAvailable: Bool = true
 
     private var needTurnOnTorchIfBrightnessIsLow: Bool = false
 
@@ -40,9 +40,9 @@ final class CameraImpl: Camera {
     private lazy var photoOutputDelegate: PhotoOutput = .init(handler: photoOutputHandler) // swiftlint:disable:this weak_delegate
     private lazy var photoOutput: AVCapturePhotoOutput = .init()
 
-    private(set) var usingBackCamera: Bool = true
-    var flashMode: AVCaptureDevice.FlashMode = .off
-    var torchMode: AVCaptureDevice.TorchMode {
+    private(set) public  var usingBackCamera: Bool = true
+    public var flashMode: AVCaptureDevice.FlashMode = .off
+    public var torchMode: AVCaptureDevice.TorchMode {
         get {
             guard let captureSession = captureSession else {
                 return .off
@@ -63,7 +63,7 @@ final class CameraImpl: Camera {
         }
     }
 
-    var zoomLevel: CGFloat? {
+    public var zoomLevel: CGFloat? {
         get {
             guard let captureSession = captureSession else {
                 return nil
@@ -86,7 +86,7 @@ final class CameraImpl: Camera {
         }
     }
 
-    var zoomRange: ClosedRange<CGFloat>? {
+    public var zoomRange: ClosedRange<CGFloat>? {
         guard let captureSession = captureSession else {
             return nil
         }
@@ -102,11 +102,14 @@ final class CameraImpl: Camera {
         return nil
     }
 
-    func videoPermissions() -> AVAuthorizationStatus {
+    public init() {
+    }
+
+    public func videoPermissions() -> AVAuthorizationStatus {
         AVCaptureDevice.authorizationStatus(for: .video)
     }
 
-    func askVideoPermissions(completion: @escaping (Bool) -> Void) {
+    public func askVideoPermissions(completion: @escaping (Bool) -> Void) {
         AVCaptureDevice.requestAccess(for: .video) { granted in
             DispatchQueue.main.async {
                 completion(granted)
@@ -114,11 +117,11 @@ final class CameraImpl: Camera {
         }
     }
 
-    func microphonePermissions() -> AVAuthorizationStatus {
+    public func microphonePermissions() -> AVAuthorizationStatus {
         AVCaptureDevice.authorizationStatus(for: .audio)
     }
 
-    func askMicrophonePermissions(completion: @escaping (Bool) -> Void) {
+    public func askMicrophonePermissions(completion: @escaping (Bool) -> Void) {
         AVCaptureDevice.requestAccess(for: .audio) { granted in
             DispatchQueue.main.async {
                 completion(granted)
@@ -126,7 +129,7 @@ final class CameraImpl: Camera {
         }
     }
 
-    func startSession() {
+    public func startSession() {
         let cameraSession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .front)
         guard let camera = cameraSession.devices.first else {
             return
@@ -170,12 +173,12 @@ final class CameraImpl: Camera {
         }
     }
 
-    func stopSession() {
+    public func stopSession() {
         captureSession?.stopRunning()
     }
 
     // swiftlint:disable:next cyclomatic_complexity
-    func flipCamera() throws {
+    public func flipCamera() throws {
         guard let captureSession = captureSession else {
             throw CameraError.noCaptureSession
         }
@@ -231,7 +234,7 @@ final class CameraImpl: Camera {
         captureSession.commitConfiguration()
     }
 
-    func updateFocalPoint(with point: CGPoint) {
+    public func updateFocalPoint(with point: CGPoint) {
         guard let captureSession = captureSession else {
             return
         }
@@ -294,7 +297,7 @@ final class CameraImpl: Camera {
         }
     }
 
-    func capturePhoto(completion: @escaping PhotoHandler) {
+    public func capturePhoto(completion: @escaping PhotoHandler) {
         photoOutputHandler = completion
         let settings = AVCapturePhotoSettings(format: [String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_32BGRA])
         settings.flashMode = flashMode
@@ -302,7 +305,7 @@ final class CameraImpl: Camera {
         photoOutput.capturePhoto(with: settings, delegate: photoOutputDelegate)
     }
 
-    func recordingStarted() {
+    public func recordingStarted() {
         guard usingBackCamera,
               flashMode != .off else {
             return
@@ -318,7 +321,7 @@ final class CameraImpl: Camera {
         }
     }
 
-    func recordingFinished() {
+    public func recordingFinished() {
         updateTorch(isEnabled: false)
     }
 
