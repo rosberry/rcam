@@ -81,7 +81,6 @@ public final class RCamViewController: UIViewController {
     private lazy var flashLightModeButton: UIButton = {
         let button = UIButton()
         button.setTitle("Flash mode: auto", for: .normal)
-        button.setTitle("Flash mode: off", for: .selected)
         button.setTitleColor(.black, for: .normal)
         button.setTitleColor(.black, for: .selected)
         button.backgroundColor = .white
@@ -296,12 +295,26 @@ public final class RCamViewController: UIViewController {
     }
 
     @objc private func flashModeButtonPressed() {
-        flashLightModeButton.isSelected.toggle()
-        if flashLightModeButton.isSelected {
-            cameraService.flashMode = .off
+        let currentFlashMode = cameraService.flashMode.rawValue
+        var newFlashMode = currentFlashMode + 1
+        if newFlashMode > 2 {
+            newFlashMode = 0
         }
-        else {
-            cameraService.flashMode = .auto
+
+        if let flashMode = AVCaptureDevice.FlashMode(rawValue: newFlashMode) {
+            let flashModeString: String
+            switch flashMode {
+            case .auto:
+                flashModeString = "auto"
+            case .on:
+                flashModeString = "on"
+            case .off:
+                flashModeString = "off"
+            @unknown default:
+                flashModeString = "unknown"
+            }
+            flashLightModeButton.setTitle("flash mode: \(flashModeString)", for: .normal)
+            cameraService.flashMode = flashMode
         }
     }
 

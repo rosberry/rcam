@@ -1,0 +1,449 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		854B208726527C2F00DF5E59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 854B208626527C2F00DF5E59 /* Assets.xcassets */; };
+		854B208A26527C2F00DF5E59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 854B208826527C2F00DF5E59 /* LaunchScreen.storyboard */; };
+		854B209526527D7300DF5E59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 854B209426527D7300DF5E59 /* GoogleService-Info.plist */; };
+		854B20A42652804900DF5E59 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B20982652804900DF5E59 /* GoogleUtilities.framework */; };
+		854B20A62652804900DF5E59 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B20992652804900DF5E59 /* nanopb.framework */; };
+		854B20A82652804900DF5E59 /* FirebaseAppDistribution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B209A2652804900DF5E59 /* FirebaseAppDistribution.framework */; };
+		854B20AA2652804900DF5E59 /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B209B2652804900DF5E59 /* FIRAnalyticsConnector.framework */; };
+		854B20AC2652804900DF5E59 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B209C2652804900DF5E59 /* FirebaseCoreDiagnostics.framework */; };
+		854B20AE2652804900DF5E59 /* FirebaseInstallations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B209D2652804900DF5E59 /* FirebaseInstallations.framework */; };
+		854B20B02652804900DF5E59 /* GoogleDataTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B209E2652804900DF5E59 /* GoogleDataTransport.framework */; };
+		854B20B22652804900DF5E59 /* PromisesObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B209F2652804900DF5E59 /* PromisesObjC.framework */; };
+		854B20B42652804900DF5E59 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B20A02652804900DF5E59 /* GoogleAppMeasurement.framework */; };
+		854B20B62652804900DF5E59 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B20A12652804900DF5E59 /* FirebaseCore.framework */; };
+		854B20BA2652804900DF5E59 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B20A32652804900DF5E59 /* FirebaseAnalytics.framework */; };
+		85D18D632652860500B064F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D18D622652860500B064F2 /* AppDelegate.swift */; };
+		85D18D692652867000B064F2 /* RCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D682652867000B064F2 /* RCam.framework */; };
+		85D18D6A2652867000B064F2 /* RCam.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D682652867000B064F2 /* RCam.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		85D18D72265288E300B064F2 /* Framezilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D71265288E300B064F2 /* Framezilla.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		85D18D6B2652867000B064F2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				85D18D6A2652867000B064F2 /* RCam.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		854B207A26527C2E00DF5E59 /* RCamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RCamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		854B208626527C2F00DF5E59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		854B208926527C2F00DF5E59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		854B208B26527C2F00DF5E59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		854B209426527D7300DF5E59 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		854B20982652804900DF5E59 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Carthage/Build/iOS/GoogleUtilities.framework; sourceTree = "<group>"; };
+		854B20992652804900DF5E59 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = Carthage/Build/iOS/nanopb.framework; sourceTree = "<group>"; };
+		854B209A2652804900DF5E59 /* FirebaseAppDistribution.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAppDistribution.framework; path = Carthage/Build/iOS/FirebaseAppDistribution.framework; sourceTree = "<group>"; };
+		854B209B2652804900DF5E59 /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FIRAnalyticsConnector.framework; path = Carthage/Build/iOS/FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
+		854B209C2652804900DF5E59 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = Carthage/Build/iOS/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
+		854B209D2652804900DF5E59 /* FirebaseInstallations.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstallations.framework; path = Carthage/Build/iOS/FirebaseInstallations.framework; sourceTree = "<group>"; };
+		854B209E2652804900DF5E59 /* GoogleDataTransport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleDataTransport.framework; path = Carthage/Build/iOS/GoogleDataTransport.framework; sourceTree = "<group>"; };
+		854B209F2652804900DF5E59 /* PromisesObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromisesObjC.framework; path = Carthage/Build/iOS/PromisesObjC.framework; sourceTree = "<group>"; };
+		854B20A02652804900DF5E59 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Carthage/Build/iOS/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
+		854B20A12652804900DF5E59 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Carthage/Build/iOS/FirebaseCore.framework; sourceTree = "<group>"; };
+		854B20A22652804900DF5E59 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = Carthage/Build/iOS/Firebase.framework; sourceTree = "<group>"; };
+		854B20A32652804900DF5E59 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Carthage/Build/iOS/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		85D18D622652860500B064F2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		85D18D682652867000B064F2 /* RCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		85D18D6E2652876F00B064F2 /* Framezilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Framezilla.framework; path = ../Carthage/Build/iOS/Framezilla.framework; sourceTree = "<group>"; };
+		85D18D71265288E300B064F2 /* Framezilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Framezilla.framework; path = Carthage/Build/iOS/Framezilla.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		854B207726527C2E00DF5E59 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				854B20A82652804900DF5E59 /* FirebaseAppDistribution.framework in Frameworks */,
+				854B20A62652804900DF5E59 /* nanopb.framework in Frameworks */,
+				854B20B42652804900DF5E59 /* GoogleAppMeasurement.framework in Frameworks */,
+				854B20B22652804900DF5E59 /* PromisesObjC.framework in Frameworks */,
+				854B20AC2652804900DF5E59 /* FirebaseCoreDiagnostics.framework in Frameworks */,
+				854B20B02652804900DF5E59 /* GoogleDataTransport.framework in Frameworks */,
+				854B20B62652804900DF5E59 /* FirebaseCore.framework in Frameworks */,
+				854B20BA2652804900DF5E59 /* FirebaseAnalytics.framework in Frameworks */,
+				854B20A42652804900DF5E59 /* GoogleUtilities.framework in Frameworks */,
+				85D18D72265288E300B064F2 /* Framezilla.framework in Frameworks */,
+				85D18D692652867000B064F2 /* RCam.framework in Frameworks */,
+				854B20AA2652804900DF5E59 /* FIRAnalyticsConnector.framework in Frameworks */,
+				854B20AE2652804900DF5E59 /* FirebaseInstallations.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		854B207126527C2E00DF5E59 = {
+			isa = PBXGroup;
+			children = (
+				854B207C26527C2E00DF5E59 /* RCamExample */,
+				854B207B26527C2E00DF5E59 /* Products */,
+				854B20972652804900DF5E59 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		854B207B26527C2E00DF5E59 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				854B207A26527C2E00DF5E59 /* RCamExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		854B207C26527C2E00DF5E59 /* RCamExample */ = {
+			isa = PBXGroup;
+			children = (
+				85D18D622652860500B064F2 /* AppDelegate.swift */,
+				854B209426527D7300DF5E59 /* GoogleService-Info.plist */,
+				854B208626527C2F00DF5E59 /* Assets.xcassets */,
+				854B208826527C2F00DF5E59 /* LaunchScreen.storyboard */,
+				854B208B26527C2F00DF5E59 /* Info.plist */,
+			);
+			path = RCamExample;
+			sourceTree = "<group>";
+		};
+		854B20972652804900DF5E59 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85D18D6E2652876F00B064F2 /* Framezilla.framework */,
+				85D18D71265288E300B064F2 /* Framezilla.framework */,
+				85D18D682652867000B064F2 /* RCam.framework */,
+				854B209B2652804900DF5E59 /* FIRAnalyticsConnector.framework */,
+				854B20A22652804900DF5E59 /* Firebase.framework */,
+				854B20A32652804900DF5E59 /* FirebaseAnalytics.framework */,
+				854B209A2652804900DF5E59 /* FirebaseAppDistribution.framework */,
+				854B20A12652804900DF5E59 /* FirebaseCore.framework */,
+				854B209C2652804900DF5E59 /* FirebaseCoreDiagnostics.framework */,
+				854B209D2652804900DF5E59 /* FirebaseInstallations.framework */,
+				854B20A02652804900DF5E59 /* GoogleAppMeasurement.framework */,
+				854B209E2652804900DF5E59 /* GoogleDataTransport.framework */,
+				854B20982652804900DF5E59 /* GoogleUtilities.framework */,
+				854B20992652804900DF5E59 /* nanopb.framework */,
+				854B209F2652804900DF5E59 /* PromisesObjC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		854B207926527C2E00DF5E59 /* RCamExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 854B208E26527C2F00DF5E59 /* Build configuration list for PBXNativeTarget "RCamExample" */;
+			buildPhases = (
+				854B207626527C2E00DF5E59 /* Sources */,
+				854B207726527C2E00DF5E59 /* Frameworks */,
+				854B207826527C2E00DF5E59 /* Resources */,
+				7ECU0YL31PHSUIX7FZSLZJSB /* Carthage */,
+				85D18D6B2652867000B064F2 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RCamExample;
+			productName = RCamExample;
+			productReference = 854B207A26527C2E00DF5E59 /* RCamExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		854B207226527C2E00DF5E59 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					854B207926527C2E00DF5E59 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 854B207526527C2E00DF5E59 /* Build configuration list for PBXProject "RCamExample" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 854B207126527C2E00DF5E59;
+			productRefGroup = 854B207B26527C2E00DF5E59 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				854B207926527C2E00DF5E59 /* RCamExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		854B207826527C2E00DF5E59 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				854B208A26527C2F00DF5E59 /* LaunchScreen.storyboard in Resources */,
+				854B209526527D7300DF5E59 /* GoogleService-Info.plist in Resources */,
+				854B208726527C2F00DF5E59 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7ECU0YL31PHSUIX7FZSLZJSB /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/Carthage/xcfilelists/RCamExample-inputPaths.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = Carthage;
+			outputFileListPaths = (
+				"$(SRCROOT)/Carthage/xcfilelists/RCamExample-outputPaths.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		854B207626527C2E00DF5E59 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85D18D632652860500B064F2 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		854B208826527C2F00DF5E59 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				854B208926527C2F00DF5E59 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		854B208C26527C2F00DF5E59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		854B208D26527C2F00DF5E59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		854B208F26527C2F00DF5E59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = GPVA8JVMU3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = RCamExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.RCamExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.rosberry.RCamExample";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		854B209026527C2F00DF5E59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = GPVA8JVMU3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = RCamExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.RCamExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.rosberry.RCamExample";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		854B207526527C2E00DF5E59 /* Build configuration list for PBXProject "RCamExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				854B208C26527C2F00DF5E59 /* Debug */,
+				854B208D26527C2F00DF5E59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		854B208E26527C2F00DF5E59 /* Build configuration list for PBXNativeTarget "RCamExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				854B208F26527C2F00DF5E59 /* Debug */,
+				854B209026527C2F00DF5E59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 854B207226527C2E00DF5E59 /* Project object */;
+}

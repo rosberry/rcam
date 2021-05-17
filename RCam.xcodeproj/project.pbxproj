@@ -7,12 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E43818DE7EC1BF2C0232817 /* RCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35189C2A2390F683ABEFDEC /* RCam.framework */; };
-		367B758D6BE15974F6F3D08A /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2ABADF7B2EB872CAD03DD5 /* ExampleViewController.swift */; };
 		61FD273C1CC03D34CD1A8C43 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F93E921E746157019856A7 /* XCTestManifests.swift */; };
-		8466DDAF84AE6191D7FAF2AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57A76763ABF7BDBC26B2D6F /* AppDelegate.swift */; };
-		8581F0C4264A4E310024B51E /* RCam.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C35189C2A2390F683ABEFDEC /* RCam.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		85944F70264A43240036562C /* Framezilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85944F6F264A43240036562C /* Framezilla.framework */; };
 		85BD0D112644E4B2004EA51B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D0F2644E4B2004EA51B /* Camera.swift */; };
 		85BD0D122644E4B2004EA51B /* CameraImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D102644E4B2004EA51B /* CameraImpl.swift */; };
 		85BD0D162644E4C9004EA51B /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D152644E4C9004EA51B /* CameraError.swift */; };
@@ -21,39 +16,7 @@
 		CB535DF20E5DB844DB8BB3E3 /* RcamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB92FA485B028B3B9F93292 /* RcamTests.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5D5BF0C0F19C5CF3C8AE0300 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BCB23A8B419CD6BF9FC6AE96 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50F42E89F5FC776DC827A429;
-			remoteInfo = Rcam;
-		};
-		85B86CB32644FFBF006FA596 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BCB23A8B419CD6BF9FC6AE96 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 50F42E89F5FC776DC827A429;
-			remoteInfo = RCam;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		8581F0C5264A4E310024B51E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8581F0C4264A4E310024B51E /* RCam.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		4A22D35593478373DCFF41BC /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BB92FA485B028B3B9F93292 /* RcamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcamTests.swift; sourceTree = "<group>"; };
 		85944F6F264A43240036562C /* Framezilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Framezilla.framework; path = Carthage/Build/iOS/Framezilla.framework; sourceTree = "<group>"; };
 		85BD0D0F2644E4B2004EA51B /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
@@ -64,27 +27,12 @@
 		A39732480DCE7C253EFD70F1 /* RCamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RCamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C35189C2A2390F683ABEFDEC /* RCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F93E921E746157019856A7 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
-		D57A76763ABF7BDBC26B2D6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DE2ABADF7B2EB872CAD03DD5 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		FC13C827448057B1037AD175 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				85944F70264A43240036562C /* Framezilla.framework in Frameworks */,
-				2E43818DE7EC1BF2C0232817 /* RCam.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		2028882D154125601B72F1E4 = {
 			isa = PBXGroup;
 			children = (
-				F90E9BCA27A74D12C8A41628 /* Example */,
 				30F49E393A6C76CD0B1ED8A4 /* Rcam */,
 				475449E8585D8C7D3966089C /* RcamTests */,
 				7FDA6447F0BA6E21E1B00045 /* Products */,
@@ -116,7 +64,6 @@
 		7FDA6447F0BA6E21E1B00045 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4A22D35593478373DCFF41BC /* Example.app */,
 				C35189C2A2390F683ABEFDEC /* RCam.framework */,
 				A39732480DCE7C253EFD70F1 /* RCamTests.xctest */,
 			);
@@ -157,16 +104,6 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
-		F90E9BCA27A74D12C8A41628 /* Example */ = {
-			isa = PBXGroup;
-			children = (
-				D57A76763ABF7BDBC26B2D6F /* AppDelegate.swift */,
-				DE2ABADF7B2EB872CAD03DD5 /* ExampleViewController.swift */,
-			);
-			name = Example;
-			path = Sources/Example;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -201,27 +138,6 @@
 			productReference = A39732480DCE7C253EFD70F1 /* RCamTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D41FBBCB12C5BA469C48919D /* Example */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C1FEB1FD32C960E0C03A1B4C /* Build configuration list for PBXNativeTarget "Example" */;
-			buildPhases = (
-				DE8D7C62B5D9196BF974D30F /* Sources */,
-				97F40995677ECA000A7BF547 /* Swiftlint */,
-				FC13C827448057B1037AD175 /* Frameworks */,
-				1APWU64EKI4NPBINHTM37B7F /* Carthage */,
-				8581F0C5264A4E310024B51E /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A1B7497BCE64EBA0182FC472 /* PBXTargetDependency */,
-				85B86CB42644FFBF006FA596 /* PBXTargetDependency */,
-			);
-			name = Example;
-			productName = Example;
-			productReference = 4A22D35593478373DCFF41BC /* Example.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -246,7 +162,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D41FBBCB12C5BA469C48919D /* Example */,
 				50F42E89F5FC776DC827A429 /* RCam */,
 				A44215D68FDB93E086664B62 /* RCamTests */,
 			);
@@ -254,45 +169,6 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1APWU64EKI4NPBINHTM37B7F /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(SRCROOT)/Carthage/xcfilelists/Example-inputPaths.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = Carthage;
-			outputFileListPaths = (
-				"$(SRCROOT)/Carthage/xcfilelists/Example-outputPaths.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-			showEnvVarsInLog = 0;
-		};
-		97F40995677ECA000A7BF547 /* Swiftlint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Swiftlint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = swiftlint;
-		};
 		E55F0ADBBB4BF2D48810E9A3 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -335,29 +211,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DE8D7C62B5D9196BF974D30F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8466DDAF84AE6191D7FAF2AA /* AppDelegate.swift in Sources */,
-				367B758D6BE15974F6F3D08A /* ExampleViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		85B86CB42644FFBF006FA596 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 50F42E89F5FC776DC827A429 /* RCam */;
-			targetProxy = 85B86CB32644FFBF006FA596 /* PBXContainerItemProxy */;
-		};
-		A1B7497BCE64EBA0182FC472 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 50F42E89F5FC776DC827A429 /* RCam */;
-			targetProxy = 5D5BF0C0F19C5CF3C8AE0300 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		06F4EE1C2CB73603ABBBFCDF /* Debug */ = {
@@ -534,28 +388,6 @@
 			};
 			name = Release;
 		};
-		AE9B320EFFEE6B01FFB6AEB9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = GPVA8JVMU3;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = Rcam.xcodeproj/Example.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.Example;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		B75117EBF54DB469A02263D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -585,28 +417,6 @@
 			};
 			name = Debug;
 		};
-		EE21155D5857F11956D92CC2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = GPVA8JVMU3;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = Rcam.xcodeproj/Example.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.Example;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -633,15 +443,6 @@
 			buildConfigurations = (
 				B75117EBF54DB469A02263D2 /* Debug */,
 				4D64393D6E10595EA81C12AE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "";
-		};
-		C1FEB1FD32C960E0C03A1B4C /* Build configuration list for PBXNativeTarget "Example" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EE21155D5857F11956D92CC2 /* Debug */,
-				AE9B320EFFEE6B01FFB6AEB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "";
