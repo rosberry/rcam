@@ -22,19 +22,19 @@
 		854B20B62652804900DF5E59 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B20A12652804900DF5E59 /* FirebaseCore.framework */; };
 		854B20BA2652804900DF5E59 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B20A32652804900DF5E59 /* FirebaseAnalytics.framework */; };
 		85D18D632652860500B064F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D18D622652860500B064F2 /* AppDelegate.swift */; };
-		85D18D692652867000B064F2 /* RCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D682652867000B064F2 /* RCam.framework */; };
-		85D18D6A2652867000B064F2 /* RCam.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D682652867000B064F2 /* RCam.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		85D18D72265288E300B064F2 /* Framezilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D71265288E300B064F2 /* Framezilla.framework */; };
+		85D18D742652916400B064F2 /* RCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D682652867000B064F2 /* RCam.framework */; };
+		85D18D752652916400B064F2 /* RCam.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D682652867000B064F2 /* RCam.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		85D18D6B2652867000B064F2 /* Embed Frameworks */ = {
+		85D18D762652916400B064F2 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				85D18D6A2652867000B064F2 /* RCam.framework in Embed Frameworks */,
+				85D18D752652916400B064F2 /* RCam.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,6 +73,7 @@
 				854B20A82652804900DF5E59 /* FirebaseAppDistribution.framework in Frameworks */,
 				854B20A62652804900DF5E59 /* nanopb.framework in Frameworks */,
 				854B20B42652804900DF5E59 /* GoogleAppMeasurement.framework in Frameworks */,
+				85D18D742652916400B064F2 /* RCam.framework in Frameworks */,
 				854B20B22652804900DF5E59 /* PromisesObjC.framework in Frameworks */,
 				854B20AC2652804900DF5E59 /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				854B20B02652804900DF5E59 /* GoogleDataTransport.framework in Frameworks */,
@@ -80,7 +81,6 @@
 				854B20BA2652804900DF5E59 /* FirebaseAnalytics.framework in Frameworks */,
 				854B20A42652804900DF5E59 /* GoogleUtilities.framework in Frameworks */,
 				85D18D72265288E300B064F2 /* Framezilla.framework in Frameworks */,
-				85D18D692652867000B064F2 /* RCam.framework in Frameworks */,
 				854B20AA2652804900DF5E59 /* FIRAnalyticsConnector.framework in Frameworks */,
 				854B20AE2652804900DF5E59 /* FirebaseInstallations.framework in Frameworks */,
 			);
@@ -151,7 +151,7 @@
 				854B207726527C2E00DF5E59 /* Frameworks */,
 				854B207826527C2E00DF5E59 /* Resources */,
 				7ECU0YL31PHSUIX7FZSLZJSB /* Carthage */,
-				85D18D6B2652867000B064F2 /* Embed Frameworks */,
+				85D18D762652916400B064F2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
