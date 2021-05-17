@@ -41,17 +41,14 @@ public final class RCamViewController: UIViewController {
 
     private lazy var captureButton: UIButton = {
         let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(captureButtonTouchedDown), for: .touchDown)
         button.addTarget(self, action: #selector(captureButtonTouchedUp), for: .touchUpInside)
-        button.addTarget(self, action: #selector(captureButtonTouchedUp), for: .touchUpOutside)
-        button.addTarget(self, action: #selector(captureButtonTouchedUp), for: .touchCancel)
         button.backgroundColor = .red
         return button
     }()
 
-    private lazy var flashCameraButton: UIButton = {
+    private lazy var torchCameraButton: UIButton = {
         let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(flashCameraButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(torchCameraButtonPressed), for: .touchUpInside)
         button.backgroundColor = .white
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
         return button
@@ -111,7 +108,8 @@ public final class RCamViewController: UIViewController {
         cameraContainerView.addSubview(cameraView)
         view.addSubview(cameraContainerView)
         view.addSubview(captureButton)
-        view.addSubview(flashCameraButton)
+        view.addSubview(torchCameraButton)
+        view.addSubview(flashLightModeButton)
         view.addSubview(flipCameraButton)
         view.addSubview(resultImageView)
 
@@ -146,11 +144,15 @@ public final class RCamViewController: UIViewController {
                  .centerX().bottom(to: view.nui_safeArea.bottom, inset: 64)
         }
 
-        flashCameraButton.configureFrame { maker in
+        torchCameraButton.configureFrame { maker in
             maker.size(width: 76, height: 36)
                  .cornerRadius(byHalf: .height)
                  .top(to: view.nui_safeArea.top, inset: 12)
                  .right(inset: 24)
+        }
+
+        flashLightModeButton.configureFrame { maker in
+            maker.right(to: torchCameraButton.nui_left, inset: 5).centerY(to: torchCameraButton.nui_centerY).sizeToFit()
         }
 
         flipCameraButton.configureFrame { maker in
@@ -167,12 +169,10 @@ public final class RCamViewController: UIViewController {
 
     // MARK: - Actions
 
-    @objc private func captureButtonTouchedDown() {
-    }
-
     @objc private func captureButtonTouchedUp() {
-        cameraService.capturePhoto { pixelBuffer, orientation in
-            guard let pixelBuffer = pixelBuffer,
+        cameraService.capturePhoto { [weak self] pixelBuffer, orientation in
+            guard let self = self,
+                  let pixelBuffer = pixelBuffer,
                   let orientation = orientation,
                   let uiImageOrientation = UIImage.Orientation(rawValue: Int(orientation)) else {
                 return
@@ -186,13 +186,15 @@ public final class RCamViewController: UIViewController {
                                                                            height: CVPixelBufferGetHeight(pixelBuffer))) else {
                 return
             }
-            self.resultImageView.image = UIImage(cgImage: cgImage, scale: 1, orientation: uiImageOrientation)
+            let image = UIImage(cgImage: cgImage, scale: 1, orientation: uiImageOrientation)
+            self.resultImageView.image = image
+            self.delegate?.rCamViewController(self, imageCaptured: image)
         }
     }
 
-    @objc private func flashCameraButtonPressed() {
-        flashCameraButton.isSelected.toggle()
-        if flashCameraButton.isSelected {
+    @objc private func torchCameraButtonPressed() {
+        torchCameraButton.isSelected.toggle()
+        if torchCameraButton.isSelected {
             cameraService.torchMode = .on
         }
         else {
@@ -272,6 +274,16 @@ public final class RCamViewController: UIViewController {
 
     @objc private func captureButtonLongPressed(recognizer: UILongPressGestureRecognizer) {
 
+    }
+
+    @objc private func flashModeButtonPressed() {
+        flashLightModeButton.isSelected.toggle()
+        if flashLightModeButton.isSelected {
+            cameraService.flashMode = .off
+        }
+        else {
+            cameraService.flashMode = .auto
+        }
     }
 
     private func cubicEaseIn<T: FloatingPoint>(_ x: T) -> T {
