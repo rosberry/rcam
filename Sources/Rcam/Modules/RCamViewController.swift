@@ -73,7 +73,20 @@ public final class RCamViewController: UIViewController {
     private lazy var focusView: UIView = {
         let view = UIView()
         view.isUserInteractionEnabled = false
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.systemRed.cgColor
         return view
+    }()
+
+    private lazy var flashLightModeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Flash mode: auto", for: .normal)
+        button.setTitle("Flash mode: off", for: .selected)
+        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.black, for: .selected)
+        button.backgroundColor = .white
+        button.addTarget(self, action: #selector(flashModeButtonPressed), for: .touchUpInside)
+        return button
     }()
 
     private lazy var resultImageView: UIImageView = .init()
@@ -240,7 +253,7 @@ public final class RCamViewController: UIViewController {
     @objc private func videoViewTapped(recognizer: UITapGestureRecognizer) {
         let point = recognizer.location(in: cameraContainerView)
 
-        focusView.sizeToFit()
+        focusView.bounds = .init(origin: .zero, size: .init(width: 100, height: 100))
         focusView.center = cameraContainerView.convert(point, to: view)
         view.addSubview(focusView)
 
