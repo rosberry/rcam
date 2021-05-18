@@ -4,6 +4,7 @@
 
 source "https://rubygems.org"
 
+gem 'jwt', "~> 2.1.0"
 gem 'fastlane'
 
 plugins_path = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')
