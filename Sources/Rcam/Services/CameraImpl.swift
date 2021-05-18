@@ -40,7 +40,7 @@ public final class CameraImpl: Camera {
     private lazy var photoOutputDelegate: PhotoOutput = .init(handler: photoOutputHandler) // swiftlint:disable:this weak_delegate
     private lazy var photoOutput: AVCapturePhotoOutput = .init()
 
-    private(set) public  var usingBackCamera: Bool = true
+    private(set) public var usingBackCamera: Bool = true
     public var flashMode: AVCaptureDevice.FlashMode = .off
     public var torchMode: AVCaptureDevice.TorchMode {
         get {
@@ -51,7 +51,7 @@ public final class CameraImpl: Camera {
             for input in captureSession.inputs {
                 if let input = input as? AVCaptureDeviceInput {
                     let device = input.device
-                    if device.isTorchAvailable {
+                    if device.isTorchAvailable && device.hasTorch {
                         return device.torchMode
                     }
                 }

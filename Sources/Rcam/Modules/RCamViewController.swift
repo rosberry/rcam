@@ -6,7 +6,7 @@ import UIKit
 import AVFoundation
 import Framezilla
 
-protocol RCamViewControllerDelegate: class {
+public protocol RCamViewControllerDelegate: class {
     func rCamViewController(_ viewController: RCamViewController, imageCaptured image: UIImage)
 }
 
@@ -20,17 +20,22 @@ public final class RCamViewController: UIViewController {
         true
     }
 
-    weak var delegate: RCamViewControllerDelegate?
+    public weak var delegate: RCamViewControllerDelegate?
 
-    var focusViewTimer: Timer?
-    private var initialLongPressGesturePoint: CGPoint = .zero
-    private var initialLongPressZoomRelativeValue: CGFloat = 0
+    private var focusViewTimer: Timer?
 
     private lazy var pinchGestureRecognizer: UIPinchGestureRecognizer = {
         let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(viewPinched))
         pinchGestureRecognizer.delegate = self
         pinchGestureRecognizer.cancelsTouchesInView = false
         return pinchGestureRecognizer
+    }()
+
+    private lazy var tapGestureRecognizer: UITapGestureRecognizer = {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(videoViewTapped))
+        tapGestureRecognizer.delegate = self
+        tapGestureRecognizer.cancelsTouchesInView = false
+        return tapGestureRecognizer
     }()
 
     private let cameraService: Camera = CameraImpl()
@@ -103,25 +108,11 @@ public final class RCamViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOS 13, *) {
-            view.backgroundColor = .systemBackground
-        }
-        else {
-            view.backgroundColor = .black
-        }
+        view.backgroundColor = .black
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(videoViewTapped))
-        tapGestureRecognizer.delegate = self
-        tapGestureRecognizer.cancelsTouchesInView = false
         cameraContainerView.addGestureRecognizer(tapGestureRecognizer)
 
         cameraContainerView.addGestureRecognizer(pinchGestureRecognizer)
-
-        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(captureButtonLongPressed))
-        longPressGestureRecognizer.delegate = self
-        longPressGestureRecognizer.minimumPressDuration = 0
-        longPressGestureRecognizer.cancelsTouchesInView = false
-        captureButton.addGestureRecognizer(longPressGestureRecognizer)
 
         cameraContainerView.addSubview(cameraView)
         view.addSubview(cameraContainerView)
@@ -196,7 +187,7 @@ public final class RCamViewController: UIViewController {
                 return
             }
 
-            let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+            let ciImage = CIImage(cvPixelBuffer: pixelBuffer).oriented(.downMirrored)
             let context = CIContext()
             guard let cgImage = context.createCGImage(ciImage, from: .init(x: 0,
                                                                            y: 0,
@@ -288,10 +279,6 @@ public final class RCamViewController: UIViewController {
             default:
                 break
         }
-    }
-
-    @objc private func captureButtonLongPressed(recognizer: UILongPressGestureRecognizer) {
-
     }
 
     @objc private func flashModeButtonPressed() {
