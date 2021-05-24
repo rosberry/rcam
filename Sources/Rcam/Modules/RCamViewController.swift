@@ -12,10 +12,6 @@ public protocol RCamViewControllerDelegate: class {
 
 public final class RCamViewController: UIViewController {
 
-    private enum Constants {
-        static let zoomLevelDistance: CGFloat = 300
-    }
-
     public override var prefersStatusBarHidden: Bool {
         true
     }
@@ -101,6 +97,28 @@ public final class RCamViewController: UIViewController {
 
     private lazy var resultImageView: UIImageView = .init()
 
+    private lazy var zoomSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumValue = 1
+        slider.maximumValue = 16
+        slider.value = 1
+        slider.addTarget(self, action: #selector(zoomSliderValueChanged), for: .valueChanged)
+        return slider
+    }()
+
+    private lazy var zoomLabelContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        return view
+    }()
+
+    private lazy var zoomLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12, weight: .semibold)
+        label.text = "1 X"
+        return label
+    }()
+
     // MARK: - Lifecycle
 
     public init() {
@@ -121,12 +139,15 @@ public final class RCamViewController: UIViewController {
         cameraContainerView.addGestureRecognizer(pinchGestureRecognizer)
 
         cameraContainerView.addSubview(cameraView)
+        zoomLabelContainerView.addSubview(zoomLabel)
         view.addSubview(cameraContainerView)
         view.addSubview(captureButton)
         view.addSubview(torchCameraButton)
         view.addSubview(flashLightModeButton)
         view.addSubview(flipCameraButton)
         view.addSubview(resultImageView)
+        view.addSubview(zoomSlider)
+        view.addSubview(zoomLabelContainerView)
 
         cameraService.startSession()
         cameraPreviewLayer.session = cameraService.captureSession
@@ -183,6 +204,23 @@ public final class RCamViewController: UIViewController {
         resultImageView.configureFrame { maker in
             maker.left().top(to: view.nui_safeArea.top, inset: 10).size(width: 100, height: 200)
         }
+
+        let zoomLabelSize = zoomLabel.sizeThatFits(view.bounds.size)
+
+        zoomLabelContainerView.configureFrame { maker in
+            let side = max(zoomLabelSize.width, 38) + 4
+            maker.centerX().bottom(to: captureButton.nui_top, inset: 24)
+                .size(width: side, height: side).cornerRadius(byHalf: .height)
+        }
+
+        zoomLabel.configureFrame { maker in
+            maker.center().sizeToFit()
+        }
+
+        zoomSlider.configureFrame { maker in
+            maker.left(inset: 30).right(inset: 30).heightToFit().bottom(to: zoomLabelContainerView.nui_top, inset: 10)
+        }
+        zoomSlider.subviews.first?.frame = zoomSlider.bounds
     }
 
     // MARK: - Actions
@@ -285,9 +323,16 @@ public final class RCamViewController: UIViewController {
             case .changed:
                 let scale = recognizer.scale
                 cameraService.zoomLevel = scale
+                zoomSlider.setValue(Float(scale), animated: true)
+                updateZoomLevelLabel()
             default:
                 break
         }
+    }
+
+    @objc private func zoomSliderValueChanged(_ slider: UISlider) {
+        cameraService.zoomLevel = CGFloat(slider.value)
+        updateZoomLevelLabel()
     }
 
     @objc private func flashModeButtonPressed() {
@@ -301,6 +346,16 @@ public final class RCamViewController: UIViewController {
             updateFlashModeIcon(for: flashMode)
             cameraService.flashMode = flashMode
         }
+    }
+
+    private func updateZoomLevelLabel() {
+        guard let zoomLevel = cameraService.zoomLevel else {
+            return
+        }
+
+        zoomLabel.text = String(format: "%.1f X", zoomLevel)
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
     }
 
     private func updateFlashModeIcon(for flashMode: AVCaptureDevice.FlashMode) {
