@@ -50,10 +50,18 @@ public final class RCamViewController: UIViewController {
     }()
     private lazy var cameraContainerView: UIView = .init()
 
+    private lazy var captureButtonContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        return view
+    }()
+
     private lazy var captureButton: UIButton = {
         let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "ic62TakePhoto"), for: .normal)
         button.addTarget(self, action: #selector(captureButtonTouchedUp), for: .touchUpInside)
-        button.backgroundColor = .red
+        button.tintColor = .white
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         return button
     }()
 
@@ -66,12 +74,11 @@ public final class RCamViewController: UIViewController {
     }()
 
     private lazy var flipCameraButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("FLIP", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        let button = UIButton()
+        button.setImage(UIImage(named: "ic32Swichcamera"), for: .normal)
         button.addTarget(self, action: #selector(flipCameraButtonPressed), for: .touchUpInside)
-        button.backgroundColor = .white
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
+        button.tintColor = .white
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         return button
     }()
 
@@ -85,10 +92,9 @@ public final class RCamViewController: UIViewController {
 
     private lazy var flashLightModeButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Flash mode: auto", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.setTitleColor(.black, for: .selected)
-        button.backgroundColor = .white
+        button.setImage(UIImage(named: "ic32FlashAuto"), for: .normal)
+        button.tintColor = .white
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         button.addTarget(self, action: #selector(flashModeButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -124,6 +130,8 @@ public final class RCamViewController: UIViewController {
 
         cameraService.startSession()
         cameraPreviewLayer.session = cameraService.captureSession
+
+        updateFlashModeIcon(for: cameraService.flashMode)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -142,15 +150,15 @@ public final class RCamViewController: UIViewController {
         let height = width / aspect
         cameraContainerView.configureFrame { maker in
             maker.size(width: width, height: height)
-                 .centerY(between: view.nui_safeArea.top, view.nui_safeArea.bottom)
+                .centerY(between: view.nui_safeArea.top, view.nui_safeArea.bottom)
         }
         cameraView.frame = cameraContainerView.bounds
         cameraPreviewLayer.frame = cameraView.bounds
 
         captureButton.configureFrame { maker in
-            maker.size(width: 64, height: 64)
-                 .cornerRadius(byHalf: .height)
-                 .centerX().bottom(to: view.nui_safeArea.bottom, inset: 64)
+            let actualSize = captureButton.sizeThatFits(view.bounds.size)
+            maker.size(width: actualSize.width + 20, height: actualSize.height + 20)
+                .centerX().bottom(to: view.nui_safeArea.bottom, inset: 70).cornerRadius(byHalf: .height)
         }
 
         torchCameraButton.configureFrame { maker in
@@ -161,14 +169,15 @@ public final class RCamViewController: UIViewController {
         }
 
         flashLightModeButton.configureFrame { maker in
-            maker.right(to: torchCameraButton.nui_left, inset: 5).centerY(to: torchCameraButton.nui_centerY).sizeToFit()
+            let actualSize = flashLightModeButton.sizeThatFits(view.bounds.size)
+            maker.size(width: actualSize.width + 20, height: actualSize.height + 20)
+                .left(inset: 45).centerY(to: captureButton.nui_centerY).sizeToFit().cornerRadius(byHalf: .height)
         }
 
         flipCameraButton.configureFrame { maker in
-            maker.size(width: 76, height: 36)
-                 .cornerRadius(byHalf: .height)
-                 .right(inset: 24)
-                 .centerY(to: captureButton.nui_centerY)
+            let actualSize = flipCameraButton.sizeThatFits(view.bounds.size)
+            maker.size(width: actualSize.width + 20, height: actualSize.height + 20)
+                 .right(inset: 45).centerY(to: captureButton.nui_centerY).cornerRadius(byHalf: .height)
         }
 
         resultImageView.configureFrame { maker in
@@ -289,20 +298,24 @@ public final class RCamViewController: UIViewController {
         }
 
         if let flashMode = AVCaptureDevice.FlashMode(rawValue: newFlashMode) {
-            let flashModeString: String
-            switch flashMode {
-            case .auto:
-                flashModeString = "auto"
-            case .on:
-                flashModeString = "on"
-            case .off:
-                flashModeString = "off"
-            @unknown default:
-                flashModeString = "unknown"
-            }
-            flashLightModeButton.setTitle("flash mode: \(flashModeString)", for: .normal)
+            updateFlashModeIcon(for: flashMode)
             cameraService.flashMode = flashMode
         }
+    }
+
+    private func updateFlashModeIcon(for flashMode: AVCaptureDevice.FlashMode) {
+        let flashModeImageName: String
+        switch flashMode {
+        case .auto:
+            flashModeImageName = "ic32FlashAuto"
+        case .on:
+            flashModeImageName = "ic32FlashOn"
+        case .off:
+            flashModeImageName = "ic32FlashOff"
+        @unknown default:
+            flashModeImageName = "unknown"
+        }
+        flashLightModeButton.setImage(UIImage(named: flashModeImageName), for: .normal)
     }
 
     private func cubicEaseIn<T: FloatingPoint>(_ x: T) -> T {
