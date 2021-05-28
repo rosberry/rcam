@@ -82,7 +82,7 @@ public final class RCamViewController: UIViewController {
         let view = UIView()
         view.isUserInteractionEnabled = false
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.systemRed.cgColor
+        view.layer.borderColor = UIColor.systemOrange.cgColor
         return view
     }()
 
@@ -135,7 +135,6 @@ public final class RCamViewController: UIViewController {
         view.backgroundColor = .black
 
         cameraContainerView.addGestureRecognizer(tapGestureRecognizer)
-
         cameraContainerView.addGestureRecognizer(pinchGestureRecognizer)
 
         cameraContainerView.addSubview(cameraView)
@@ -265,7 +264,7 @@ public final class RCamViewController: UIViewController {
 
         cameraSnapshotView.frame = cameraContainerView.frame
         view.insertSubview(cameraSnapshotView, aboveSubview: cameraContainerView)
-        cameraContainerView.isHidden = true
+        cameraContainerView.alpha = 0
 
         let blurView = UIVisualEffectView(effect: nil)
         blurView.frame = view.bounds
@@ -276,11 +275,12 @@ public final class RCamViewController: UIViewController {
         }, completion: { _ in
             try? self.cameraService.flipCamera()
             UIView.animate(withDuration: 0.2, animations: {
-                cameraSnapshotView.frame = self.cameraContainerView.frame
+                self.cameraContainerView.alpha = 1
+                cameraSnapshotView.alpha = 0
+                blurView.effect = nil
             }, completion: { _ in
                 cameraSnapshotView.removeFromSuperview()
                 blurView.removeFromSuperview()
-                self.cameraContainerView.isHidden = false
             })
         })
     }
