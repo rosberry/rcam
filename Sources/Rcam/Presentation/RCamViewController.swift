@@ -104,6 +104,7 @@ public final class RCamViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         label.text = "1 X"
+        label.textColor = .white
         return label
     }()
 
@@ -160,7 +161,7 @@ public final class RCamViewController: UIViewController {
         let width = availableRect.width
         let aspect: CGFloat = 9 / 16
         let height = width / aspect
-        
+
         cameraContainerView.configureFrame { maker in
             maker.size(width: width, height: height)
                 .centerY(between: view.nui_safeArea.top, view.nui_safeArea.bottom)

@@ -300,8 +300,11 @@ public final class CameraImpl: Camera {
     public func capturePhoto(completion: @escaping PhotoHandler) {
         photoOutputHandler = completion
         let settings = AVCapturePhotoSettings(format: [String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_32BGRA])
-        settings.flashMode = flashMode
+        if photoOutput.supportedFlashModes.contains(flashMode) {
+            settings.flashMode = flashMode
+        }
         settings.isAutoStillImageStabilizationEnabled = true
+
         photoOutput.capturePhoto(with: settings, delegate: photoOutputDelegate)
     }
 
