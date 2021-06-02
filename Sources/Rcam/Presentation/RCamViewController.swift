@@ -34,25 +34,25 @@ public final class RCamViewController: UIViewController {
         return tapGestureRecognizer
     }()
 
-    private let cameraService: Camera = CameraImpl()
+    private let cameraService: Camera
 
     // MARK: - Subviews
 
-    private lazy var cameraPreviewLayer: AVCaptureVideoPreviewLayer = .init()
-    private lazy var cameraView: UIView = {
+    public private(set) lazy var cameraPreviewLayer: AVCaptureVideoPreviewLayer = .init()
+    public private(set) lazy var cameraView: UIView = {
         let view = UIView()
         view.layer.addSublayer(cameraPreviewLayer)
         return view
     }()
-    private lazy var cameraContainerView: UIView = .init()
+    public private(set) lazy var cameraContainerView: UIView = .init()
 
-    private lazy var captureButtonContainerView: UIView = {
+    public private(set) lazy var captureButtonContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         return view
     }()
 
-    private lazy var captureButton: UIButton = {
+    public private(set) lazy var captureButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "ic62TakePhoto"), for: .normal)
         button.addTarget(self, action: #selector(captureButtonTouchedUp), for: .touchUpInside)
@@ -61,15 +61,7 @@ public final class RCamViewController: UIViewController {
         return button
     }()
 
-    private lazy var torchCameraButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(torchCameraButtonPressed), for: .touchUpInside)
-        button.backgroundColor = .white
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
-        return button
-    }()
-
-    private lazy var flipCameraButton: UIButton = {
+    public private(set) lazy var flipCameraButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "ic32Swichcamera"), for: .normal)
         button.addTarget(self, action: #selector(flipCameraButtonPressed), for: .touchUpInside)
@@ -78,15 +70,13 @@ public final class RCamViewController: UIViewController {
         return button
     }()
 
-    private lazy var focusView: UIView = {
-        let view = UIView()
+    public private(set) lazy var focusImageView: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "elementFocus"))
         view.isUserInteractionEnabled = false
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.systemOrange.cgColor
         return view
     }()
 
-    private lazy var flashLightModeButton: UIButton = {
+    public private(set) lazy var flashLightModeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "ic32FlashAuto"), for: .normal)
         button.tintColor = .white
@@ -95,9 +85,7 @@ public final class RCamViewController: UIViewController {
         return button
     }()
 
-    private lazy var resultImageView: UIImageView = .init()
-
-    private lazy var zoomSlider: UISlider = {
+    public private(set) lazy var zoomSlider: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 1
         slider.maximumValue = 16
@@ -106,13 +94,13 @@ public final class RCamViewController: UIViewController {
         return slider
     }()
 
-    private lazy var zoomLabelContainerView: UIView = {
+    public private(set) lazy var zoomLabelContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         return view
     }()
 
-    private lazy var zoomLabel: UILabel = {
+    public private(set) lazy var zoomLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .semibold)
         label.text = "1 X"
@@ -121,12 +109,18 @@ public final class RCamViewController: UIViewController {
 
     // MARK: - Lifecycle
 
-    public init() {
+    public init(cameraService: Camera = CameraImpl()) {
+        self.cameraService = cameraService
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        focusViewTimer?.invalidate()
+        focusViewTimer = nil
     }
 
     public override func viewDidLoad() {
@@ -141,10 +135,8 @@ public final class RCamViewController: UIViewController {
         zoomLabelContainerView.addSubview(zoomLabel)
         view.addSubview(cameraContainerView)
         view.addSubview(captureButton)
-        view.addSubview(torchCameraButton)
         view.addSubview(flashLightModeButton)
         view.addSubview(flipCameraButton)
-        view.addSubview(resultImageView)
         view.addSubview(zoomSlider)
         view.addSubview(zoomLabelContainerView)
 
@@ -168,6 +160,7 @@ public final class RCamViewController: UIViewController {
         let width = availableRect.width
         let aspect: CGFloat = 9 / 16
         let height = width / aspect
+        
         cameraContainerView.configureFrame { maker in
             maker.size(width: width, height: height)
                 .centerY(between: view.nui_safeArea.top, view.nui_safeArea.bottom)
@@ -181,13 +174,6 @@ public final class RCamViewController: UIViewController {
                 .centerX().bottom(to: view.nui_safeArea.bottom, inset: 70).cornerRadius(byHalf: .height)
         }
 
-        torchCameraButton.configureFrame { maker in
-            maker.size(width: 76, height: 36)
-                 .cornerRadius(byHalf: .height)
-                 .top(to: view.nui_safeArea.top, inset: 12)
-                 .right(inset: 24)
-        }
-
         flashLightModeButton.configureFrame { maker in
             let actualSize = flashLightModeButton.sizeThatFits(view.bounds.size)
             maker.size(width: actualSize.width + 20, height: actualSize.height + 20)
@@ -198,10 +184,6 @@ public final class RCamViewController: UIViewController {
             let actualSize = flipCameraButton.sizeThatFits(view.bounds.size)
             maker.size(width: actualSize.width + 20, height: actualSize.height + 20)
                  .right(inset: 45).centerY(to: captureButton.nui_centerY).cornerRadius(byHalf: .height)
-        }
-
-        resultImageView.configureFrame { maker in
-            maker.left().top(to: view.nui_safeArea.top, inset: 10).size(width: 100, height: 200)
         }
 
         let zoomLabelSize = zoomLabel.sizeThatFits(view.bounds.size)
@@ -242,18 +224,7 @@ public final class RCamViewController: UIViewController {
                 return
             }
             let image = UIImage(cgImage: cgImage, scale: 1, orientation: uiImageOrientation)
-            self.resultImageView.image = image
             self.delegate?.rCamViewController(self, imageCaptured: image)
-        }
-    }
-
-    @objc private func torchCameraButtonPressed() {
-        torchCameraButton.isSelected.toggle()
-        if torchCameraButton.isSelected {
-            cameraService.torchMode = .on
-        }
-        else {
-            cameraService.torchMode = .off
         }
     }
 
@@ -290,22 +261,22 @@ public final class RCamViewController: UIViewController {
     @objc private func videoViewTapped(recognizer: UITapGestureRecognizer) {
         let point = recognizer.location(in: cameraContainerView)
 
-        focusView.bounds = .init(origin: .zero, size: .init(width: 100, height: 100))
-        focusView.center = cameraContainerView.convert(point, to: view)
-        view.addSubview(focusView)
+        focusImageView.bounds = .init(origin: .zero, size: .init(width: 100, height: 100))
+        focusImageView.center = cameraContainerView.convert(point, to: view)
+        view.addSubview(focusImageView)
 
-        focusView.transform = .init(scaleX: 2, y: 2)
+        focusImageView.transform = .init(scaleX: 2, y: 2)
         UIView.animate(withDuration: 0.2, animations: {
-            self.focusView.transform = .identity
+            self.focusImageView.transform = .identity
         }, completion: nil)
 
         focusViewTimer?.invalidate()
         focusViewTimer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { [weak self] _ in
             UIView.animate(withDuration: 0.2, animations: {
-                self?.focusView.alpha = 0
+                self?.focusImageView.alpha = 0
             }, completion: { _ in
-                self?.focusView.removeFromSuperview()
-                self?.focusView.alpha = 1
+                self?.focusImageView.removeFromSuperview()
+                self?.focusImageView.alpha = 1
             })
         }
 
