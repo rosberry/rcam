@@ -43,9 +43,9 @@
 		30F49E393A6C76CD0B1ED8A4 /* Rcam */ = {
 			isa = PBXGroup;
 			children = (
-				85BD0D1F2644E8E9004EA51B /* Modules */,
+				85BD0D1F2644E8E9004EA51B /* Presentation */,
 				85BD0D1E2644E819004EA51B /* Extensions */,
-				85BD0D1D2644E811004EA51B /* Services */,
+				85BD0D1D2644E811004EA51B /* Core */,
 			);
 			name = Rcam;
 			path = Sources/Rcam;
@@ -78,14 +78,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		85BD0D1D2644E811004EA51B /* Services */ = {
+		85BD0D1D2644E811004EA51B /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				85BD0D152644E4C9004EA51B /* CameraError.swift */,
 				85BD0D0F2644E4B2004EA51B /* Camera.swift */,
 				85BD0D102644E4B2004EA51B /* CameraImpl.swift */,
 			);
-			path = Services;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		85BD0D1E2644E819004EA51B /* Extensions */ = {
@@ -96,12 +96,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		85BD0D1F2644E8E9004EA51B /* Modules */ = {
+		85BD0D1F2644E8E9004EA51B /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				85BD0D282644EC05004EA51B /* RCamViewController.swift */,
 			);
-			path = Modules;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
