@@ -70,11 +70,9 @@ public final class RCamViewController: UIViewController {
         return button
     }()
 
-    public private(set) lazy var focusView: UIView = {
-        let view = UIView()
+    public private(set) lazy var focusImageView: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "elementFocus"))
         view.isUserInteractionEnabled = false
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.systemOrange.cgColor
         return view
     }()
 
@@ -86,8 +84,6 @@ public final class RCamViewController: UIViewController {
         button.addTarget(self, action: #selector(flashModeButtonPressed), for: .touchUpInside)
         return button
     }()
-
-    public private(set) lazy var resultImageView: UIImageView = .init()
 
     public private(set) lazy var zoomSlider: UISlider = {
         let slider = UISlider()
@@ -141,7 +137,6 @@ public final class RCamViewController: UIViewController {
         view.addSubview(captureButton)
         view.addSubview(flashLightModeButton)
         view.addSubview(flipCameraButton)
-        view.addSubview(resultImageView)
         view.addSubview(zoomSlider)
         view.addSubview(zoomLabelContainerView)
 
@@ -165,6 +160,7 @@ public final class RCamViewController: UIViewController {
         let width = availableRect.width
         let aspect: CGFloat = 9 / 16
         let height = width / aspect
+        
         cameraContainerView.configureFrame { maker in
             maker.size(width: width, height: height)
                 .centerY(between: view.nui_safeArea.top, view.nui_safeArea.bottom)
@@ -188,10 +184,6 @@ public final class RCamViewController: UIViewController {
             let actualSize = flipCameraButton.sizeThatFits(view.bounds.size)
             maker.size(width: actualSize.width + 20, height: actualSize.height + 20)
                  .right(inset: 45).centerY(to: captureButton.nui_centerY).cornerRadius(byHalf: .height)
-        }
-
-        resultImageView.configureFrame { maker in
-            maker.left().top(to: view.nui_safeArea.top, inset: 10).size(width: 100, height: 200)
         }
 
         let zoomLabelSize = zoomLabel.sizeThatFits(view.bounds.size)
@@ -232,7 +224,6 @@ public final class RCamViewController: UIViewController {
                 return
             }
             let image = UIImage(cgImage: cgImage, scale: 1, orientation: uiImageOrientation)
-            self.resultImageView.image = image
             self.delegate?.rCamViewController(self, imageCaptured: image)
         }
     }
@@ -270,22 +261,22 @@ public final class RCamViewController: UIViewController {
     @objc private func videoViewTapped(recognizer: UITapGestureRecognizer) {
         let point = recognizer.location(in: cameraContainerView)
 
-        focusView.bounds = .init(origin: .zero, size: .init(width: 100, height: 100))
-        focusView.center = cameraContainerView.convert(point, to: view)
-        view.addSubview(focusView)
+        focusImageView.bounds = .init(origin: .zero, size: .init(width: 100, height: 100))
+        focusImageView.center = cameraContainerView.convert(point, to: view)
+        view.addSubview(focusImageView)
 
-        focusView.transform = .init(scaleX: 2, y: 2)
+        focusImageView.transform = .init(scaleX: 2, y: 2)
         UIView.animate(withDuration: 0.2, animations: {
-            self.focusView.transform = .identity
+            self.focusImageView.transform = .identity
         }, completion: nil)
 
         focusViewTimer?.invalidate()
         focusViewTimer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { [weak self] _ in
             UIView.animate(withDuration: 0.2, animations: {
-                self?.focusView.alpha = 0
+                self?.focusImageView.alpha = 0
             }, completion: { _ in
-                self?.focusView.removeFromSuperview()
-                self?.focusView.alpha = 1
+                self?.focusImageView.removeFromSuperview()
+                self?.focusImageView.alpha = 1
             })
         }
 
