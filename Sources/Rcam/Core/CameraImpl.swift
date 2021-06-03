@@ -161,6 +161,10 @@ public final class CameraImpl: Camera {
             setupAudioOutput(for: session)
             setupPhotoOutput(for: session)
 
+            session.beginConfiguration()
+            session.sessionPreset = .photo
+            session.commitConfiguration()
+
             session.startRunning()
             captureSession = session
 

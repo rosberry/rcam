@@ -159,7 +159,7 @@ public final class RCamViewController: UIViewController {
 
         let availableRect = view.bounds.inset(by: view.safeAreaInsets)
         let width = availableRect.width
-        let aspect: CGFloat = 9 / 16
+        let aspect: CGFloat = 3 / 4
         let height = width / aspect
 
         cameraContainerView.configureFrame { maker in
@@ -172,7 +172,7 @@ public final class RCamViewController: UIViewController {
         captureButton.configureFrame { maker in
             let actualSize = captureButton.sizeThatFits(view.bounds.size)
             maker.size(width: actualSize.width + 20, height: actualSize.height + 20)
-                .centerX().bottom(to: view.nui_safeArea.bottom, inset: 70).cornerRadius(byHalf: .height)
+                .centerX().bottom(to: view.nui_safeArea.bottom, inset: 36).cornerRadius(byHalf: .height)
         }
 
         flashLightModeButton.configureFrame { maker in
