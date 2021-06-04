@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		61FD273C1CC03D34CD1A8C43 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F93E921E746157019856A7 /* XCTestManifests.swift */; };
+		854649242669E89700B2D449 /* Framezilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85944F6F264A43240036562C /* Framezilla.framework */; };
 		85BD0D112644E4B2004EA51B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D0F2644E4B2004EA51B /* Camera.swift */; };
 		85BD0D122644E4B2004EA51B /* CameraImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D102644E4B2004EA51B /* CameraImpl.swift */; };
 		85BD0D162644E4C9004EA51B /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D152644E4C9004EA51B /* CameraError.swift */; };
@@ -29,6 +30,17 @@
 		C35189C2A2390F683ABEFDEC /* RCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F93E921E746157019856A7 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		854649232669E88200B2D449 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				854649242669E89700B2D449 /* Framezilla.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		2028882D154125601B72F1E4 = {
@@ -114,6 +126,7 @@
 			buildConfigurationList = 94A80234A6F09CB0778BFC2B /* Build configuration list for PBXNativeTarget "RCam" */;
 			buildPhases = (
 				55C8F05E8757EDCE8D165E72 /* Sources */,
+				854649232669E88200B2D449 /* Frameworks */,
 			);
 			buildRules = (
 			);
