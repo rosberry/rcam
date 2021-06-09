@@ -8,6 +8,7 @@ import Framezilla
 
 public protocol RCamViewControllerDelegate: class {
     func rCamViewController(_ viewController: RCamViewController, imageCaptured image: UIImage)
+    func rCamViewControllerCloseEventTriggered(_ viewController: RCamViewController)
 }
 
 public final class RCamViewController: UIViewController {
@@ -40,7 +41,18 @@ public final class RCamViewController: UIViewController {
 
     // MARK: - Subviews
 
+    public private(set) lazy var closeButton: UIButton = {
+        let button = UIButton(type: .system)
+        let image = UIImage(named: "ic_close_xs", in: bundle, compatibleWith: nil)
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(closeButtonPressed), for: .touchUpInside)
+        button.tintColor = .white
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        return button
+    }()
+
     public private(set) lazy var cameraPreviewLayer: AVCaptureVideoPreviewLayer = .init()
+
     public private(set) lazy var cameraView: UIView = {
         let view = UIView()
         view.layer.addSublayer(cameraPreviewLayer)
@@ -146,6 +158,7 @@ public final class RCamViewController: UIViewController {
         view.addSubview(flipCameraButton)
         view.addSubview(zoomSlider)
         view.addSubview(zoomLabelContainerView)
+        view.addSubview(closeButton)
 
         cameraService.startSession()
         cameraPreviewLayer.session = cameraService.captureSession
@@ -209,9 +222,17 @@ public final class RCamViewController: UIViewController {
             maker.left(inset: 30).right(inset: 30).heightToFit().bottom(to: zoomLabelContainerView.nui_top, inset: 10)
         }
         zoomSlider.subviews.first?.frame = zoomSlider.bounds
+
+        closeButton.configureFrame { maker in
+            maker.left(inset: 16).top(to: view.nui_safeArea.top, inset: 16).sizeToFit()
+        }
     }
 
     // MARK: - Actions
+
+    @objc private func closeButtonPressed() {
+        delegate?.rCamViewControllerCloseEventTriggered(self)
+    }
 
     @objc private func captureButtonTouchedUp() {
         cameraService.capturePhoto { [weak self] pixelBuffer, orientation in
@@ -349,14 +370,6 @@ public final class RCamViewController: UIViewController {
             flashModeImageName = "unknown"
         }
         flashLightModeButton.setImage(UIImage(named: flashModeImageName, in: bundle, compatibleWith: nil), for: .normal)
-    }
-
-    private func cubicEaseIn<T: FloatingPoint>(_ x: T) -> T {
-        x * x * x
-    }
-
-    private func deCubicEaseIn(_ x: CGFloat) -> CGFloat {
-        pow(x, CGFloat(1) / CGFloat(3))
     }
 }
 

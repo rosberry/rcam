@@ -25,4 +25,7 @@ extension AppDelegate: RCamViewControllerDelegate {
     func rCamViewController(_ viewController: RCamViewController, imageCaptured image: UIImage) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
+
+    func rCamViewControllerCloseEventTriggered(_ viewController: RCamViewController) {
+    }
 }
