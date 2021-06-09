@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		854B208726527C2F00DF5E59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 854B208626527C2F00DF5E59 /* Assets.xcassets */; };
 		854B208A26527C2F00DF5E59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 854B208826527C2F00DF5E59 /* LaunchScreen.storyboard */; };
 		854B209526527D7300DF5E59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 854B209426527D7300DF5E59 /* GoogleService-Info.plist */; };
 		854B20A42652804900DF5E59 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854B20982652804900DF5E59 /* GoogleUtilities.framework */; };
@@ -43,7 +42,6 @@
 
 /* Begin PBXFileReference section */
 		854B207A26527C2E00DF5E59 /* RCamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RCamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		854B208626527C2F00DF5E59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		854B208926527C2F00DF5E59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		854B208B26527C2F00DF5E59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		854B209426527D7300DF5E59 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 			children = (
 				85D18D622652860500B064F2 /* AppDelegate.swift */,
 				854B209426527D7300DF5E59 /* GoogleService-Info.plist */,
-				854B208626527C2F00DF5E59 /* Assets.xcassets */,
 				854B208826527C2F00DF5E59 /* LaunchScreen.storyboard */,
 				854B208B26527C2F00DF5E59 /* Info.plist */,
 			);
@@ -201,7 +198,6 @@
 			files = (
 				854B208A26527C2F00DF5E59 /* LaunchScreen.storyboard in Resources */,
 				854B209526527D7300DF5E59 /* GoogleService-Info.plist in Resources */,
-				854B208726527C2F00DF5E59 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

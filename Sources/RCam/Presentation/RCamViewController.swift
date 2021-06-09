@@ -20,6 +20,8 @@ public final class RCamViewController: UIViewController {
 
     private var focusViewTimer: Timer?
 
+    private lazy var bundle: Bundle = .init(for: Self.self)
+
     private lazy var pinchGestureRecognizer: UIPinchGestureRecognizer = {
         let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(viewPinched))
         pinchGestureRecognizer.delegate = self
@@ -54,7 +56,8 @@ public final class RCamViewController: UIViewController {
 
     public private(set) lazy var captureButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "ic62TakePhoto"), for: .normal)
+        let image = UIImage(named: "ic62TakePhoto", in: bundle, compatibleWith: nil)
+        button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(captureButtonTouchedUp), for: .touchUpInside)
         button.tintColor = .white
         button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
@@ -63,7 +66,8 @@ public final class RCamViewController: UIViewController {
 
     public private(set) lazy var flipCameraButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "ic32Swichcamera"), for: .normal)
+        let image = UIImage(named: "ic32Swichcamera", in: bundle, compatibleWith: nil)
+        button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(flipCameraButtonPressed), for: .touchUpInside)
         button.tintColor = .white
         button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
@@ -71,14 +75,16 @@ public final class RCamViewController: UIViewController {
     }()
 
     public private(set) lazy var focusImageView: UIImageView = {
-        let view = UIImageView(image: UIImage(named: "elementFocus"))
+        let image = UIImage(named: "elementFocus", in: bundle, compatibleWith: nil)
+        let view = UIImageView(image: image)
         view.isUserInteractionEnabled = false
         return view
     }()
 
     public private(set) lazy var flashLightModeButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "ic32FlashAuto"), for: .normal)
+        let image = UIImage(named: "ic32FlashAuto", in: bundle, compatibleWith: nil)
+        button.setImage(image, for: .normal)
         button.tintColor = .white
         button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         button.addTarget(self, action: #selector(flashModeButtonPressed), for: .touchUpInside)
@@ -342,7 +348,7 @@ public final class RCamViewController: UIViewController {
         @unknown default:
             flashModeImageName = "unknown"
         }
-        flashLightModeButton.setImage(UIImage(named: flashModeImageName), for: .normal)
+        flashLightModeButton.setImage(UIImage(named: flashModeImageName, in: bundle, compatibleWith: nil), for: .normal)
     }
 
     private func cubicEaseIn<T: FloatingPoint>(_ x: T) -> T {

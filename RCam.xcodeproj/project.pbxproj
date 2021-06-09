@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		61FD273C1CC03D34CD1A8C43 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F93E921E746157019856A7 /* XCTestManifests.swift */; };
 		854649242669E89700B2D449 /* Framezilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85944F6F264A43240036562C /* Framezilla.framework */; };
+		8546495C266A27AA00B2D449 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8546495B266A27AA00B2D449 /* Assets.xcassets */; };
 		85BD0D112644E4B2004EA51B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D0F2644E4B2004EA51B /* Camera.swift */; };
 		85BD0D122644E4B2004EA51B /* CameraImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D102644E4B2004EA51B /* CameraImpl.swift */; };
 		85BD0D162644E4C9004EA51B /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D152644E4C9004EA51B /* CameraError.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		6BB92FA485B028B3B9F93292 /* RcamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcamTests.swift; sourceTree = "<group>"; };
 		854648E92669E14600B2D449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Rcam/Info.plist; sourceTree = SOURCE_ROOT; };
+		8546495B266A27AA00B2D449 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85944F6F264A43240036562C /* Framezilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Framezilla.framework; path = Carthage/Build/iOS/Framezilla.framework; sourceTree = "<group>"; };
 		85BD0D0F2644E4B2004EA51B /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		85BD0D102644E4B2004EA51B /* CameraImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraImpl.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		30F49E393A6C76CD0B1ED8A4 /* RCam */ = {
 			isa = PBXGroup;
 			children = (
+				8546495B266A27AA00B2D449 /* Assets.xcassets */,
 				854648E92669E14600B2D449 /* Info.plist */,
 				85BD0D1F2644E8E9004EA51B /* Presentation */,
 				85BD0D1E2644E819004EA51B /* Extensions */,
@@ -127,6 +130,7 @@
 			buildPhases = (
 				55C8F05E8757EDCE8D165E72 /* Sources */,
 				854649232669E88200B2D449 /* Frameworks */,
+				8546495A266A278000B2D449 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -182,6 +186,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8546495A266A278000B2D449 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8546495C266A27AA00B2D449 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		E55F0ADBBB4BF2D48810E9A3 /* Swiftlint */ = {
