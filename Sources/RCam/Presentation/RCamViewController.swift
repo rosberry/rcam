@@ -224,7 +224,7 @@ public final class RCamViewController: UIViewController {
         zoomSlider.subviews.first?.frame = zoomSlider.bounds
 
         closeButton.configureFrame { maker in
-            maker.left(inset: 16).top(to: view.nui_safeArea.top, inset: 16).sizeToFit()
+            maker.left().top(to: view.nui_safeArea.top).size(width: 40, height: 40)
         }
     }
 
