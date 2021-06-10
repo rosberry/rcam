@@ -109,6 +109,7 @@ public final class RCamViewController: UIViewController {
         slider.maximumValue = 16
         slider.value = 1
         slider.addTarget(self, action: #selector(zoomSliderValueChanged), for: .valueChanged)
+        slider.isHidden = true
         return slider
     }()
 
