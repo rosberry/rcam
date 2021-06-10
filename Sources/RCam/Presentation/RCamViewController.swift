@@ -284,6 +284,24 @@ public final class RCamViewController: UIViewController {
         })
     }
 
+    @objc private func flashModeButtonPressed() {
+        let currentFlashMode = cameraService.flashMode.rawValue
+        var newFlashMode = currentFlashMode + 1
+        if newFlashMode > 2 {
+            newFlashMode = 0
+        }
+
+        if let flashMode = AVCaptureDevice.FlashMode(rawValue: newFlashMode) {
+            updateFlashModeIcon(for: flashMode)
+            cameraService.flashMode = flashMode
+        }
+    }
+
+    @objc private func zoomSliderValueChanged(_ slider: UISlider) {
+        cameraService.zoomLevel = CGFloat(slider.value)
+        updateZoomLevelLabel()
+    }
+
     // MARK: - Recognizers
 
     @objc private func videoViewTapped(recognizer: UITapGestureRecognizer) {
@@ -329,23 +347,7 @@ public final class RCamViewController: UIViewController {
         }
     }
 
-    @objc private func zoomSliderValueChanged(_ slider: UISlider) {
-        cameraService.zoomLevel = CGFloat(slider.value)
-        updateZoomLevelLabel()
-    }
-
-    @objc private func flashModeButtonPressed() {
-        let currentFlashMode = cameraService.flashMode.rawValue
-        var newFlashMode = currentFlashMode + 1
-        if newFlashMode > 2 {
-            newFlashMode = 0
-        }
-
-        if let flashMode = AVCaptureDevice.FlashMode(rawValue: newFlashMode) {
-            updateFlashModeIcon(for: flashMode)
-            cameraService.flashMode = flashMode
-        }
-    }
+    // MARK: - Private
 
     private func updateZoomLevelLabel() {
         guard let zoomLevel = cameraService.zoomLevel else {
