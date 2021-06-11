@@ -10,13 +10,13 @@
 ## Usage
 
 1. Create and present view controller: 
-    ```swift
+```swift
     let rCamViewController = RCamViewController()
     navigationController?.present(viewController, animated: true)
-    ```
+```
 2. Pass delegate to handle incoming image and closing event
 
-    ```swift
+```swift
     rCamViewController.delegate = self
 
     ...
@@ -30,14 +30,12 @@
         navigationController?.dismiss(animated: true)
     }
 }
-
-    ```
+```
 
 Also you use `CameraService` separately from `RCamViewController` or create your own `CameraService` and pass it to `RCamViewController` init method
-
-     ```swift
+```swift
     let rCamViewController = RCamViewController(cameraService: YourOwnCameraService())
-    ```
+```
 
 ## Installation
 ### Depo
