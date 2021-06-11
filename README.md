@@ -11,17 +11,17 @@
 
 1. Create and present view controller: 
 ```swift
-    let rCamViewController = RCamViewController()
-    navigationController?.present(viewController, animated: true)
+let rCamViewController = RCamViewController()
+navigationController?.present(viewController, animated: true)
 ```
 2. Pass delegate to handle incoming image and closing event
 
 ```swift
-    rCamViewController.delegate = self
+rCamViewController.delegate = self
 
-    ...
+...
 
-    extension AppDelegate: RCamViewControllerDelegate {
+extension AppDelegate: RCamViewControllerDelegate {
     func rCamViewController(_ viewController: RCamViewController, imageCaptured image: UIImage) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
@@ -31,10 +31,9 @@
     }
 }
 ```
-
 Also you use `CameraService` separately from `RCamViewController` or create your own `CameraService` and pass it to `RCamViewController` init method
 ```swift
-    let rCamViewController = RCamViewController(cameraService: YourOwnCameraService())
+let rCamViewController = RCamViewController(cameraService: YourOwnCameraService())
 ```
 
 ## Installation
