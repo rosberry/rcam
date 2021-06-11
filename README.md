@@ -1,8 +1,5 @@
 # RCam
 <p>Reusable component to get image from device camera.</p>
-<p align="center">
-    <img width="250px" src="https://user-images.githubusercontent.com/15152385/113264837-3f34cd80-92f5-11eb-8b05-7153abf257e4.jpeg"></img>
-</p>
 
 ## Features
 - Camera flip
