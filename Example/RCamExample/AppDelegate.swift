@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: LaunchOptions?) -> Bool {
-        let rCamViewController = RCamViewController()
+        let rCamViewController = CameraViewController()
         rCamViewController.delegate = self
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = rCamViewController
@@ -21,11 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: RCamViewControllerDelegate {
-    func rCamViewController(_ viewController: RCamViewController, imageCaptured image: UIImage) {
+extension AppDelegate: CameraViewControllerDelegate {
+    func cameraViewController(_ viewController: CameraViewController, imageCaptured image: UIImage) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
 
-    func rCamViewControllerCloseEventTriggered(_ viewController: RCamViewController) {
+    func cameraViewControllerCloseEventTriggered(_ viewController: CameraViewController) {
     }
 }

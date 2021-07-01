@@ -50,6 +50,9 @@ carts:
 
 ### Carthage
 Create a `Cartfile` that lists the framework and run `carthage update`. Follow the [instructions](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) to add the framework to your project.
+```
+github "rosberry/rcam"
+```
 
 ### SPM
 

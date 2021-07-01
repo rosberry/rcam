@@ -386,7 +386,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rosberry.RCamExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.rosberry.RCamExample";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.rosberry.RCamExample 1624606160";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

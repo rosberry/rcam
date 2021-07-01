@@ -6,18 +6,18 @@ import UIKit
 import AVFoundation
 import Framezilla
 
-public protocol RCamViewControllerDelegate: class {
-    func rCamViewController(_ viewController: RCamViewController, imageCaptured image: UIImage)
-    func rCamViewControllerCloseEventTriggered(_ viewController: RCamViewController)
+public protocol CameraViewControllerDelegate: class {
+    func cameraViewController(_ viewController: CameraViewController, imageCaptured image: UIImage)
+    func cameraViewControllerCloseEventTriggered(_ viewController: CameraViewController)
 }
 
-public final class RCamViewController: UIViewController {
+public final class CameraViewController: UIViewController {
 
     public override var prefersStatusBarHidden: Bool {
         true
     }
 
-    public weak var delegate: RCamViewControllerDelegate?
+    public weak var delegate: CameraViewControllerDelegate?
 
     private var focusViewTimer: Timer?
 
@@ -31,7 +31,7 @@ public final class RCamViewController: UIViewController {
     }()
 
     private lazy var tapGestureRecognizer: UITapGestureRecognizer = {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(videoViewTapped))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cameraViewTapped))
         tapGestureRecognizer.delegate = self
         tapGestureRecognizer.cancelsTouchesInView = false
         return tapGestureRecognizer
@@ -60,19 +60,23 @@ public final class RCamViewController: UIViewController {
     }()
     public private(set) lazy var cameraContainerView: UIView = .init()
 
-    public private(set) lazy var captureButtonContainerView: UIView = {
+    public private(set) lazy var captureButtonBackgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         return view
     }()
 
-    public private(set) lazy var captureButton: UIButton = {
-        let button = UIButton(type: .system)
-        let image = UIImage(named: "ic62TakePhoto", in: bundle, compatibleWith: nil)
-        button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(captureButtonTouchedUp), for: .touchUpInside)
-        button.tintColor = .white
-        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+    public private(set) lazy var captureButtonContainerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+
+    public private(set) lazy var captureButton: BaseHighlightedButton = {
+        let button = BaseHighlightedButton()
+        button.addTarget(self, action: #selector(captureButtonPressed), for: .touchUpInside)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
         return button
     }()
 
@@ -103,34 +107,35 @@ public final class RCamViewController: UIViewController {
         return button
     }()
 
-    public private(set) lazy var zoomSlider: UISlider = {
-        let slider = UISlider()
-        slider.minimumValue = 1
-        slider.maximumValue = 16
-        slider.value = 1
-        slider.addTarget(self, action: #selector(zoomSliderValueChanged), for: .valueChanged)
-        slider.isHidden = true
-        return slider
-    }()
-
     public private(set) lazy var zoomLabelContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         return view
     }()
 
-    public private(set) lazy var zoomLabel: UILabel = {
+    public private(set) lazy var zoomValueLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .semibold)
-        label.text = "1 X"
+        label.text = "1.0"
         label.textColor = .white
         return label
     }()
+
+    public private(set) lazy var zoomXLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12, weight: .semibold)
+        label.text = "X"
+        label.textColor = .white
+        return label
+    }()
+
+    public private(set) lazy var blurView: UIVisualEffectView = .init(effect: nil)
 
     // MARK: - Lifecycle
 
     public init(cameraService: Camera = CameraImpl()) {
         self.cameraService = cameraService
+        cameraService.zoomRange = 1...8
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -152,12 +157,17 @@ public final class RCamViewController: UIViewController {
         cameraContainerView.addGestureRecognizer(pinchGestureRecognizer)
 
         cameraContainerView.addSubview(cameraView)
-        zoomLabelContainerView.addSubview(zoomLabel)
+        zoomLabelContainerView.addSubview(zoomValueLabel)
+        zoomLabelContainerView.addSubview(zoomXLabel)
+
+        captureButtonBackgroundView.addSubview(captureButtonContainerView)
+        captureButtonContainerView.addSubview(captureButton)
+
+        view.addSubview(blurView)
         view.addSubview(cameraContainerView)
-        view.addSubview(captureButton)
+        view.addSubview(captureButtonBackgroundView)
         view.addSubview(flashLightModeButton)
         view.addSubview(flipCameraButton)
-        view.addSubview(zoomSlider)
         view.addSubview(zoomLabelContainerView)
         view.addSubview(closeButton)
 
@@ -189,10 +199,21 @@ public final class RCamViewController: UIViewController {
         cameraView.frame = cameraContainerView.bounds
         cameraPreviewLayer.frame = cameraView.bounds
 
+        let captureButtonSize = CGSize(width: 57, height: 57)
+
+        captureButtonBackgroundView.configureFrame { maker in
+            maker.size(width: 96, height: 96).centerX()
+                .bottom(to: view.nui_safeArea.bottom, inset: 24).cornerRadius(byHalf: .height)
+        }
+
+        captureButtonContainerView.configureFrame { maker in
+            maker.size(width: captureButtonSize.width + 10, height: captureButtonSize.height + 10)
+                .center().cornerRadius(byHalf: .height)
+        }
+
         captureButton.configureFrame { maker in
-            let actualSize = captureButton.sizeThatFits(view.bounds.size)
-            maker.size(width: actualSize.width + 20, height: actualSize.height + 20)
-                .centerX().bottom(to: view.nui_safeArea.bottom, inset: 36).cornerRadius(byHalf: .height)
+            maker.size(captureButtonSize)
+                .center().cornerRadius(byHalf: .height)
         }
 
         flashLightModeButton.configureFrame { maker in
@@ -207,35 +228,36 @@ public final class RCamViewController: UIViewController {
                  .right(inset: 45).centerY(to: captureButton.nui_centerY).cornerRadius(byHalf: .height)
         }
 
-        let zoomLabelSize = zoomLabel.sizeThatFits(view.bounds.size)
-
         zoomLabelContainerView.configureFrame { maker in
-            let side = max(zoomLabelSize.width, 38) + 4
+            let side = 38
             maker.centerX().bottom(to: captureButton.nui_top, inset: 24)
                 .size(width: side, height: side).cornerRadius(byHalf: .height)
         }
 
-        zoomLabel.configureFrame { maker in
-            maker.center().sizeToFit()
+        zoomValueLabel.configureFrame { maker in
+            maker.centerY().left(inset: 4).sizeToFit()
         }
 
-        zoomSlider.configureFrame { maker in
-            maker.left(inset: 30).right(inset: 30).heightToFit().bottom(to: zoomLabelContainerView.nui_top, inset: 10)
+        zoomXLabel.configureFrame { maker in
+            maker.centerY().right(inset: 4).sizeToFit()
         }
-        zoomSlider.subviews.first?.frame = zoomSlider.bounds
 
         closeButton.configureFrame { maker in
-            maker.left().top(to: view.nui_safeArea.top).size(width: 40, height: 40).cornerRadius(byHalf: .height)
+            maker.left(inset: 24).top(to: view.nui_safeArea.top).size(width: 40, height: 40).cornerRadius(byHalf: .height)
+        }
+
+        blurView.configureFrame { maker in
+            maker.centerY(between: view.nui_safeArea.top, view.nui_safeArea.bottom).centerX().size(cameraView.frame.size)
         }
     }
 
     // MARK: - Actions
 
     @objc private func closeButtonPressed() {
-        delegate?.rCamViewControllerCloseEventTriggered(self)
+        delegate?.cameraViewControllerCloseEventTriggered(self)
     }
 
-    @objc private func captureButtonTouchedUp() {
+    @objc private func captureButtonPressed() {
         cameraService.capturePhoto { [weak self] pixelBuffer, orientation in
             guard let self = self,
                   let pixelBuffer = pixelBuffer,
@@ -253,7 +275,7 @@ public final class RCamViewController: UIViewController {
                 return
             }
             let image = UIImage(cgImage: cgImage, scale: 1, orientation: uiImageOrientation)
-            self.delegate?.rCamViewController(self, imageCaptured: image)
+            self.delegate?.cameraViewController(self, imageCaptured: image)
         }
     }
 
@@ -262,35 +284,33 @@ public final class RCamViewController: UIViewController {
             return
         }
 
+        view.isUserInteractionEnabled = false
         cameraSnapshotView.frame = cameraContainerView.frame
-        view.insertSubview(cameraSnapshotView, aboveSubview: cameraContainerView)
+        view.insertSubview(cameraSnapshotView, aboveSubview: cameraView)
         cameraContainerView.alpha = 0
 
-        let blurView = UIVisualEffectView(effect: nil)
-        blurView.frame = view.bounds
         view.insertSubview(blurView, aboveSubview: cameraSnapshotView)
 
         UIView.animate(withDuration: 0.4, animations: {
-            blurView.effect = UIBlurEffect(style: .prominent)
+            self.blurView.effect = UIBlurEffect(style: .dark)
         }, completion: { _ in
             try? self.cameraService.flipCamera()
+            self.updateZoomLevelLabel()
             UIView.animate(withDuration: 0.2, animations: {
                 self.cameraContainerView.alpha = 1
                 cameraSnapshotView.alpha = 0
-                blurView.effect = nil
+                self.blurView.effect = nil
             }, completion: { _ in
                 cameraSnapshotView.removeFromSuperview()
-                blurView.removeFromSuperview()
+                self.blurView.removeFromSuperview()
+                self.view.isUserInteractionEnabled = true
             })
         })
     }
 
     @objc private func flashModeButtonPressed() {
         let currentFlashMode = cameraService.flashMode.rawValue
-        var newFlashMode = currentFlashMode + 1
-        if newFlashMode > 2 {
-            newFlashMode = 0
-        }
+        let newFlashMode = (currentFlashMode + 1) % 3
 
         if let flashMode = AVCaptureDevice.FlashMode(rawValue: newFlashMode) {
             updateFlashModeIcon(for: flashMode)
@@ -305,7 +325,7 @@ public final class RCamViewController: UIViewController {
 
     // MARK: - Recognizers
 
-    @objc private func videoViewTapped(recognizer: UITapGestureRecognizer) {
+    @objc private func cameraViewTapped(recognizer: UITapGestureRecognizer) {
         let point = recognizer.location(in: cameraContainerView)
 
         focusImageView.bounds = .init(origin: .zero, size: .init(width: 100, height: 100))
@@ -341,7 +361,6 @@ public final class RCamViewController: UIViewController {
             case .changed:
                 let scale = recognizer.scale
                 cameraService.zoomLevel = scale
-                zoomSlider.setValue(Float(scale), animated: true)
                 updateZoomLevelLabel()
             default:
                 break
@@ -355,7 +374,7 @@ public final class RCamViewController: UIViewController {
             return
         }
 
-        zoomLabel.text = String(format: "%.1f X", zoomLevel)
+        zoomValueLabel.text = String(format: "%.1f", zoomLevel)
         view.setNeedsLayout()
         view.layoutIfNeeded()
     }
@@ -378,7 +397,7 @@ public final class RCamViewController: UIViewController {
 
 // MARK: - UIGestureRecognizerDelegate
 
-extension RCamViewController: UIGestureRecognizerDelegate {
+extension CameraViewController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                                   shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         true

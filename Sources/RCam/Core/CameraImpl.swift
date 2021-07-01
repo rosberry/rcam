@@ -87,20 +87,30 @@ public final class CameraImpl: Camera {
     }
 
     public var zoomRange: ClosedRange<CGFloat>? {
-        guard let captureSession = captureSession else {
+        get {
+            guard _zoomRange == nil else {
+                return _zoomRange
+            }
+            guard let captureSession = captureSession else {
+                return nil
+            }
+            for input in captureSession.inputs {
+                for port in input.ports where port.mediaType == .video {
+                    if let input = input as? AVCaptureDeviceInput {
+                        let device = input.device
+                        return device.minAvailableVideoZoomFactor...device.maxAvailableVideoZoomFactor
+                    }
+                }
+            }
             return nil
         }
 
-        for input in captureSession.inputs {
-            for port in input.ports where port.mediaType == .video {
-                if let input = input as? AVCaptureDeviceInput {
-                    let device = input.device
-                    return device.minAvailableVideoZoomFactor...device.maxAvailableVideoZoomFactor
-                }
-            }
+        set {
+            _zoomRange = newValue
         }
-        return nil
     }
+
+    private var _zoomRange: ClosedRange<CGFloat>?
 
     public init() {
     }
@@ -286,7 +296,7 @@ public final class CameraImpl: Camera {
             for port in input.ports where port.mediaType == .video {
                 if let input = input as? AVCaptureDeviceInput {
                     let device = input.device
-                    let zoomRange = device.minAvailableVideoZoomFactor...device.maxAvailableVideoZoomFactor
+                    let zoomRange = self.zoomRange ?? device.minAvailableVideoZoomFactor...device.maxAvailableVideoZoomFactor
                     let finalZoomLevel = zoomLevel.clamped(in: zoomRange)
                     do {
                         try device.lockForConfiguration()
