@@ -86,31 +86,22 @@ public final class CameraImpl: Camera {
         }
     }
 
-    public var zoomRange: ClosedRange<CGFloat>? {
-        get {
-            guard _zoomRange == nil else {
-                return _zoomRange
-            }
-            guard let captureSession = captureSession else {
-                return nil
-            }
-            for input in captureSession.inputs {
-                for port in input.ports where port.mediaType == .video {
-                    if let input = input as? AVCaptureDeviceInput {
-                        let device = input.device
-                        return device.minAvailableVideoZoomFactor...device.maxAvailableVideoZoomFactor
-                    }
-                }
-            }
+    public var zoomRangeLimits: ClosedRange<CGFloat>? = 0...5
+
+    public var availableDeviceZoomRange: ClosedRange<CGFloat>? {
+        guard let captureSession = captureSession else {
             return nil
         }
-
-        set {
-            _zoomRange = newValue
+        for input in captureSession.inputs {
+            for port in input.ports where port.mediaType == .video {
+                if let input = input as? AVCaptureDeviceInput {
+                    let device = input.device
+                    return device.minAvailableVideoZoomFactor...device.maxAvailableVideoZoomFactor
+                }
+            }
         }
+        return nil
     }
-
-    private var _zoomRange: ClosedRange<CGFloat>?
 
     public init() {
     }
@@ -296,7 +287,7 @@ public final class CameraImpl: Camera {
             for port in input.ports where port.mediaType == .video {
                 if let input = input as? AVCaptureDeviceInput {
                     let device = input.device
-                    let zoomRange = self.zoomRange ?? device.minAvailableVideoZoomFactor...device.maxAvailableVideoZoomFactor
+                    let zoomRange = self.zoomRangeLimits ?? device.minAvailableVideoZoomFactor...device.maxAvailableVideoZoomFactor
                     let finalZoomLevel = zoomLevel.clamped(in: zoomRange)
                     do {
                         try device.lockForConfiguration()

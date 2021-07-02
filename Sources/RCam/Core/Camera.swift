@@ -19,7 +19,8 @@ public protocol Camera: class {
     var usingBackCamera: Bool { get }
     var isTorchAvailable: Bool { get }
     var zoomLevel: CGFloat? { get set }
-    var zoomRange: ClosedRange<CGFloat>? { get set }
+    var zoomRangeLimits: ClosedRange<CGFloat>? { get set }
+    var availableDeviceZoomRange: ClosedRange<CGFloat>? { get }
     var flashMode: AVCaptureDevice.FlashMode { get set }
     var torchMode: AVCaptureDevice.TorchMode { get set }
 
