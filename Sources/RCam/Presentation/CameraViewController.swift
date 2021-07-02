@@ -243,7 +243,7 @@ public final class CameraViewController: UIViewController {
         }
 
         closeButton.configureFrame { maker in
-            maker.left(inset: 24).top(to: view.nui_safeArea.top).size(width: 40, height: 40).cornerRadius(byHalf: .height)
+            maker.left(inset: 24).top(to: view.nui_safeArea.top, inset: 24).size(width: 40, height: 40).cornerRadius(byHalf: .height)
         }
 
         blurView.configureFrame { maker in
