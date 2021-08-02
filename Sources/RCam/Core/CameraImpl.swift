@@ -40,6 +40,7 @@ public final class CameraImpl: Camera {
     private lazy var photoOutputDelegate: PhotoOutput = .init(handler: photoOutputHandler) // swiftlint:disable:this weak_delegate
     private lazy var photoOutput: AVCapturePhotoOutput = .init()
 
+    public var captureMode: CaptureMode = .onlyPhoto
     private(set) public var usingBackCamera: Bool = true
     public var flashMode: AVCaptureDevice.FlashMode = .off
     public var torchMode: AVCaptureDevice.TorchMode {
@@ -145,11 +146,13 @@ public final class CameraImpl: Camera {
                 session.addInput(cameraInput)
             }
 
-            let micSession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInMicrophone], mediaType: .audio, position: .unspecified)
-            for device in micSession.devices {
-                let input = try AVCaptureDeviceInput(device: device)
-                if session.canAddInput(input) {
-                    session.addInput(input)
+            if captureMode != .onlyPhoto {
+                let micSession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInMicrophone], mediaType: .audio, position: .unspecified)
+                for device in micSession.devices {
+                    let input = try AVCaptureDeviceInput(device: device)
+                    if session.canAddInput(input) {
+                        session.addInput(input)
+                    }
                 }
             }
 

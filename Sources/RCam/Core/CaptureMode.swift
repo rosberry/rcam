@@ -1,9 +1,8 @@
 //
-//  Copyright © 2021 ___ORGANIZATIONNAME___. All rights reserved.
+//  Copyright © 2019 Rosberry. All rights reserved.
 //
 
-import UIKit
-
-class CaptureMode: NSObject {
-
+public enum CaptureMode {
+    case onlyPhoto
+    case photoAndVideo
 }

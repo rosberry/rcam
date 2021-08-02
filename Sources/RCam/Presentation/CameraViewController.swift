@@ -6,7 +6,7 @@ import UIKit
 import AVFoundation
 import Framezilla
 
-public protocol CameraViewControllerDelegate: class {
+public protocol CameraViewControllerDelegate: AnyObject {
     func cameraViewController(_ viewController: CameraViewController, imageCaptured image: UIImage)
     func cameraViewControllerCloseEventTriggered(_ viewController: CameraViewController)
 }
@@ -135,7 +135,6 @@ public final class CameraViewController: UIViewController {
 
     public init(cameraService: Camera = CameraImpl()) {
         self.cameraService = cameraService
-        cameraService.zoomRange = 1...8
         super.init(nibName: nil, bundle: nil)
     }
 

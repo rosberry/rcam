@@ -10,7 +10,7 @@ public protocol HasCamera {
 
 public typealias PhotoHandler = (_ pixelBuffer: CVPixelBuffer?, _ exifOrientation: Int32?) -> Void
 
-public protocol Camera: class {
+public protocol Camera: AnyObject {
     var captureSession: AVCaptureSession? { get }
     var videoBuffersHandler: ((CMSampleBuffer) -> Void)? { get set }
     var audioBuffersHandler: ((CMSampleBuffer) -> Void)? { get set }
@@ -23,6 +23,7 @@ public protocol Camera: class {
     var availableDeviceZoomRange: ClosedRange<CGFloat>? { get }
     var flashMode: AVCaptureDevice.FlashMode { get set }
     var torchMode: AVCaptureDevice.TorchMode { get set }
+    var captureMode: CaptureMode { get set }
 
     func videoPermissions() -> AVAuthorizationStatus
     func askVideoPermissions(completion: @escaping (Bool) -> Void)
