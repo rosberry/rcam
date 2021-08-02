@@ -11,11 +11,15 @@
 		854649242669E89700B2D449 /* Framezilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85944F6F264A43240036562C /* Framezilla.framework */; };
 		8546495C266A27AA00B2D449 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8546495B266A27AA00B2D449 /* Assets.xcassets */; };
 		854A25C4268DB14300670FDD /* BaseHighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */; };
+		858FBA1126B7F9AA00AAFA04 /* CaptureMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FBA1026B7F9AA00AAFA04 /* CaptureMode.swift */; };
 		85BD0D112644E4B2004EA51B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D0F2644E4B2004EA51B /* Camera.swift */; };
 		85BD0D122644E4B2004EA51B /* CameraImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D102644E4B2004EA51B /* CameraImpl.swift */; };
 		85BD0D162644E4C9004EA51B /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D152644E4C9004EA51B /* CameraError.swift */; };
 		85BD0D1A2644E750004EA51B /* Comparable+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D192644E750004EA51B /* Comparable+Convenience.swift */; };
 		85BD0D292644EC05004EA51B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D282644EC05004EA51B /* CameraViewController.swift */; };
+		85ECFAB926943CA4003BAA69 /* ScreenVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECFAAD26943CA4003BAA69 /* ScreenVariable.swift */; };
+		85ECFABA26943CA4003BAA69 /* ConditionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECFAAE26943CA4003BAA69 /* ConditionValue.swift */; };
+		85ECFABB26943CA4003BAA69 /* ConditionVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECFAAF26943CA4003BAA69 /* ConditionVariable.swift */; };
 		CB535DF20E5DB844DB8BB3E3 /* RcamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB92FA485B028B3B9F93292 /* RcamTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,12 +28,16 @@
 		854648E92669E14600B2D449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Rcam/Info.plist; sourceTree = SOURCE_ROOT; };
 		8546495B266A27AA00B2D449 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseHighlightedButton.swift; sourceTree = "<group>"; };
+		858FBA1026B7F9AA00AAFA04 /* CaptureMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureMode.swift; sourceTree = "<group>"; };
 		85944F6F264A43240036562C /* Framezilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Framezilla.framework; path = Carthage/Build/iOS/Framezilla.framework; sourceTree = "<group>"; };
 		85BD0D0F2644E4B2004EA51B /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		85BD0D102644E4B2004EA51B /* CameraImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraImpl.swift; sourceTree = "<group>"; };
 		85BD0D152644E4C9004EA51B /* CameraError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
 		85BD0D192644E750004EA51B /* Comparable+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Comparable+Convenience.swift"; sourceTree = "<group>"; };
 		85BD0D282644EC05004EA51B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		85ECFAAD26943CA4003BAA69 /* ScreenVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenVariable.swift; sourceTree = "<group>"; };
+		85ECFAAE26943CA4003BAA69 /* ConditionValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionValue.swift; sourceTree = "<group>"; };
+		85ECFAAF26943CA4003BAA69 /* ConditionVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionVariable.swift; sourceTree = "<group>"; };
 		A39732480DCE7C253EFD70F1 /* RCamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RCamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C35189C2A2390F683ABEFDEC /* RCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F93E921E746157019856A7 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
@@ -100,9 +108,11 @@
 		85BD0D1D2644E811004EA51B /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				85ECFA9F26943CA4003BAA69 /* Variable */,
 				85BD0D152644E4C9004EA51B /* CameraError.swift */,
 				85BD0D0F2644E4B2004EA51B /* Camera.swift */,
 				85BD0D102644E4B2004EA51B /* CameraImpl.swift */,
+				858FBA1026B7F9AA00AAFA04 /* CaptureMode.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -122,6 +132,24 @@
 				85BD0D282644EC05004EA51B /* CameraViewController.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		85ECFA9F26943CA4003BAA69 /* Variable */ = {
+			isa = PBXGroup;
+			children = (
+				85ECFAAC26943CA4003BAA69 /* DefaultVariables */,
+				85ECFAAE26943CA4003BAA69 /* ConditionValue.swift */,
+				85ECFAAF26943CA4003BAA69 /* ConditionVariable.swift */,
+			);
+			path = Variable;
+			sourceTree = "<group>";
+		};
+		85ECFAAC26943CA4003BAA69 /* DefaultVariables */ = {
+			isa = PBXGroup;
+			children = (
+				85ECFAAD26943CA4003BAA69 /* ScreenVariable.swift */,
+			);
+			path = DefaultVariables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,10 +266,14 @@
 			files = (
 				85BD0D122644E4B2004EA51B /* CameraImpl.swift in Sources */,
 				85BD0D1A2644E750004EA51B /* Comparable+Convenience.swift in Sources */,
+				85ECFABB26943CA4003BAA69 /* ConditionVariable.swift in Sources */,
+				85ECFAB926943CA4003BAA69 /* ScreenVariable.swift in Sources */,
 				854A25C4268DB14300670FDD /* BaseHighlightedButton.swift in Sources */,
 				85BD0D112644E4B2004EA51B /* Camera.swift in Sources */,
 				85BD0D292644EC05004EA51B /* CameraViewController.swift in Sources */,
+				858FBA1126B7F9AA00AAFA04 /* CaptureMode.swift in Sources */,
 				85BD0D162644E4C9004EA51B /* CameraError.swift in Sources */,
+				85ECFABA26943CA4003BAA69 /* ConditionValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
