@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Framezilla",
+        "repositoryURL": "https://github.com/rosberry/Framezilla",
+        "state": {
+          "branch": "feature/update-spm-manifest",
+          "revision": "22394eee07e845df421f663827d236f36a73587c",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
