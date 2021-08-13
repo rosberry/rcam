@@ -4,7 +4,7 @@
 
 import AVFoundation
 
-public typealias BufferHandler = (CMSampleBuffer) -> Void
+public typealias BufferHandler = (AVCaptureConnection, CMSampleBuffer) -> Void
 
 public final class CameraImpl: Camera {
 
@@ -23,7 +23,7 @@ public final class CameraImpl: Camera {
     private var needTurnOnTorchIfBrightnessIsLow: Bool = false
 
     // swiftlint:disable:next weak_delegate
-    private lazy var videoOutputDelegate: CaptureVideoOutput = .init { [weak self] buffer in
+    private lazy var videoOutputDelegate: CaptureVideoOutput = .init { [weak self] connection, buffer in
         guard let `self` = self else {
             return
         }
@@ -34,12 +34,13 @@ public final class CameraImpl: Camera {
             }
             self.needTurnOnTorchIfBrightnessIsLow = false
         }
-        self.videoBuffersHandler?(buffer)
+        self.videoBuffersHandler?(connection, buffer)
     }
     private lazy var audioOutputDelegate: CaptureAudioOutput = .init(handler: audioBuffersHandler) // swiftlint:disable:this weak_delegate
     private lazy var photoOutputDelegate: PhotoOutput = .init(handler: photoOutputHandler) // swiftlint:disable:this weak_delegate
     private lazy var photoOutput: AVCapturePhotoOutput = .init()
 
+    public var captureMode: CaptureMode = .onlyPhoto
     private(set) public var usingBackCamera: Bool = true
     public var flashMode: AVCaptureDevice.FlashMode = .off
     public var torchMode: AVCaptureDevice.TorchMode {
@@ -86,11 +87,12 @@ public final class CameraImpl: Camera {
         }
     }
 
-    public var zoomRange: ClosedRange<CGFloat>? {
+    public var zoomRangeLimits: ClosedRange<CGFloat>? = 0...5
+
+    public var availableDeviceZoomRange: ClosedRange<CGFloat>? {
         guard let captureSession = captureSession else {
             return nil
         }
-
         for input in captureSession.inputs {
             for port in input.ports where port.mediaType == .video {
                 if let input = input as? AVCaptureDeviceInput {
@@ -144,11 +146,13 @@ public final class CameraImpl: Camera {
                 session.addInput(cameraInput)
             }
 
-            let micSession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInMicrophone], mediaType: .audio, position: .unspecified)
-            for device in micSession.devices {
-                let input = try AVCaptureDeviceInput(device: device)
-                if session.canAddInput(input) {
-                    session.addInput(input)
+            if captureMode != .onlyPhoto {
+                let micSession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInMicrophone], mediaType: .audio, position: .unspecified)
+                for device in micSession.devices {
+                    let input = try AVCaptureDeviceInput(device: device)
+                    if session.canAddInput(input) {
+                        session.addInput(input)
+                    }
                 }
             }
 
@@ -286,7 +290,7 @@ public final class CameraImpl: Camera {
             for port in input.ports where port.mediaType == .video {
                 if let input = input as? AVCaptureDeviceInput {
                     let device = input.device
-                    let zoomRange = device.minAvailableVideoZoomFactor...device.maxAvailableVideoZoomFactor
+                    let zoomRange = self.zoomRangeLimits ?? device.minAvailableVideoZoomFactor...device.maxAvailableVideoZoomFactor
                     let finalZoomLevel = zoomLevel.clamped(in: zoomRange)
                     do {
                         try device.lockForConfiguration()
@@ -422,7 +426,7 @@ private final class CaptureVideoOutput: NSObject, AVCaptureVideoDataOutputSample
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         DispatchQueue.main.sync {
-            handler?(sampleBuffer)
+            handler?(connection, sampleBuffer)
         }
     }
 }
@@ -439,7 +443,7 @@ private final class CaptureAudioOutput: NSObject, AVCaptureAudioDataOutputSample
     }
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        handler?(sampleBuffer)
+        handler?(connection, sampleBuffer)
     }
 }
 
@@ -456,7 +460,7 @@ private final class PhotoOutput: NSObject, AVCapturePhotoCaptureDelegate {
 
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         DispatchQueue.main.async {
-            self.handler?(photo.pixelBuffer, photo.metadata[String(kCGImagePropertyOrientation)] as? Int32)
+            self.handler?(photo)
         }
     }
 }
