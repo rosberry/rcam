@@ -257,10 +257,10 @@ public final class CameraViewController: UIViewController {
     }
 
     @objc private func captureButtonPressed() {
-        cameraService.capturePhoto { [weak self] pixelBuffer, orientation in
+        cameraService.capturePhoto { [weak self] capturePhoto in
             guard let self = self,
-                  let pixelBuffer = pixelBuffer,
-                  let orientation = orientation,
+                  let pixelBuffer = capturePhoto.pixelBuffer,
+                  let orientation = capturePhoto.metadata[String(kCGImagePropertyOrientation)] as? Int32,
                   let uiImageOrientation = UIImage.Orientation(rawValue: Int(orientation)) else {
                 return
             }

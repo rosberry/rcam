@@ -8,12 +8,12 @@ public protocol HasCamera {
     var camera: Camera { get }
 }
 
-public typealias PhotoHandler = (_ pixelBuffer: CVPixelBuffer?, _ exifOrientation: Int32?) -> Void
+public typealias PhotoHandler = (_ capturePhoto: AVCapturePhoto) -> Void
 
 public protocol Camera: AnyObject {
     var captureSession: AVCaptureSession? { get }
-    var videoBuffersHandler: ((CMSampleBuffer) -> Void)? { get set }
-    var audioBuffersHandler: ((CMSampleBuffer) -> Void)? { get set }
+    var videoBuffersHandler: BufferHandler? { get set }
+    var audioBuffersHandler: BufferHandler? { get set }
     var recommendedAudioSettings: [AnyHashable: Any]? { get }
     var recommendedVideoSettings: [AnyHashable: Any]? { get }
     var usingBackCamera: Bool { get }

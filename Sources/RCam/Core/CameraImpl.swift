@@ -4,7 +4,7 @@
 
 import AVFoundation
 
-public typealias BufferHandler = (CMSampleBuffer) -> Void
+public typealias BufferHandler = (AVCaptureConnection, CMSampleBuffer) -> Void
 
 public final class CameraImpl: Camera {
 
@@ -23,7 +23,7 @@ public final class CameraImpl: Camera {
     private var needTurnOnTorchIfBrightnessIsLow: Bool = false
 
     // swiftlint:disable:next weak_delegate
-    private lazy var videoOutputDelegate: CaptureVideoOutput = .init { [weak self] buffer in
+    private lazy var videoOutputDelegate: CaptureVideoOutput = .init { [weak self] connection, buffer in
         guard let `self` = self else {
             return
         }
@@ -34,7 +34,7 @@ public final class CameraImpl: Camera {
             }
             self.needTurnOnTorchIfBrightnessIsLow = false
         }
-        self.videoBuffersHandler?(buffer)
+        self.videoBuffersHandler?(connection, buffer)
     }
     private lazy var audioOutputDelegate: CaptureAudioOutput = .init(handler: audioBuffersHandler) // swiftlint:disable:this weak_delegate
     private lazy var photoOutputDelegate: PhotoOutput = .init(handler: photoOutputHandler) // swiftlint:disable:this weak_delegate
@@ -426,7 +426,7 @@ private final class CaptureVideoOutput: NSObject, AVCaptureVideoDataOutputSample
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         DispatchQueue.main.sync {
-            handler?(sampleBuffer)
+            handler?(connection, sampleBuffer)
         }
     }
 }
@@ -443,7 +443,7 @@ private final class CaptureAudioOutput: NSObject, AVCaptureAudioDataOutputSample
     }
 
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        handler?(sampleBuffer)
+        handler?(connection, sampleBuffer)
     }
 }
 
@@ -460,7 +460,7 @@ private final class PhotoOutput: NSObject, AVCapturePhotoCaptureDelegate {
 
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         DispatchQueue.main.async {
-            self.handler?(photo.pixelBuffer, photo.metadata[String(kCGImagePropertyOrientation)] as? Int32)
+            self.handler?(photo)
         }
     }
 }

@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		61FD273C1CC03D34CD1A8C43 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F93E921E746157019856A7 /* XCTestManifests.swift */; };
-		854649242669E89700B2D449 /* Framezilla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85944F6F264A43240036562C /* Framezilla.framework */; };
+		8503749426C636810074856E /* Framezilla.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503746F26C62BBC0074856E /* Framezilla.xcframework */; };
+		8503749526C636810074856E /* Framezilla.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503746F26C62BBC0074856E /* Framezilla.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8546495C266A27AA00B2D449 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8546495B266A27AA00B2D449 /* Assets.xcassets */; };
 		854A25C4268DB14300670FDD /* BaseHighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */; };
 		858FBA1126B7F9AA00AAFA04 /* CaptureMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FBA1026B7F9AA00AAFA04 /* CaptureMode.swift */; };
@@ -23,8 +24,23 @@
 		CB535DF20E5DB844DB8BB3E3 /* RcamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB92FA485B028B3B9F93292 /* RcamTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8503749626C636810074856E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8503749526C636810074856E /* Framezilla.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6BB92FA485B028B3B9F93292 /* RcamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcamTests.swift; sourceTree = "<group>"; };
+		8503746F26C62BBC0074856E /* Framezilla.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Framezilla.xcframework; path = Carthage/Build/Framezilla.xcframework; sourceTree = "<group>"; };
 		854648E92669E14600B2D449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Rcam/Info.plist; sourceTree = SOURCE_ROOT; };
 		8546495B266A27AA00B2D449 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseHighlightedButton.swift; sourceTree = "<group>"; };
@@ -48,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				854649242669E89700B2D449 /* Framezilla.framework in Frameworks */,
+				8503749426C636810074856E /* Framezilla.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +116,7 @@
 		85B86CB12644FFBF006FA596 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8503746F26C62BBC0074856E /* Framezilla.xcframework */,
 				85944F6F264A43240036562C /* Framezilla.framework */,
 			);
 			name = Frameworks;
@@ -162,6 +179,7 @@
 				55C8F05E8757EDCE8D165E72 /* Sources */,
 				854649232669E88200B2D449 /* Frameworks */,
 				8546495A266A278000B2D449 /* Resources */,
+				8503749626C636810074856E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
