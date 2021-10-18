@@ -181,6 +181,15 @@ public final class CameraViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
 
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        cameraService.orientation = .init(deviceOrientation: UIDevice.current.orientation)
+        cameraPreviewLayer.connection?.automaticallyAdjustsVideoMirroring = false
+        cameraPreviewLayer.connection?.isVideoMirrored = true
+        cameraPreviewLayer.connection?.videoOrientation = cameraService.orientation
+        print(#function)
+    }
+
     // MARK: - Layout
 
     public override func viewDidLayoutSubviews() {
@@ -193,7 +202,7 @@ public final class CameraViewController: UIViewController {
 
         cameraContainerView.configureFrame { maker in
             maker.size(width: width, height: height)
-                .centerY(between: view.nui_safeArea.top, view.nui_safeArea.bottom)
+                 .centerY(between: view.nui_safeArea.top, view.nui_safeArea.bottom)
         }
         cameraView.frame = cameraContainerView.bounds
         cameraPreviewLayer.frame = cameraView.bounds
@@ -202,23 +211,23 @@ public final class CameraViewController: UIViewController {
 
         captureButtonBackgroundView.configureFrame { maker in
             maker.size(width: 96, height: 96).centerX()
-                .bottom(to: view.nui_safeArea.bottom, inset: 24).cornerRadius(byHalf: .height)
+                 .bottom(to: view.nui_safeArea.bottom, inset: 24).cornerRadius(byHalf: .height)
         }
 
         captureButtonContainerView.configureFrame { maker in
             maker.size(width: captureButtonSize.width + 10, height: captureButtonSize.height + 10)
-                .center().cornerRadius(byHalf: .height)
+                 .center().cornerRadius(byHalf: .height)
         }
 
         captureButton.configureFrame { maker in
             maker.size(captureButtonSize)
-                .center().cornerRadius(byHalf: .height)
+                 .center().cornerRadius(byHalf: .height)
         }
 
         flashLightModeButton.configureFrame { maker in
             let actualSize = flashLightModeButton.sizeThatFits(view.bounds.size)
             maker.size(width: actualSize.width + 20, height: actualSize.height + 20)
-                .left(inset: 45).centerY(to: captureButton.nui_centerY).sizeToFit().cornerRadius(byHalf: .height)
+                 .left(inset: 45).centerY(to: captureButton.nui_centerY).sizeToFit().cornerRadius(byHalf: .height)
         }
 
         flipCameraButton.configureFrame { maker in
@@ -230,7 +239,7 @@ public final class CameraViewController: UIViewController {
         zoomLabelContainerView.configureFrame { maker in
             let side = 38
             maker.centerX().bottom(to: captureButton.nui_top, inset: 24)
-                .size(width: side, height: side).cornerRadius(byHalf: .height)
+                 .size(width: side, height: side).cornerRadius(byHalf: .height)
         }
 
         zoomValueLabel.configureFrame { maker in
@@ -353,16 +362,16 @@ public final class CameraViewController: UIViewController {
 
     @objc private func viewPinched(recognizer: UIPinchGestureRecognizer) {
         switch recognizer.state {
-            case .began:
-                if let zoomLevel = cameraService.zoomLevel {
-                    recognizer.scale = zoomLevel
-                }
-            case .changed:
-                let scale = recognizer.scale
-                cameraService.zoomLevel = scale
-                updateZoomLevelLabel()
-            default:
-                break
+        case .began:
+            if let zoomLevel = cameraService.zoomLevel {
+                recognizer.scale = zoomLevel
+            }
+        case .changed:
+            let scale = recognizer.scale
+            cameraService.zoomLevel = scale
+            updateZoomLevelLabel()
+        default:
+            break
         }
     }
 
@@ -400,5 +409,22 @@ extension CameraViewController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                                   shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         true
+    }
+}
+
+private extension AVCaptureVideoOrientation {
+    init(deviceOrientation: UIDeviceOrientation) {
+        switch deviceOrientation {
+        case .landscapeLeft:
+            self = .landscapeLeft
+        case .landscapeRight:
+            self = .landscapeRight
+        case .portrait:
+            self = .portrait
+        case .portraitUpsideDown:
+            self = .portraitUpsideDown
+        default:
+            self = .portrait
+        }
     }
 }
