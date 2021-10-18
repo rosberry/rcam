@@ -183,11 +183,15 @@ public final class CameraViewController: UIViewController {
 
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        cameraService.orientation = .init(deviceOrientation: UIDevice.current.orientation)
-        cameraPreviewLayer.connection?.automaticallyAdjustsVideoMirroring = false
-        cameraPreviewLayer.connection?.isVideoMirrored = true
-        cameraPreviewLayer.connection?.videoOrientation = cameraService.orientation
-        print(#function)
+        if let videoPreviewLayerConnection = cameraPreviewLayer.connection {
+            let deviceOrientation = UIDevice.current.orientation
+            let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation)
+            guard deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
+                return
+            }
+
+            videoPreviewLayerConnection.videoOrientation = newVideoOrientation
+        }
     }
 
     // MARK: - Layout
@@ -416,9 +420,9 @@ private extension AVCaptureVideoOrientation {
     init(deviceOrientation: UIDeviceOrientation) {
         switch deviceOrientation {
         case .landscapeLeft:
-            self = .landscapeLeft
-        case .landscapeRight:
             self = .landscapeRight
+        case .landscapeRight:
+            self = .landscapeLeft
         case .portrait:
             self = .portrait
         case .portraitUpsideDown:
