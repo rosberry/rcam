@@ -7,51 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		361EE571271D386300EA20FE /* RCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D682652867000B064F2 /* RCam.framework */; };
+		361EE572271D386300EA20FE /* RCam.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D682652867000B064F2 /* RCam.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		361EE575271D388500EA20FE /* Framezilla.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 361EE574271D388500EA20FE /* Framezilla.xcframework */; };
+		361EE576271D388500EA20FE /* Framezilla.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 361EE574271D388500EA20FE /* Framezilla.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8503747E26C62D2A0074856E /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747326C62D290074856E /* PromisesObjC.xcframework */; };
-		8503747F26C62D2A0074856E /* PromisesObjC.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747326C62D290074856E /* PromisesObjC.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8503748026C62D2A0074856E /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747426C62D290074856E /* FirebaseAnalytics.xcframework */; };
-		8503748126C62D2A0074856E /* FirebaseAnalytics.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747426C62D290074856E /* FirebaseAnalytics.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8503748226C62D2A0074856E /* FirebaseAppDistribution.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747526C62D290074856E /* FirebaseAppDistribution.xcframework */; };
-		8503748326C62D2A0074856E /* FirebaseAppDistribution.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747526C62D290074856E /* FirebaseAppDistribution.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8503748426C62D2A0074856E /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747626C62D2A0074856E /* GoogleUtilities.xcframework */; };
-		8503748526C62D2A0074856E /* GoogleUtilities.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747626C62D2A0074856E /* GoogleUtilities.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8503748626C62D2B0074856E /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747726C62D2A0074856E /* nanopb.xcframework */; };
-		8503748726C62D2B0074856E /* nanopb.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747726C62D2A0074856E /* nanopb.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8503748A26C62D2B0074856E /* FirebaseCoreDiagnostics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747926C62D2A0074856E /* FirebaseCoreDiagnostics.xcframework */; };
-		8503748B26C62D2B0074856E /* FirebaseCoreDiagnostics.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747926C62D2A0074856E /* FirebaseCoreDiagnostics.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8503748C26C62D2B0074856E /* FirebaseCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747A26C62D2A0074856E /* FirebaseCore.xcframework */; };
-		8503748D26C62D2B0074856E /* FirebaseCore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747A26C62D2A0074856E /* FirebaseCore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8503748E26C62D2B0074856E /* GoogleDataTransport.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747B26C62D2A0074856E /* GoogleDataTransport.xcframework */; };
-		8503748F26C62D2B0074856E /* GoogleDataTransport.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747B26C62D2A0074856E /* GoogleDataTransport.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8503749026C62D2C0074856E /* FirebaseInstallations.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747C26C62D2A0074856E /* FirebaseInstallations.xcframework */; };
-		8503749126C62D2C0074856E /* FirebaseInstallations.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747C26C62D2A0074856E /* FirebaseInstallations.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8503749226C62D2C0074856E /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747D26C62D2A0074856E /* GoogleAppMeasurement.xcframework */; };
-		8503749326C62D2C0074856E /* GoogleAppMeasurement.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503747D26C62D2A0074856E /* GoogleAppMeasurement.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		854B208A26527C2F00DF5E59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 854B208826527C2F00DF5E59 /* LaunchScreen.storyboard */; };
 		854B209526527D7300DF5E59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 854B209426527D7300DF5E59 /* GoogleService-Info.plist */; };
 		85D18D632652860500B064F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D18D622652860500B064F2 /* AppDelegate.swift */; };
-		85D18D742652916400B064F2 /* RCam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D682652867000B064F2 /* RCam.framework */; };
-		85D18D752652916400B064F2 /* RCam.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 85D18D682652867000B064F2 /* RCam.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		85D18D762652916400B064F2 /* Embed Frameworks */ = {
+		361EE573271D386300EA20FE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8503749126C62D2C0074856E /* FirebaseInstallations.xcframework in Embed Frameworks */,
-				8503748F26C62D2B0074856E /* GoogleDataTransport.xcframework in Embed Frameworks */,
-				8503748526C62D2A0074856E /* GoogleUtilities.xcframework in Embed Frameworks */,
-				8503748326C62D2A0074856E /* FirebaseAppDistribution.xcframework in Embed Frameworks */,
-				85D18D752652916400B064F2 /* RCam.framework in Embed Frameworks */,
-				8503748726C62D2B0074856E /* nanopb.xcframework in Embed Frameworks */,
-				8503748D26C62D2B0074856E /* FirebaseCore.xcframework in Embed Frameworks */,
-				8503748B26C62D2B0074856E /* FirebaseCoreDiagnostics.xcframework in Embed Frameworks */,
-				8503747F26C62D2A0074856E /* PromisesObjC.xcframework in Embed Frameworks */,
-				8503748126C62D2A0074856E /* FirebaseAnalytics.xcframework in Embed Frameworks */,
-				8503749326C62D2C0074856E /* GoogleAppMeasurement.xcframework in Embed Frameworks */,
+				361EE576271D388500EA20FE /* Framezilla.xcframework in Embed Frameworks */,
+				361EE572271D386300EA20FE /* RCam.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		361EE574271D388500EA20FE /* Framezilla.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Framezilla.xcframework; path = ../Carthage/Build/Framezilla.xcframework; sourceTree = "<group>"; };
 		8503747326C62D290074856E /* PromisesObjC.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = PromisesObjC.xcframework; path = Carthage/Build/PromisesObjC.xcframework; sourceTree = "<group>"; };
 		8503747426C62D290074856E /* FirebaseAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAnalytics.xcframework; path = Carthage/Build/FirebaseAnalytics.xcframework; sourceTree = "<group>"; };
 		8503747526C62D290074856E /* FirebaseAppDistribution.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FirebaseAppDistribution.xcframework; path = Carthage/Build/FirebaseAppDistribution.xcframework; sourceTree = "<group>"; };
@@ -99,8 +83,9 @@
 			files = (
 				8503748E26C62D2B0074856E /* GoogleDataTransport.xcframework in Frameworks */,
 				8503747E26C62D2A0074856E /* PromisesObjC.xcframework in Frameworks */,
-				85D18D742652916400B064F2 /* RCam.framework in Frameworks */,
 				8503748026C62D2A0074856E /* FirebaseAnalytics.xcframework in Frameworks */,
+				361EE571271D386300EA20FE /* RCam.framework in Frameworks */,
+				361EE575271D388500EA20FE /* Framezilla.xcframework in Frameworks */,
 				8503748426C62D2A0074856E /* GoogleUtilities.xcframework in Frameworks */,
 				8503749026C62D2C0074856E /* FirebaseInstallations.xcframework in Frameworks */,
 				8503748226C62D2A0074856E /* FirebaseAppDistribution.xcframework in Frameworks */,
@@ -145,6 +130,7 @@
 		854B20972652804900DF5E59 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				361EE574271D388500EA20FE /* Framezilla.xcframework */,
 				8503747426C62D290074856E /* FirebaseAnalytics.xcframework */,
 				8503747526C62D290074856E /* FirebaseAppDistribution.xcframework */,
 				8503747A26C62D2A0074856E /* FirebaseCore.xcframework */,
@@ -185,7 +171,7 @@
 				854B207626527C2E00DF5E59 /* Sources */,
 				854B207726527C2E00DF5E59 /* Frameworks */,
 				854B207826527C2E00DF5E59 /* Resources */,
-				85D18D762652916400B064F2 /* Embed Frameworks */,
+				361EE573271D386300EA20FE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
