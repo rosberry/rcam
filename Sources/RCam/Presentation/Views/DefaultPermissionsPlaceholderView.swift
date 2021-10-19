@@ -6,14 +6,14 @@ public final class DefaultPermissionsPlaceholderView: UIView {
 
     public let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "How dare you?!"
+        label.text = "Give access to your camera, to take a shot"
         label.textColor = .white
         return label
     }()
 
     public let button: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("You've stolen my dreams...", for: .normal)
+        button.setTitle("Open Settings", for: .normal)
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
