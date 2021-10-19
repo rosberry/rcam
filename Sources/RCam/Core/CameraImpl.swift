@@ -65,11 +65,7 @@ public final class CameraImpl: Camera {
         }
     }
 
-    public var orientation: AVCaptureVideoOrientation = .portrait {
-        didSet {
-            update(orientation: orientation)
-        }
-    }
+    public var orientation: AVCaptureVideoOrientation = .portrait
 
     public var zoomLevel: CGFloat? {
         get {
@@ -317,11 +313,13 @@ public final class CameraImpl: Camera {
     public func capturePhoto(completion: @escaping PhotoHandler) {
         photoOutputHandler = completion
         let settings = AVCapturePhotoSettings(format: [String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_32BGRA])
+        photoOutput.update(orientation: orientation)
+
         if photoOutput.supportedFlashModes.contains(flashMode) {
             settings.flashMode = flashMode
         }
         settings.isAutoStillImageStabilizationEnabled = true
-
+        
         photoOutput.capturePhoto(with: settings, delegate: photoOutputDelegate)
     }
 
@@ -404,11 +402,6 @@ public final class CameraImpl: Camera {
                 }
             }
         }
-    }
-
-    private func update(orientation: AVCaptureVideoOrientation) {
-        videoOutput.update(orientation: orientation)
-        photoOutput.update(orientation: orientation)
     }
 
     private func brightnessLevel(for sampleBuffer: CMSampleBuffer) -> Double? {

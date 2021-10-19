@@ -100,12 +100,7 @@ public final class FooterView: UIView {
 
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
         let footerContainerViewHeight: CGFloat = 96 + 36 + 36
-        if UIDevice.current.orientation.isPortrait {
-            return .init(width: min(size.width, UIScreen.main.bounds.width), height: footerContainerViewHeight)
-        }
-        else {
-            return .init(width: footerContainerViewHeight, height: min(size.height, UIScreen.main.bounds.height))
-        }
+        return .init(width: min(size.width, UIScreen.main.bounds.width), height: footerContainerViewHeight)
     }
 
     public override func layoutSubviews() {
@@ -117,33 +112,15 @@ public final class FooterView: UIView {
         flashLightModeButton.configureFrame { maker in
             let actualSize = flashLightModeButton.sizeThatFits(bounds.size)
             maker.size(width: actualSize.width + 20, height: actualSize.height + 20).cornerRadius(byHalf: .height)
-            switch UIDevice.current.orientation {
-            case .landscapeLeft:
-                maker.top(to: captureButtonView.nui_bottom, inset: 50)
-                     .centerX()
-            case .landscapeRight:
-                maker.bottom(to: captureButtonView.nui_top, inset: 50)
-                     .centerX()
-            default:
-                maker.right(to: captureButtonView.nui_left, inset: 50)
-                     .centerY()
-            }
+            maker.right(to: captureButtonView.nui_left, inset: 50)
+                 .centerY()
         }
 
         flipCameraButton.configureFrame { maker in
             let actualSize = flipCameraButton.sizeThatFits(bounds.size)
             maker.size(width: actualSize.width + 20, height: actualSize.height + 20).cornerRadius(byHalf: .height)
-            switch UIDevice.current.orientation {
-            case .landscapeLeft:
-                maker.bottom(to: captureButtonView.nui_top, inset: 50)
-                     .centerX()
-            case .landscapeRight:
-                maker.top(to: captureButtonView.nui_bottom, inset: 50)
-                     .centerX()
-            default:
-                maker.left(to: captureButtonView.nui_right, inset: 50)
-                     .centerY()
-            }
+            maker.left(to: captureButtonView.nui_right, inset: 50)
+                 .centerY()
         }
     }
 

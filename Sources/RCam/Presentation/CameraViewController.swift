@@ -99,6 +99,7 @@ public final class CameraViewController: UIViewController {
         permissionsPlaceholderView = permissionsView
         self.cameraService = cameraService
         super.init(nibName: nil, bundle: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(rotation), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -108,6 +109,30 @@ public final class CameraViewController: UIViewController {
     deinit {
         focusViewTimer?.invalidate()
         focusViewTimer = nil
+    }
+    
+    @objc private func rotation() {
+        let deviceOrientation = UIDevice.current.orientation
+        let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation)
+        guard deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
+            return
+        }
+        let transform: CGAffineTransform
+        switch deviceOrientation {
+        case .landscapeLeft:
+            transform = .init(rotationAngle: .pi/2)
+        case .landscapeRight:
+            transform = .init(rotationAngle: -(.pi / 2))
+        default:
+            transform = .identity
+        }
+        cameraService.orientation = newVideoOrientation
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.zoomLabelContainerView.transform = transform
+            self?.footerContainerView.flipCameraButton.transform = transform
+            self?.footerContainerView.captureButtonView.transform = transform
+            self?.footerContainerView.flashLightModeButton.transform = transform
+        }
     }
 
     public override func viewDidLoad() {
@@ -149,20 +174,6 @@ public final class CameraViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
 
-    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        if let videoPreviewLayerConnection = cameraPreviewLayer.connection {
-            let deviceOrientation = UIDevice.current.orientation
-            let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation)
-            guard deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
-                return
-            }
-
-            cameraService.orientation = newVideoOrientation
-            videoPreviewLayerConnection.videoOrientation = newVideoOrientation
-        }
-    }
-
     // MARK: - Layout
 
     public override func viewDidLayoutSubviews() {
@@ -170,46 +181,19 @@ public final class CameraViewController: UIViewController {
 
         closeButton.configureFrame { maker in
             maker.size(width: 40, height: 40).cornerRadius(byHalf: .height)
-            switch UIDevice.current.orientation {
-            case .landscapeLeft:
-                maker.top(inset: 24).left(inset: 24)
-            case .landscapeRight:
-                maker.top(inset: 24).right(inset: 24)
-            default:
-                maker.top(inset: 24).left(inset: 24)
-            }
+            maker.top(inset: 24).left(inset: 24)
         }
 
         footerContainerView.configureFrame { maker in
             let footerContainerViewHeight: CGFloat = 96 + 36 + 36
-            switch UIDevice.current.orientation {
-            case .landscapeLeft:
-                maker.width(footerContainerViewHeight).right(to: view.nui_safeArea.right).top().bottom()
-            case .landscapeRight:
-                maker.width(footerContainerViewHeight).left(to: view.nui_safeArea.left).top().bottom()
-            default:
-                maker.height(footerContainerViewHeight).bottom(to: view.nui_safeArea.bottom).left().right()
-            }
+            maker.height(footerContainerViewHeight).bottom(to: view.nui_safeArea.bottom).left().right()
         }
 
         cameraContainerView.configureFrame { maker in
-            switch UIDevice.current.orientation {
-            case .landscapeLeft:
-                let measure = view.bounds.height
-                maker.size(width: measure * 4 / 3, height: measure)
-                     .right(to: footerContainerView.nui_left)
-                     .centerY()
-            case .landscapeRight:
-                let measure = view.bounds.height
-                maker.size(width: measure * 4 / 3, height: measure)
-                     .left(to: footerContainerView.nui_right)
-                     .centerY()
-            default:
-                let measure = view.bounds.width
-                maker.size(width: measure, height: measure * 4 / 3)
-                     .bottom(to: footerContainerView.nui_top)
-                     .centerX()
-            }
+            let measure = view.bounds.width
+            maker.size(width: measure, height: measure * 4 / 3)
+                 .bottom(to: footerContainerView.nui_top)
+                 .centerX()
         }
         cameraView.frame = cameraContainerView.bounds
         cameraPreviewLayer.frame = cameraView.bounds
@@ -217,17 +201,8 @@ public final class CameraViewController: UIViewController {
         zoomLabelContainerView.configureFrame { maker in
             let side = 38
             maker.size(width: side, height: side).cornerRadius(byHalf: .height)
-            switch UIDevice.current.orientation {
-            case .landscapeLeft:
-                maker.centerY(to: footerContainerView.nui_centerY)
-                     .right(to: cameraContainerView.nui_right, inset: 4)
-            case .landscapeRight:
-                maker.centerY(to: footerContainerView.nui_centerY)
-                     .left(to: cameraContainerView.nui_left, inset: 4)
-            default:
-                maker.centerX(to: footerContainerView.nui_centerX)
-                     .bottom(to: cameraContainerView.nui_bottom, inset: 4)
-            }
+            maker.centerX(to: footerContainerView.nui_centerX)
+                 .bottom(to: cameraContainerView.nui_bottom, inset: 4)
         }
 
         blurView.frame = cameraContainerView.frame
@@ -389,6 +364,18 @@ private extension AVCaptureVideoOrientation {
             self = .portraitUpsideDown
         default:
             self = .portrait
+        }
+    }
+}
+
+extension UIImage.Orientation {
+    init(deviceOrientation: UIDeviceOrientation) {
+        switch deviceOrientation {
+        case UIDeviceOrientation.portrait, .faceUp: self = .right
+        case UIDeviceOrientation.portraitUpsideDown, .faceDown: self = .left
+        case UIDeviceOrientation.landscapeLeft: self = .up // this is the base orientation
+        case UIDeviceOrientation.landscapeRight: self = .down
+        case UIDeviceOrientation.unknown: self = .up
         }
     }
 }
