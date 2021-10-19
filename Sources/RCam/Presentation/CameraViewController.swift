@@ -84,9 +84,19 @@ public final class CameraViewController: UIViewController {
         return view
     }()
 
+    public var permissionsPlaceholderView: UIView
+
     // MARK: - Lifecycle
 
     public init(cameraService: Camera = CameraImpl()) {
+        let permissionsView = DefaultPermissionsPlaceholderView()
+        permissionsView.allowAccessEventHandler = {
+            guard let url = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            UIApplication.shared.open(url)
+        }
+        permissionsPlaceholderView = permissionsView
         self.cameraService = cameraService
         super.init(nibName: nil, bundle: nil)
     }
@@ -112,12 +122,24 @@ public final class CameraViewController: UIViewController {
         cameraContainerView.addGestureRecognizer(pinchGestureRecognizer)
 
         view.addSubview(blurView)
-        view.addSubview(closeButton)
         view.addSubview(cameraContainerView)
         view.addSubview(zoomLabelContainerView)
+        permissionsPlaceholderView.isHidden = true
+        view.addSubview(permissionsPlaceholderView)
+        view.addSubview(closeButton)
 
-        cameraService.startSession()
-        cameraPreviewLayer.session = cameraService.captureSession
+        cameraService.askVideoPermissions { [weak self] granted in
+            guard let self = self else {
+                return
+            }
+            if granted {
+                self.cameraService.startSession()
+                self.cameraPreviewLayer.session = self.cameraService.captureSession
+            }
+            else {
+                self.permissionsPlaceholderView.isHidden = false
+            }
+        }
 
         updateFlashModeIcon(for: cameraService.flashMode)
     }
@@ -209,6 +231,7 @@ public final class CameraViewController: UIViewController {
         }
 
         blurView.frame = cameraContainerView.frame
+        permissionsPlaceholderView.frame = view.bounds
     }
 
     // MARK: - Actions
