@@ -99,7 +99,7 @@ public final class CameraViewController: UIViewController {
         permissionsPlaceholderView = permissionsView
         self.cameraService = cameraService
         super.init(nibName: nil, bundle: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(rotation), name: UIDevice.orientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceRotation), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -109,30 +109,6 @@ public final class CameraViewController: UIViewController {
     deinit {
         focusViewTimer?.invalidate()
         focusViewTimer = nil
-    }
-    
-    @objc private func rotation() {
-        let deviceOrientation = UIDevice.current.orientation
-        let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation)
-        guard deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
-            return
-        }
-        let transform: CGAffineTransform
-        switch deviceOrientation {
-        case .landscapeLeft:
-            transform = .init(rotationAngle: .pi/2)
-        case .landscapeRight:
-            transform = .init(rotationAngle: -(.pi / 2))
-        default:
-            transform = .identity
-        }
-        cameraService.orientation = newVideoOrientation
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.zoomLabelContainerView.transform = transform
-            self?.footerContainerView.flipCameraButton.transform = transform
-            self?.footerContainerView.captureButtonView.transform = transform
-            self?.footerContainerView.flashLightModeButton.transform = transform
-        }
     }
 
     public override func viewDidLoad() {
@@ -315,6 +291,30 @@ public final class CameraViewController: UIViewController {
     }
 
     // MARK: - Private
+    
+    @objc private func deviceRotation() {
+        let deviceOrientation = UIDevice.current.orientation
+        let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation)
+        guard deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
+            return
+        }
+        let transform: CGAffineTransform
+        switch deviceOrientation {
+        case .landscapeLeft:
+            transform = .init(rotationAngle: .pi/2)
+        case .landscapeRight:
+            transform = .init(rotationAngle: -(.pi / 2))
+        default:
+            transform = .identity
+        }
+        cameraService.orientation = newVideoOrientation
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.zoomLabelContainerView.transform = transform
+            self?.footerContainerView.flipCameraButton.transform = transform
+            self?.footerContainerView.captureButtonView.transform = transform
+            self?.footerContainerView.flashLightModeButton.transform = transform
+        }
+    }
 
     private func updateZoomLevelLabel() {
         guard let zoomLevel = cameraService.zoomLevel else {
