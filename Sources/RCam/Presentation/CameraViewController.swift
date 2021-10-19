@@ -309,10 +309,13 @@ public final class CameraViewController: UIViewController {
         }
         cameraService.orientation = newVideoOrientation
         UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.zoomLabelContainerView.transform = transform
-            self?.footerContainerView.flipCameraButton.transform = transform
-            self?.footerContainerView.captureButtonView.transform = transform
-            self?.footerContainerView.flashLightModeButton.transform = transform
+            guard let self = self else {
+                return
+            }
+            self.zoomLabelContainerView.transform = transform
+            self.footerContainerView.flipCameraButton.transform = transform
+            self.footerContainerView.captureButtonView.transform = transform
+            self.footerContainerView.flashLightModeButton.transform = transform
         }
     }
 
