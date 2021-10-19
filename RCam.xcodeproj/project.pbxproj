@@ -23,9 +23,6 @@
 		85ECFABA26943CA4003BAA69 /* ConditionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECFAAE26943CA4003BAA69 /* ConditionValue.swift */; };
 		85ECFABB26943CA4003BAA69 /* ConditionVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECFAAF26943CA4003BAA69 /* ConditionVariable.swift */; };
 		CB535DF20E5DB844DB8BB3E3 /* RcamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB92FA485B028B3B9F93292 /* RcamTests.swift */; };
-		EC483750482CAE907F9C52D1 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46513D11D72572AE284A83 /* FooterView.swift */; };
-		EC4A3A0D5613A4BB9BF61718 /* ZoomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F2AECF6E2E4DE8A8FC2CD /* ZoomLabelView.swift */; };
-		EC4E195354F82B508DF83214 /* DefaultPermissionsPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4DC0503068D4D4FB7D05FC /* DefaultPermissionsPlaceholderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,9 +59,6 @@
 		A39732480DCE7C253EFD70F1 /* RCamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RCamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C35189C2A2390F683ABEFDEC /* RCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F93E921E746157019856A7 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
-		EC46513D11D72572AE284A83 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
-		EC4DC0503068D4D4FB7D05FC /* DefaultPermissionsPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPermissionsPlaceholderView.swift; sourceTree = "<group>"; };
-		EC4F2AECF6E2E4DE8A8FC2CD /* ZoomLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomLabelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +150,6 @@
 			children = (
 				854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */,
 				85BD0D282644EC05004EA51B /* CameraViewController.swift */,
-				EC48DC548A356DEE82F36788 /* Views */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -177,16 +170,6 @@
 				85ECFAAD26943CA4003BAA69 /* ScreenVariable.swift */,
 			);
 			path = DefaultVariables;
-			sourceTree = "<group>";
-		};
-		EC48DC548A356DEE82F36788 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				EC4F2AECF6E2E4DE8A8FC2CD /* ZoomLabelView.swift */,
-				EC46513D11D72572AE284A83 /* FooterView.swift */,
-				EC4DC0503068D4D4FB7D05FC /* DefaultPermissionsPlaceholderView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,9 +296,6 @@
 				858FBA1126B7F9AA00AAFA04 /* CaptureMode.swift in Sources */,
 				85BD0D162644E4C9004EA51B /* CameraError.swift in Sources */,
 				85ECFABA26943CA4003BAA69 /* ConditionValue.swift in Sources */,
-				EC4A3A0D5613A4BB9BF61718 /* ZoomLabelView.swift in Sources */,
-				EC483750482CAE907F9C52D1 /* FooterView.swift in Sources */,
-				EC4E195354F82B508DF83214 /* DefaultPermissionsPlaceholderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,7 +3,6 @@
 excluded:
   - Carthage/
   - Pods/
-  - Example/Carthage
 
 # Rules
 
@@ -58,7 +57,7 @@ function_parameter_count: 4
 
 type_name:
   min_length: 2 # only warning
-
+  
 type_contents_order:
   order:
     - case

@@ -39,7 +39,6 @@ public final class CameraImpl: Camera {
     private lazy var audioOutputDelegate: CaptureAudioOutput = .init(handler: audioBuffersHandler) // swiftlint:disable:this weak_delegate
     private lazy var photoOutputDelegate: PhotoOutput = .init(handler: photoOutputHandler) // swiftlint:disable:this weak_delegate
     private lazy var photoOutput: AVCapturePhotoOutput = .init()
-    private lazy var videoOutput: AVCaptureVideoDataOutput = .init()
 
     public var captureMode: CaptureMode = .onlyPhoto
     private(set) public var usingBackCamera: Bool = true
@@ -62,12 +61,6 @@ public final class CameraImpl: Camera {
         }
         set {
             updateTorch(isEnabled: newValue != .off)
-        }
-    }
-
-    public var orientation: AVCaptureVideoOrientation = .portrait {
-        didSet {
-            update(orientation: orientation)
         }
     }
 
@@ -154,9 +147,7 @@ public final class CameraImpl: Camera {
             }
 
             if captureMode != .onlyPhoto {
-                let micSession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInMicrophone],
-                                                                  mediaType: .audio,
-                                                                  position: .unspecified)
+                let micSession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInMicrophone], mediaType: .audio, position: .unspecified)
                 for device in micSession.devices {
                     let input = try AVCaptureDeviceInput(device: device)
                     if session.canAddInput(input) {
@@ -237,7 +228,7 @@ public final class CameraImpl: Camera {
             if let output = output as? AVCaptureVideoDataOutput {
                 if let connection = output.connection(with: .video),
                    connection.isVideoOrientationSupported {
-                    connection.videoOrientation = orientation
+                    connection.videoOrientation = .portrait
                 }
             }
         }
@@ -348,13 +339,17 @@ public final class CameraImpl: Camera {
     // MARK: - Private
 
     private func setupVideoOutput(for session: AVCaptureSession) {
+        let videoOutput = AVCaptureVideoDataOutput()
         videoOutput.videoSettings = [String(kCVPixelBufferPixelFormatTypeKey): kCVPixelFormatType_32BGRA]
         videoOutput.setSampleBufferDelegate(videoOutputDelegate, queue: .init(label: "Video output"))
         if session.canAddOutput(videoOutput) {
             session.addOutput(videoOutput)
         }
 
-        videoOutput.update(orientation: orientation)
+        if let videoConnection = videoOutput.connection(with: .video),
+           videoConnection.isVideoOrientationSupported {
+            videoConnection.videoOrientation = .portrait
+        }
         recommendedVideoSettings = videoOutput.recommendedVideoSettingsForAssetWriter(writingTo: .mp4)
     }
 
@@ -371,7 +366,6 @@ public final class CameraImpl: Camera {
         if session.canAddOutput(photoOutput) {
             session.addOutput(photoOutput)
         }
-        photoOutput.update(orientation: orientation)
     }
 
     private func setupAudioSession(for session: AVCaptureSession) {
@@ -404,11 +398,6 @@ public final class CameraImpl: Camera {
                 }
             }
         }
-    }
-
-    private func update(orientation: AVCaptureVideoOrientation) {
-        videoOutput.update(orientation: orientation)
-        photoOutput.update(orientation: orientation)
     }
 
     private func brightnessLevel(for sampleBuffer: CMSampleBuffer) -> Double? {
@@ -472,15 +461,6 @@ private final class PhotoOutput: NSObject, AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         DispatchQueue.main.async {
             self.handler?(photo)
-        }
-    }
-}
-
-private extension AVCaptureOutput {
-    func update(orientation: AVCaptureVideoOrientation) {
-        if let videoConnection = connection(with: .video),
-           videoConnection.isVideoOrientationSupported {
-            videoConnection.videoOrientation = orientation
         }
     }
 }

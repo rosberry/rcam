@@ -77,5 +77,3 @@ Example/Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
-.build
-.swiftpm

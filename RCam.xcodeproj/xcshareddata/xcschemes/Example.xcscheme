@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "854B207926527C2E00DF5E59"
-               BuildableName = "RCamExample.app"
-               BlueprintName = "RCamExample"
-               ReferencedContainer = "container:Example/RCamExample.xcodeproj">
+               BlueprintIdentifier = "D41FBBCB12C5BA469C48919D"
+               BuildableName = "Example.app"
+               BlueprintName = "Example"
+               ReferencedContainer = "container:RCam.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,16 +44,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "854B207926527C2E00DF5E59"
-            BuildableName = "RCamExample.app"
-            BlueprintName = "RCamExample"
-            ReferencedContainer = "container:Example/RCamExample.xcodeproj">
+            BlueprintIdentifier = "D41FBBCB12C5BA469C48919D"
+            BuildableName = "Example.app"
+            BlueprintName = "Example"
+            ReferencedContainer = "container:RCam.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <LocationScenarioReference
-         identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
-         referenceType = "1">
-      </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

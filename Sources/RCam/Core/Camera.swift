@@ -23,7 +23,6 @@ public protocol Camera: AnyObject {
     var availableDeviceZoomRange: ClosedRange<CGFloat>? { get }
     var flashMode: AVCaptureDevice.FlashMode { get set }
     var torchMode: AVCaptureDevice.TorchMode { get set }
-    var orientation: AVCaptureVideoOrientation { get set }
     var captureMode: CaptureMode { get set }
 
     func videoPermissions() -> AVAuthorizationStatus
