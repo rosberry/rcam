@@ -233,7 +233,6 @@ public final class CameraViewController: UIViewController {
         guard let cameraSnapshotView = cameraContainerView.snapshotView(afterScreenUpdates: true) else {
             return
         }
-
         view.isUserInteractionEnabled = false
         cameraSnapshotView.frame = cameraContainerView.frame
         view.insertSubview(cameraSnapshotView, aboveSubview: cameraView)
@@ -325,8 +324,8 @@ public final class CameraViewController: UIViewController {
         }
 
         zoomLabelContainerView.zoomValueLabel.text = String(format: "%.1f", zoomLevel)
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
+        zoomLabelContainerView.setNeedsLayout()
+        zoomLabelContainerView.layoutIfNeeded()
     }
 
     private func updateFlashModeIcon(for flashMode: AVCaptureDevice.FlashMode) {
