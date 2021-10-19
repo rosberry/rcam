@@ -60,36 +60,6 @@ public final class CameraViewController: UIViewController {
     }()
     public private(set) lazy var cameraContainerView: UIView = .init()
 
-    public private(set) lazy var captureButtonBackgroundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        return view
-    }()
-
-    public private(set) lazy var captureButtonContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
-    }()
-
-    public private(set) lazy var captureButton: BaseHighlightedButton = {
-        let button = BaseHighlightedButton()
-        button.addTarget(self, action: #selector(captureButtonPressed), for: .touchUpInside)
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.black.cgColor
-        return button
-    }()
-
-    public private(set) lazy var flipCameraButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "ic32Swichcamera", in: bundle, compatibleWith: nil)
-        button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(flipCameraButtonPressed), for: .touchUpInside)
-        button.tintColor = .white
-        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        return button
-    }()
-
     public private(set) lazy var focusImageView: UIImageView = {
         let image = UIImage(named: "elementFocus", in: bundle, compatibleWith: nil)
         let view = UIImageView(image: image)
@@ -97,43 +67,36 @@ public final class CameraViewController: UIViewController {
         return view
     }()
 
-    public private(set) lazy var flashLightModeButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "ic32FlashAuto", in: bundle, compatibleWith: nil)
-        button.setImage(image, for: .normal)
-        button.tintColor = .white
-        button.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        button.addTarget(self, action: #selector(flashModeButtonPressed), for: .touchUpInside)
-        return button
-    }()
+    public private(set) lazy var zoomLabelContainerView: ZoomLabelView = .init()
 
-    public private(set) lazy var zoomLabelContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+    public private(set) lazy var blurView: UIVisualEffectView = .init(effect: nil)
+    public private(set) lazy var footerContainerView: FooterView = {
+        let view = FooterView()
+        view.captureButtonView.captureButtonEventHandler = { [weak self] in
+            self?.captureButtonPressed()
+        }
+        view.flashModeEventHandler = { [weak self] in
+            self?.flashModeButtonPressed()
+        }
+        view.flipCameraEventHandler = { [weak self] in
+            self?.flipCameraButtonPressed()
+        }
         return view
     }()
 
-    public private(set) lazy var zoomValueLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
-        label.text = "1.0"
-        label.textColor = .white
-        return label
-    }()
-
-    public private(set) lazy var zoomXLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
-        label.text = "X"
-        label.textColor = .white
-        return label
-    }()
-
-    public private(set) lazy var blurView: UIVisualEffectView = .init(effect: nil)
+    public var permissionsPlaceholderView: UIView
 
     // MARK: - Lifecycle
 
     public init(cameraService: Camera = CameraImpl()) {
+        let permissionsView = DefaultPermissionsPlaceholderView()
+        permissionsView.allowAccessEventHandler = {
+            guard let url = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            UIApplication.shared.open(url)
+        }
+        permissionsPlaceholderView = permissionsView
         self.cameraService = cameraService
         super.init(nibName: nil, bundle: nil)
     }
@@ -150,28 +113,33 @@ public final class CameraViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .black
+        cameraContainerView.addSubview(cameraView)
 
+        view.addSubview(footerContainerView)
+
+        view.backgroundColor = .black
         cameraContainerView.addGestureRecognizer(tapGestureRecognizer)
         cameraContainerView.addGestureRecognizer(pinchGestureRecognizer)
 
-        cameraContainerView.addSubview(cameraView)
-        zoomLabelContainerView.addSubview(zoomValueLabel)
-        zoomLabelContainerView.addSubview(zoomXLabel)
-
-        captureButtonBackgroundView.addSubview(captureButtonContainerView)
-        captureButtonContainerView.addSubview(captureButton)
-
         view.addSubview(blurView)
         view.addSubview(cameraContainerView)
-        view.addSubview(captureButtonBackgroundView)
-        view.addSubview(flashLightModeButton)
-        view.addSubview(flipCameraButton)
         view.addSubview(zoomLabelContainerView)
+        permissionsPlaceholderView.isHidden = true
+        view.addSubview(permissionsPlaceholderView)
         view.addSubview(closeButton)
 
-        cameraService.startSession()
-        cameraPreviewLayer.session = cameraService.captureSession
+        cameraService.askVideoPermissions { [weak self] granted in
+            guard let self = self else {
+                return
+            }
+            if granted {
+                self.cameraService.startSession()
+                self.cameraPreviewLayer.session = self.cameraService.captureSession
+            }
+            else {
+                self.permissionsPlaceholderView.isHidden = false
+            }
+        }
 
         updateFlashModeIcon(for: cameraService.flashMode)
     }
@@ -181,73 +149,89 @@ public final class CameraViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
 
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if let videoPreviewLayerConnection = cameraPreviewLayer.connection {
+            let deviceOrientation = UIDevice.current.orientation
+            let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation)
+            guard deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
+                return
+            }
+
+            cameraService.orientation = newVideoOrientation
+            videoPreviewLayerConnection.videoOrientation = newVideoOrientation
+        }
+    }
+
     // MARK: - Layout
 
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        let availableRect = view.bounds.inset(by: view.safeAreaInsets)
-        let width = availableRect.width
-        let aspect: CGFloat = 3 / 4
-        let height = width / aspect
+        closeButton.configureFrame { maker in
+            maker.size(width: 40, height: 40).cornerRadius(byHalf: .height)
+            switch UIDevice.current.orientation {
+            case .landscapeLeft:
+                maker.top(inset: 24).left(inset: 24)
+            case .landscapeRight:
+                maker.top(inset: 24).right(inset: 24)
+            default:
+                maker.top(inset: 24).left(inset: 24)
+            }
+        }
+
+        footerContainerView.configureFrame { maker in
+            let footerContainerViewHeight: CGFloat = 96 + 36 + 36
+            switch UIDevice.current.orientation {
+            case .landscapeLeft:
+                maker.width(footerContainerViewHeight).right(to: view.nui_safeArea.right).top().bottom()
+            case .landscapeRight:
+                maker.width(footerContainerViewHeight).left(to: view.nui_safeArea.left).top().bottom()
+            default:
+                maker.height(footerContainerViewHeight).bottom(to: view.nui_safeArea.bottom).left().right()
+            }
+        }
 
         cameraContainerView.configureFrame { maker in
-            maker.size(width: width, height: height)
-                .centerY(between: view.nui_safeArea.top, view.nui_safeArea.bottom)
+            switch UIDevice.current.orientation {
+            case .landscapeLeft:
+                let measure = view.bounds.height
+                maker.size(width: measure * 4 / 3, height: measure)
+                     .right(to: footerContainerView.nui_left)
+                     .centerY()
+            case .landscapeRight:
+                let measure = view.bounds.height
+                maker.size(width: measure * 4 / 3, height: measure)
+                     .left(to: footerContainerView.nui_right)
+                     .centerY()
+            default:
+                let measure = view.bounds.width
+                maker.size(width: measure, height: measure * 4 / 3)
+                     .bottom(to: footerContainerView.nui_top)
+                     .centerX()
+            }
         }
         cameraView.frame = cameraContainerView.bounds
         cameraPreviewLayer.frame = cameraView.bounds
 
-        let captureButtonSize = CGSize(width: 57, height: 57)
-
-        captureButtonBackgroundView.configureFrame { maker in
-            maker.size(width: 96, height: 96).centerX()
-                .bottom(to: view.nui_safeArea.bottom, inset: 24).cornerRadius(byHalf: .height)
-        }
-
-        captureButtonContainerView.configureFrame { maker in
-            maker.size(width: captureButtonSize.width + 10, height: captureButtonSize.height + 10)
-                .center().cornerRadius(byHalf: .height)
-        }
-
-        captureButton.configureFrame { maker in
-            maker.size(captureButtonSize)
-                .center().cornerRadius(byHalf: .height)
-        }
-
-        flashLightModeButton.configureFrame { maker in
-            let actualSize = flashLightModeButton.sizeThatFits(view.bounds.size)
-            maker.size(width: actualSize.width + 20, height: actualSize.height + 20)
-                .left(inset: 45).centerY(to: captureButton.nui_centerY).sizeToFit().cornerRadius(byHalf: .height)
-        }
-
-        flipCameraButton.configureFrame { maker in
-            let actualSize = flipCameraButton.sizeThatFits(view.bounds.size)
-            maker.size(width: actualSize.width + 20, height: actualSize.height + 20)
-                 .right(inset: 45).centerY(to: captureButton.nui_centerY).cornerRadius(byHalf: .height)
-        }
-
         zoomLabelContainerView.configureFrame { maker in
             let side = 38
-            maker.centerX().bottom(to: captureButton.nui_top, inset: 24)
-                .size(width: side, height: side).cornerRadius(byHalf: .height)
+            maker.size(width: side, height: side).cornerRadius(byHalf: .height)
+            switch UIDevice.current.orientation {
+            case .landscapeLeft:
+                maker.centerY(to: footerContainerView.nui_centerY)
+                     .right(to: cameraContainerView.nui_right, inset: 4)
+            case .landscapeRight:
+                maker.centerY(to: footerContainerView.nui_centerY)
+                     .left(to: cameraContainerView.nui_left, inset: 4)
+            default:
+                maker.centerX(to: footerContainerView.nui_centerX)
+                     .bottom(to: cameraContainerView.nui_bottom, inset: 4)
+            }
         }
 
-        zoomValueLabel.configureFrame { maker in
-            maker.centerY().left(inset: 4).sizeToFit()
-        }
-
-        zoomXLabel.configureFrame { maker in
-            maker.centerY().right(inset: 4).sizeToFit()
-        }
-
-        closeButton.configureFrame { maker in
-            maker.left(inset: 24).top(to: view.nui_safeArea.top, inset: 24).size(width: 40, height: 40).cornerRadius(byHalf: .height)
-        }
-
-        blurView.configureFrame { maker in
-            maker.centerY(between: view.nui_safeArea.top, view.nui_safeArea.bottom).centerX().size(cameraView.frame.size)
-        }
+        blurView.frame = cameraContainerView.frame
+        permissionsPlaceholderView.frame = view.bounds
     }
 
     // MARK: - Actions
@@ -256,33 +240,22 @@ public final class CameraViewController: UIViewController {
         delegate?.cameraViewControllerCloseEventTriggered(self)
     }
 
-    @objc private func captureButtonPressed() {
+    private func captureButtonPressed() {
         cameraService.capturePhoto { [weak self] capturePhoto in
             guard let self = self,
-                  let pixelBuffer = capturePhoto.pixelBuffer,
-                  let orientation = capturePhoto.exifOrientation,
-                  let uiImageOrientation = UIImage.Orientation(rawValue: Int(orientation)) else {
+                  let data = capturePhoto.fileDataRepresentation(),
+                  let image = UIImage(data: data) else {
                 return
             }
 
-            let ciImage = CIImage(cvPixelBuffer: pixelBuffer).oriented(.downMirrored)
-            let context = CIContext()
-            guard let cgImage = context.createCGImage(ciImage, from: .init(x: 0,
-                                                                           y: 0,
-                                                                           width: CVPixelBufferGetWidth(pixelBuffer),
-                                                                           height: CVPixelBufferGetHeight(pixelBuffer))) else {
-                return
-            }
-            let image = UIImage(cgImage: cgImage, scale: 1, orientation: uiImageOrientation)
             self.delegate?.cameraViewController(self, imageCaptured: image)
         }
     }
 
-    @objc private func flipCameraButtonPressed() {
+    private func flipCameraButtonPressed() {
         guard let cameraSnapshotView = cameraContainerView.snapshotView(afterScreenUpdates: true) else {
             return
         }
-
         view.isUserInteractionEnabled = false
         cameraSnapshotView.frame = cameraContainerView.frame
         view.insertSubview(cameraSnapshotView, aboveSubview: cameraView)
@@ -307,7 +280,7 @@ public final class CameraViewController: UIViewController {
         })
     }
 
-    @objc private func flashModeButtonPressed() {
+    private func flashModeButtonPressed() {
         let currentFlashMode = cameraService.flashMode.rawValue
         let newFlashMode = (currentFlashMode + 1) % 3
 
@@ -353,16 +326,16 @@ public final class CameraViewController: UIViewController {
 
     @objc private func viewPinched(recognizer: UIPinchGestureRecognizer) {
         switch recognizer.state {
-            case .began:
-                if let zoomLevel = cameraService.zoomLevel {
-                    recognizer.scale = zoomLevel
-                }
-            case .changed:
-                let scale = recognizer.scale
-                cameraService.zoomLevel = scale
-                updateZoomLevelLabel()
-            default:
-                break
+        case .began:
+            if let zoomLevel = cameraService.zoomLevel {
+                recognizer.scale = zoomLevel
+            }
+        case .changed:
+            let scale = recognizer.scale
+            cameraService.zoomLevel = scale
+            updateZoomLevelLabel()
+        default:
+            break
         }
     }
 
@@ -373,9 +346,9 @@ public final class CameraViewController: UIViewController {
             return
         }
 
-        zoomValueLabel.text = String(format: "%.1f", zoomLevel)
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
+        zoomLabelContainerView.zoomValueLabel.text = String(format: "%.1f", zoomLevel)
+        zoomLabelContainerView.setNeedsLayout()
+        zoomLabelContainerView.layoutIfNeeded()
     }
 
     private func updateFlashModeIcon(for flashMode: AVCaptureDevice.FlashMode) {
@@ -390,7 +363,7 @@ public final class CameraViewController: UIViewController {
         @unknown default:
             flashModeImageName = "unknown"
         }
-        flashLightModeButton.setImage(UIImage(named: flashModeImageName, in: bundle, compatibleWith: nil), for: .normal)
+        footerContainerView.flashLightModeButton.setImage(UIImage(named: flashModeImageName, in: bundle, compatibleWith: nil), for: .normal)
     }
 }
 
@@ -400,5 +373,22 @@ extension CameraViewController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                                   shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         true
+    }
+}
+
+private extension AVCaptureVideoOrientation {
+    init(deviceOrientation: UIDeviceOrientation) {
+        switch deviceOrientation {
+        case .landscapeLeft:
+            self = .landscapeRight
+        case .landscapeRight:
+            self = .landscapeLeft
+        case .portrait:
+            self = .portrait
+        case .portraitUpsideDown:
+            self = .portraitUpsideDown
+        default:
+            self = .portrait
+        }
     }
 }
