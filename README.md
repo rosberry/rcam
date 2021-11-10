@@ -1,5 +1,5 @@
 # RCam
-<p>Reusable component to get image from device camera.</p>
+<p>Reusable component that presents camera flow with ability to capture image. Components presents custom UI where you can have access to all UI components of view controller.</p>
 
 ## Features
 - Camera flip
@@ -17,7 +17,7 @@ navigationController?.present(viewController, animated: true)
 2. Pass delegate to handle incoming image and closing event
 
 ```swift
-rCamViewController.delegate = self
+cameraViewController.delegate = self
 
 ...
 
@@ -31,7 +31,7 @@ extension AppDelegate: CameraViewControllerDelegate {
     }
 }
 ```
-Also you use `CameraService` separately from `CameraViewController` or create your own `CameraService` and pass it to `CameraViewController` constructor
+Also you can use `CameraService` separately from `CameraViewController` or create your own `CameraService` and pass it to `CameraViewController` constructor
 ```swift
 let cameraViewController = CameraViewController(cameraService: YourCameraService())
 ```
