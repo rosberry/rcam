@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		61FD273C1CC03D34CD1A8C43 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F93E921E746157019856A7 /* XCTestManifests.swift */; };
 		8503749426C636810074856E /* Framezilla.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503746F26C62BBC0074856E /* Framezilla.xcframework */; };
-		8503749526C636810074856E /* Framezilla.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8503746F26C62BBC0074856E /* Framezilla.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8503749826C647D90074856E /* AVCapturePhoto+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8503749726C647D90074856E /* AVCapturePhoto+Convenience.swift */; };
 		8546495C266A27AA00B2D449 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8546495B266A27AA00B2D449 /* Assets.xcassets */; };
 		854A25C4268DB14300670FDD /* BaseHighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */; };
@@ -27,20 +26,6 @@
 		EC4A3A0D5613A4BB9BF61718 /* ZoomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F2AECF6E2E4DE8A8FC2CD /* ZoomLabelView.swift */; };
 		EC4E195354F82B508DF83214 /* DefaultPermissionsPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4DC0503068D4D4FB7D05FC /* DefaultPermissionsPlaceholderView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		8503749626C636810074856E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8503749526C636810074856E /* Framezilla.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6BB92FA485B028B3B9F93292 /* RcamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcamTests.swift; sourceTree = "<group>"; };
@@ -199,7 +184,6 @@
 				55C8F05E8757EDCE8D165E72 /* Sources */,
 				854649232669E88200B2D449 /* Frameworks */,
 				8546495A266A278000B2D449 /* Resources */,
-				8503749626C636810074856E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
