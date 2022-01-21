@@ -12,7 +12,6 @@ jobs:
         uses: actions/checkout@master
       - name: Build and test
         run: |
-          cd Rcam
-          xcodebuild clean test -project Rcam.xcodeproj -scheme Rcam -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          xcodebuild clean test -project RCam.xcodeproj -scheme RCam -destination "${destination}" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
         env: 
          destination: ${{ matrix.destination }}

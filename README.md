@@ -1,5 +1,5 @@
 # RCam
-<p>Reusable component to get image from device camera.</p>
+<p>Reusable component that presents camera flow with ability to capture image. Components presents custom UI where you can have access to all UI components of view controller.</p>
 
 ## Features
 - Camera flip
@@ -11,29 +11,63 @@
 
 1. Create and present view controller: 
 ```swift
-let rCamViewController = RCamViewController()
+let cameraViewController = CameraViewController()
 navigationController?.present(viewController, animated: true)
 ```
 2. Pass delegate to handle incoming image and closing event
 
 ```swift
-rCamViewController.delegate = self
+cameraViewController.delegate = self
 
 ...
 
-extension AppDelegate: RCamViewControllerDelegate {
-    func rCamViewController(_ viewController: RCamViewController, imageCaptured image: UIImage) {
+extension AppDelegate: CameraViewControllerDelegate {
+    func cameraViewController(_ viewController: CameraViewController, imageCaptured image: UIImage) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
 
-    func rCamViewControllerCloseEventTriggered(_ viewController: RCamViewController) {
+    func cameraViewControllerCloseEventTriggered(_ viewController: CameraViewController) {
         navigationController?.dismiss(animated: true)
     }
 }
 ```
-Also you use `CameraService` separately from `RCamViewController` or create your own `CameraService` and pass it to `RCamViewController` init method
+Also you can use `CameraService` separately from `CameraViewController` or create your own `CameraService` and pass it to `CameraViewController` constructor
 ```swift
-let rCamViewController = RCamViewController(cameraService: YourOwnCameraService())
+let cameraViewController = CameraViewController(cameraService: YourCameraService())
+```
+`Camera` protocol has following interface
+
+```swift
+public protocol Camera: AnyObject {
+    var captureSession: AVCaptureSession? { get }
+    var videoBuffersHandler: BufferHandler? { get set }
+    var audioBuffersHandler: BufferHandler? { get set }
+    var recommendedAudioSettings: [AnyHashable: Any]? { get }
+    var recommendedVideoSettings: [AnyHashable: Any]? { get }
+    var usingBackCamera: Bool { get }
+    var isTorchAvailable: Bool { get }
+    var zoomLevel: CGFloat? { get set }
+    var zoomRangeLimits: ClosedRange<CGFloat>? { get set }
+    var availableDeviceZoomRange: ClosedRange<CGFloat>? { get }
+    var flashMode: AVCaptureDevice.FlashMode { get set }
+    var torchMode: AVCaptureDevice.TorchMode { get set }
+    var captureMode: CaptureMode { get set }
+
+    func videoPermissions() -> AVAuthorizationStatus
+    func askVideoPermissions(completion: @escaping (Bool) -> Void)
+    func microphonePermissions() -> AVAuthorizationStatus
+    func askMicrophonePermissions(completion: @escaping (Bool) -> Void)
+
+    func startSession()
+    func stopSession()
+
+    func flipCamera() throws
+    func updateFocalPoint(with point: CGPoint)
+
+    func capturePhoto(completion: @escaping PhotoHandler)
+    func recordingStarted()
+    func recordingFinished()
+}
 ```
 
 ## Installation
