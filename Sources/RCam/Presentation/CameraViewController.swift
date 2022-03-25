@@ -379,6 +379,8 @@ extension UIImage.Orientation {
         case UIDeviceOrientation.landscapeLeft: self = .up // this is the base orientation
         case UIDeviceOrientation.landscapeRight: self = .down
         case UIDeviceOrientation.unknown: self = .up
+        @unknown default:
+            fatalError()
         }
     }
 }
