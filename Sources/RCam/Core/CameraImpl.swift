@@ -90,7 +90,7 @@ public final class CameraImpl: Camera {
         }
     }
 
-    public var zoomRangeLimits: ClosedRange<CGFloat>? = 0...5
+    public var zoomRangeLimits: ClosedRange<CGFloat>? = 1...5
 
     public var availableDeviceZoomRange: ClosedRange<CGFloat>? {
         guard let captureSession = captureSession else {
