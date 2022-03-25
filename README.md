@@ -6,6 +6,7 @@
 - Flashlight mode
 - Zoom by pinch
 - Selecting focus object
+- Automatically apply orientation metadata
 
 ## Usage
 
@@ -15,14 +16,13 @@ let cameraViewController = CameraViewController()
 navigationController?.present(viewController, animated: true)
 ```
 2. Pass delegate to handle incoming image and closing event
-
 ```swift
 cameraViewController.delegate = self
 
 ...
 
 extension AppDelegate: CameraViewControllerDelegate {
-    func cameraViewController(_ viewController: CameraViewController, imageCaptured image: UIImage) {
+    func cameraViewController(_ viewController: CameraViewController, imageCaptured image: UIImage, orientationApplied: Bool) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
 
@@ -31,7 +31,10 @@ extension AppDelegate: CameraViewControllerDelegate {
     }
 }
 ```
-Also you can use `CameraService` separately from `CameraViewController` or create your own `CameraService` and pass it to `CameraViewController` constructor
+3. Additions
+Captured image by default is raw with recorded orientation in metadata. If you need image with applied orientation, you can set `automaticallyApplyOrientationToImage` flag in `CameraViewController` to true (by default its false).
+
+You can use `CameraService` separately from `CameraViewController` or create your own `CameraService` and pass it to `CameraViewController` constructor
 ```swift
 let cameraViewController = CameraViewController(cameraService: YourCameraService())
 ```
