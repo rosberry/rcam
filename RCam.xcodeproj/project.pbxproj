@@ -12,6 +12,7 @@
 		8503749826C647D90074856E /* AVCapturePhoto+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8503749726C647D90074856E /* AVCapturePhoto+Convenience.swift */; };
 		8546495C266A27AA00B2D449 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8546495B266A27AA00B2D449 /* Assets.xcassets */; };
 		854A25C4268DB14300670FDD /* BaseHighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */; };
+		8576542E27ED800700506784 /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8576542D27ED800700506784 /* UIImage+Orientation.swift */; };
 		858FBA1126B7F9AA00AAFA04 /* CaptureMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FBA1026B7F9AA00AAFA04 /* CaptureMode.swift */; };
 		85BD0D112644E4B2004EA51B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D0F2644E4B2004EA51B /* Camera.swift */; };
 		85BD0D122644E4B2004EA51B /* CameraImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D102644E4B2004EA51B /* CameraImpl.swift */; };
@@ -34,6 +35,7 @@
 		854648E92669E14600B2D449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Rcam/Info.plist; sourceTree = SOURCE_ROOT; };
 		8546495B266A27AA00B2D449 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseHighlightedButton.swift; sourceTree = "<group>"; };
+		8576542D27ED800700506784 /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
 		858FBA1026B7F9AA00AAFA04 /* CaptureMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureMode.swift; sourceTree = "<group>"; };
 		85944F6F264A43240036562C /* Framezilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Framezilla.framework; path = Carthage/Build/iOS/Framezilla.framework; sourceTree = "<group>"; };
 		85BD0D0F2644E4B2004EA51B /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				85BD0D192644E750004EA51B /* Comparable+Convenience.swift */,
 				8503749726C647D90074856E /* AVCapturePhoto+Convenience.swift */,
+				8576542D27ED800700506784 /* UIImage+Orientation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			files = (
 				85BD0D122644E4B2004EA51B /* CameraImpl.swift in Sources */,
 				85BD0D1A2644E750004EA51B /* Comparable+Convenience.swift in Sources */,
+				8576542E27ED800700506784 /* UIImage+Orientation.swift in Sources */,
 				8503749826C647D90074856E /* AVCapturePhoto+Convenience.swift in Sources */,
 				85ECFABB26943CA4003BAA69 /* ConditionVariable.swift in Sources */,
 				85ECFAB926943CA4003BAA69 /* ScreenVariable.swift in Sources */,

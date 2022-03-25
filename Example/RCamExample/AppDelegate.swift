@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: LaunchOptions?) -> Bool {
         let rCamViewController = CameraViewController()
         rCamViewController.delegate = self
+        rCamViewController.automaticallyApplyOrientationToImage = true
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = rCamViewController
         window?.makeKeyAndVisible()
@@ -22,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: CameraViewControllerDelegate {
-    func cameraViewController(_ viewController: CameraViewController, imageCaptured image: UIImage) {
+    func cameraViewController(_ viewController: CameraViewController, imageCaptured image: UIImage, orientationApplied: Bool) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
 

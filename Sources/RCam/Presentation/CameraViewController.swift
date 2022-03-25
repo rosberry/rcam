@@ -7,7 +7,7 @@ import AVFoundation
 import Framezilla
 
 public protocol CameraViewControllerDelegate: AnyObject {
-    func cameraViewController(_ viewController: CameraViewController, imageCaptured image: UIImage)
+    func cameraViewController(_ viewController: CameraViewController, imageCaptured image: UIImage, orientationApplied: Bool)
     func cameraViewControllerCloseEventTriggered(_ viewController: CameraViewController)
 }
 
@@ -16,6 +16,8 @@ public final class CameraViewController: UIViewController {
     public override var prefersStatusBarHidden: Bool {
         true
     }
+
+    public var automaticallyApplyOrientationToImage: Bool = false
 
     public weak var delegate: CameraViewControllerDelegate?
 
@@ -195,11 +197,13 @@ public final class CameraViewController: UIViewController {
         cameraService.capturePhoto { [weak self] capturePhoto in
             guard let self = self,
                   let data = capturePhoto.fileDataRepresentation(),
-                  let image = UIImage(data: data) else {
+                  let image = UIImage(data: data),
+                  let outputImage = self.automaticallyApplyOrientationToImage ? image.imageWithAppliedOrientationMetadata() : image
+            else {
                 return
             }
 
-            self.delegate?.cameraViewController(self, imageCaptured: image)
+            self.delegate?.cameraViewController(self, imageCaptured: outputImage, orientationApplied: self.automaticallyApplyOrientationToImage)
         }
     }
 
@@ -379,8 +383,7 @@ extension UIImage.Orientation {
         case UIDeviceOrientation.landscapeLeft: self = .up // this is the base orientation
         case UIDeviceOrientation.landscapeRight: self = .down
         case UIDeviceOrientation.unknown: self = .up
-        @unknown default:
-            fatalError()
+        @unknown default: self = .up
         }
     }
 }
