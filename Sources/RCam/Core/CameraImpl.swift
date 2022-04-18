@@ -184,6 +184,10 @@ public final class CameraImpl: Camera {
             captureSession = nil
             print(error)
         }
+
+        if !usingBackCamera {
+            zoomLevel = 1.3
+        }
     }
 
     public func stopSession() {
@@ -239,6 +243,9 @@ public final class CameraImpl: Camera {
         }
 
         usingBackCamera.toggle()
+        if !usingBackCamera {
+            zoomLevel = 1.3
+        }
         if usingBackCamera {
             needTurnOnTorchIfBrightnessIsLow = true
         }
