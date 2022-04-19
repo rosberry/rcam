@@ -329,7 +329,7 @@ public final class CameraViewController: UIViewController {
         }
 
         if !cameraService.usingBackCamera {
-            zoomLevel *= 0.77
+            zoomLevel /= cameraService.frontCameraZoomFactor
         }
         zoomLabelContainerView.zoomValueLabel.text = String(format: "%.1f", zoomLevel)
         zoomLabelContainerView.setNeedsLayout()

@@ -10,6 +10,9 @@ public final class CameraImpl: Camera {
 
     private enum Constants {
         static let lowBrightnessThreshold: Double = -0.18
+        static let frontCameraInitialZoomLevel: CGFloat = 1.3
+        static let backCameraZoomRange: ClosedRange<CGFloat> = 1...5
+        static let frontCameraZoomRange: ClosedRange<CGFloat> = 1...(3.5 * frontCameraInitialZoomLevel)
     }
 
     private(set) public var captureSession: AVCaptureSession?
@@ -90,7 +93,17 @@ public final class CameraImpl: Camera {
         }
     }
 
-    public var zoomRangeLimits: ClosedRange<CGFloat>? = 1...5
+    public var zoomRangeLimits: ClosedRange<CGFloat>? {
+        if usingBackCamera {
+            return Constants.backCameraZoomRange
+        }
+        else {
+            return Constants.frontCameraZoomRange
+        }
+    }
+    public var frontCameraZoomFactor: CGFloat {
+        return Constants.frontCameraInitialZoomLevel
+    }
 
     public var availableDeviceZoomRange: ClosedRange<CGFloat>? {
         guard let captureSession = captureSession else {
@@ -186,7 +199,7 @@ public final class CameraImpl: Camera {
         }
 
         if !usingBackCamera {
-            zoomLevel = 1.3
+            zoomLevel = Constants.frontCameraInitialZoomLevel
         }
     }
 
@@ -244,7 +257,7 @@ public final class CameraImpl: Camera {
 
         usingBackCamera.toggle()
         if !usingBackCamera {
-            zoomLevel = 1.3
+            zoomLevel = Constants.frontCameraInitialZoomLevel
         }
         if usingBackCamera {
             needTurnOnTorchIfBrightnessIsLow = true
