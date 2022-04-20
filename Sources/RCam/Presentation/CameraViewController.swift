@@ -159,19 +159,21 @@ public final class CameraViewController: UIViewController {
 
         closeButton.configureFrame { maker in
             maker.size(width: 40, height: 40).cornerRadius(byHalf: .height)
-            maker.top(inset: 24).left(inset: 24)
+            let topInset = ScreenVariable.heightRelated(s: 24, m: 45, l: 24).cgFloatValue
+            maker.top(inset: topInset).left(inset: 24)
         }
 
         footerContainerView.configureFrame { maker in
-            let footerContainerViewHeight: CGFloat = 96 + 36 + 36
+            let safeAreaBottomHeight = view.safeAreaInsets.bottom
+            let footerContainerViewHeight: CGFloat = 96 + 36 + safeAreaBottomHeight
             maker.height(footerContainerViewHeight).bottom(to: view.nui_safeArea.bottom).left().right()
         }
 
         cameraContainerView.configureFrame { maker in
             let measure = view.bounds.width
             maker.size(width: measure, height: measure * 4 / 3)
-                 .bottom(to: footerContainerView.nui_top)
-                 .centerX()
+                .bottom(to: footerContainerView.nui_top)
+                .centerX()
         }
         cameraView.frame = cameraContainerView.bounds
         cameraPreviewLayer.frame = cameraView.bounds
@@ -180,7 +182,7 @@ public final class CameraViewController: UIViewController {
             let side = 38
             maker.size(width: side, height: side).cornerRadius(byHalf: .height)
             maker.centerX(to: footerContainerView.nui_centerX)
-                 .bottom(to: cameraContainerView.nui_bottom, inset: 4)
+                .bottom(to: cameraContainerView.nui_bottom, inset: 4)
         }
 
         blurView.frame = cameraContainerView.frame
