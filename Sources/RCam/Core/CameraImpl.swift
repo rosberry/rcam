@@ -3,6 +3,7 @@
 //
 
 import AVFoundation
+import UIKit
 
 public typealias BufferHandler = (AVCaptureConnection, CMSampleBuffer) -> Void
 
@@ -10,7 +11,14 @@ public final class CameraImpl: Camera {
 
     private enum Constants {
         static let lowBrightnessThreshold: Double = -0.18
-        static let frontCameraInitialZoomLevel: CGFloat = ScreenVariable.heightRelated(s: 1.0, m: 1.0, l: 1.3).cgFloatValue
+        static var frontCameraInitialZoomLevel: CGFloat {
+            if UIDevice.isWideAngelFrontCamera {
+                return 1.3
+            }
+            else {
+                return 1.0
+            }
+        }
         static let backCameraZoomRange: ClosedRange<CGFloat> = 1...5
         static let frontCameraZoomRange: ClosedRange<CGFloat> = frontCameraInitialZoomLevel...(2.5 * frontCameraInitialZoomLevel)
     }
@@ -80,7 +88,12 @@ public final class CameraImpl: Camera {
                 for port in input.ports where port.mediaType == .video {
                     if let input = input as? AVCaptureDeviceInput {
                         let device = input.device
-                        return device.videoZoomFactor
+                        if UIDevice.isWideAngelFrontCamera {
+                            return device.videoZoomFactor / Constants.frontCameraInitialZoomLevel
+                        }
+                        else {
+                            return device.videoZoomFactor
+                        }
                     }
                 }
             }
@@ -100,9 +113,6 @@ public final class CameraImpl: Camera {
         else {
             return Constants.frontCameraZoomRange
         }
-    }
-    public var frontCameraZoomFactor: CGFloat {
-        return Constants.frontCameraInitialZoomLevel
     }
 
     public var availableDeviceZoomRange: ClosedRange<CGFloat>? {

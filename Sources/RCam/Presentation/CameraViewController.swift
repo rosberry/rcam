@@ -326,12 +326,8 @@ public final class CameraViewController: UIViewController {
     }
 
     private func updateZoomLevelLabel() {
-        guard var zoomLevel = cameraService.zoomLevel else {
+        guard let zoomLevel = cameraService.zoomLevel else {
             return
-        }
-
-        if !cameraService.usingBackCamera {
-            zoomLevel /= cameraService.frontCameraZoomFactor
         }
         zoomLabelContainerView.zoomValueLabel.text = String(format: "%.1f", zoomLevel)
         zoomLabelContainerView.setNeedsLayout()
