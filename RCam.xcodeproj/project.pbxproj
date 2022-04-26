@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		118C6D792811552B008946E2 /* UIDevice+ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C6D782811552B008946E2 /* UIDevice+ModelType.swift */; };
 		61FD273C1CC03D34CD1A8C43 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F93E921E746157019856A7 /* XCTestManifests.swift */; };
 		8503749426C636810074856E /* Framezilla.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503746F26C62BBC0074856E /* Framezilla.xcframework */; };
 		8503749826C647D90074856E /* AVCapturePhoto+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8503749726C647D90074856E /* AVCapturePhoto+Convenience.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		118C6D782811552B008946E2 /* UIDevice+ModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelType.swift"; sourceTree = "<group>"; };
 		6BB92FA485B028B3B9F93292 /* RcamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcamTests.swift; sourceTree = "<group>"; };
 		8503746F26C62BBC0074856E /* Framezilla.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Framezilla.xcframework; path = Carthage/Build/Framezilla.xcframework; sourceTree = "<group>"; };
 		8503749726C647D90074856E /* AVCapturePhoto+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVCapturePhoto+Convenience.swift"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				85BD0D192644E750004EA51B /* Comparable+Convenience.swift */,
 				8503749726C647D90074856E /* AVCapturePhoto+Convenience.swift */,
 				8576542D27ED800700506784 /* UIImage+Orientation.swift */,
+				118C6D782811552B008946E2 /* UIDevice+ModelType.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				85ECFABA26943CA4003BAA69 /* ConditionValue.swift in Sources */,
 				EC4A3A0D5613A4BB9BF61718 /* ZoomLabelView.swift in Sources */,
 				EC483750482CAE907F9C52D1 /* FooterView.swift in Sources */,
+				118C6D792811552B008946E2 /* UIDevice+ModelType.swift in Sources */,
 				EC4E195354F82B508DF83214 /* DefaultPermissionsPlaceholderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

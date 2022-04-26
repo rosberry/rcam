@@ -3,6 +3,7 @@
 //
 
 import AVFoundation
+import UIKit
 
 public typealias BufferHandler = (AVCaptureConnection, CMSampleBuffer) -> Void
 
@@ -10,6 +11,16 @@ public final class CameraImpl: Camera {
 
     private enum Constants {
         static let lowBrightnessThreshold: Double = -0.18
+        static var frontCameraInitialZoomLevel: CGFloat {
+            if UIDevice.isWideAngelFrontCamera {
+                return 1.3
+            }
+            else {
+                return 1.0
+            }
+        }
+        static let backCameraZoomRange: ClosedRange<CGFloat> = 1...5
+        static let frontCameraZoomRange: ClosedRange<CGFloat> = frontCameraInitialZoomLevel...(2.5 * frontCameraInitialZoomLevel)
     }
 
     private(set) public var captureSession: AVCaptureSession?
@@ -77,7 +88,12 @@ public final class CameraImpl: Camera {
                 for port in input.ports where port.mediaType == .video {
                     if let input = input as? AVCaptureDeviceInput {
                         let device = input.device
-                        return device.videoZoomFactor
+                        if UIDevice.isWideAngelFrontCamera {
+                            return device.videoZoomFactor / Constants.frontCameraInitialZoomLevel
+                        }
+                        else {
+                            return device.videoZoomFactor
+                        }
                     }
                 }
             }
@@ -90,7 +106,14 @@ public final class CameraImpl: Camera {
         }
     }
 
-    public var zoomRangeLimits: ClosedRange<CGFloat>? = 1...5
+    public var zoomRangeLimits: ClosedRange<CGFloat>? {
+        if usingBackCamera {
+            return Constants.backCameraZoomRange
+        }
+        else {
+            return Constants.frontCameraZoomRange
+        }
+    }
 
     public var availableDeviceZoomRange: ClosedRange<CGFloat>? {
         guard let captureSession = captureSession else {
@@ -184,6 +207,10 @@ public final class CameraImpl: Camera {
             captureSession = nil
             print(error)
         }
+
+        if !usingBackCamera {
+            zoomLevel = Constants.frontCameraInitialZoomLevel
+        }
     }
 
     public func stopSession() {
@@ -239,6 +266,9 @@ public final class CameraImpl: Camera {
         }
 
         usingBackCamera.toggle()
+        if !usingBackCamera {
+            zoomLevel = Constants.frontCameraInitialZoomLevel
+        }
         if usingBackCamera {
             needTurnOnTorchIfBrightnessIsLow = true
         }
