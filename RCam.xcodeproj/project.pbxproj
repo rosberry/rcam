@@ -9,48 +9,48 @@
 /* Begin PBXBuildFile section */
 		61FD273C1CC03D34CD1A8C43 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F93E921E746157019856A7 /* XCTestManifests.swift */; };
 		8503749426C636810074856E /* Framezilla.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8503746F26C62BBC0074856E /* Framezilla.xcframework */; };
-		8503749826C647D90074856E /* AVCapturePhoto+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8503749726C647D90074856E /* AVCapturePhoto+Convenience.swift */; };
-		8546495C266A27AA00B2D449 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8546495B266A27AA00B2D449 /* Assets.xcassets */; };
-		854A25C4268DB14300670FDD /* BaseHighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */; };
-		8576542E27ED800700506784 /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8576542D27ED800700506784 /* UIImage+Orientation.swift */; };
-		858FBA1126B7F9AA00AAFA04 /* CaptureMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FBA1026B7F9AA00AAFA04 /* CaptureMode.swift */; };
-		85BD0D112644E4B2004EA51B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D0F2644E4B2004EA51B /* Camera.swift */; };
-		85BD0D122644E4B2004EA51B /* CameraImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D102644E4B2004EA51B /* CameraImpl.swift */; };
-		85BD0D162644E4C9004EA51B /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D152644E4C9004EA51B /* CameraError.swift */; };
-		85BD0D1A2644E750004EA51B /* Comparable+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D192644E750004EA51B /* Comparable+Convenience.swift */; };
-		85BD0D292644EC05004EA51B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD0D282644EC05004EA51B /* CameraViewController.swift */; };
-		85ECFAB926943CA4003BAA69 /* ScreenVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECFAAD26943CA4003BAA69 /* ScreenVariable.swift */; };
-		85ECFABA26943CA4003BAA69 /* ConditionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECFAAE26943CA4003BAA69 /* ConditionValue.swift */; };
-		85ECFABB26943CA4003BAA69 /* ConditionVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85ECFAAF26943CA4003BAA69 /* ConditionVariable.swift */; };
+		A93AA76428F6773B0079B575 /* ScreenVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75128F6773B0079B575 /* ScreenVariable.swift */; };
+		A93AA76528F6773B0079B575 /* ConditionValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75228F6773B0079B575 /* ConditionValue.swift */; };
+		A93AA76628F6773B0079B575 /* ConditionVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75328F6773B0079B575 /* ConditionVariable.swift */; };
+		A93AA76728F6773B0079B575 /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75428F6773B0079B575 /* CameraError.swift */; };
+		A93AA76828F6773B0079B575 /* CaptureMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75528F6773B0079B575 /* CaptureMode.swift */; };
+		A93AA76928F6773B0079B575 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75628F6773B0079B575 /* Camera.swift */; };
+		A93AA76A28F6773B0079B575 /* CameraImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75728F6773B0079B575 /* CameraImpl.swift */; };
+		A93AA76B28F6773B0079B575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A93AA75828F6773B0079B575 /* Assets.xcassets */; };
+		A93AA76C28F6773B0079B575 /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75A28F6773B0079B575 /* UIImage+Orientation.swift */; };
+		A93AA76D28F6773B0079B575 /* Comparable+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75B28F6773B0079B575 /* Comparable+Convenience.swift */; };
+		A93AA76E28F6773B0079B575 /* AVCapturePhoto+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75C28F6773B0079B575 /* AVCapturePhoto+Convenience.swift */; };
+		A93AA76F28F6773B0079B575 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75E28F6773B0079B575 /* CameraViewController.swift */; };
+		A93AA77028F6773B0079B575 /* BaseHighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA75F28F6773B0079B575 /* BaseHighlightedButton.swift */; };
+		A93AA77128F6773B0079B575 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA76128F6773B0079B575 /* FooterView.swift */; };
+		A93AA77228F6773B0079B575 /* DefaultPermissionsPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA76228F6773B0079B575 /* DefaultPermissionsPlaceholderView.swift */; };
+		A93AA77328F6773B0079B575 /* ZoomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93AA76328F6773B0079B575 /* ZoomLabelView.swift */; };
 		CB535DF20E5DB844DB8BB3E3 /* RcamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB92FA485B028B3B9F93292 /* RcamTests.swift */; };
-		EC483750482CAE907F9C52D1 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46513D11D72572AE284A83 /* FooterView.swift */; };
-		EC4A3A0D5613A4BB9BF61718 /* ZoomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F2AECF6E2E4DE8A8FC2CD /* ZoomLabelView.swift */; };
-		EC4E195354F82B508DF83214 /* DefaultPermissionsPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4DC0503068D4D4FB7D05FC /* DefaultPermissionsPlaceholderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6BB92FA485B028B3B9F93292 /* RcamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RcamTests.swift; sourceTree = "<group>"; };
 		8503746F26C62BBC0074856E /* Framezilla.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Framezilla.xcframework; path = Carthage/Build/Framezilla.xcframework; sourceTree = "<group>"; };
-		8503749726C647D90074856E /* AVCapturePhoto+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVCapturePhoto+Convenience.swift"; sourceTree = "<group>"; };
-		854648E92669E14600B2D449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Rcam/Info.plist; sourceTree = SOURCE_ROOT; };
-		8546495B266A27AA00B2D449 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseHighlightedButton.swift; sourceTree = "<group>"; };
-		8576542D27ED800700506784 /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
-		858FBA1026B7F9AA00AAFA04 /* CaptureMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureMode.swift; sourceTree = "<group>"; };
-		85BD0D0F2644E4B2004EA51B /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		85BD0D102644E4B2004EA51B /* CameraImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraImpl.swift; sourceTree = "<group>"; };
-		85BD0D152644E4C9004EA51B /* CameraError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
-		85BD0D192644E750004EA51B /* Comparable+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Comparable+Convenience.swift"; sourceTree = "<group>"; };
-		85BD0D282644EC05004EA51B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		85ECFAAD26943CA4003BAA69 /* ScreenVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenVariable.swift; sourceTree = "<group>"; };
-		85ECFAAE26943CA4003BAA69 /* ConditionValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionValue.swift; sourceTree = "<group>"; };
-		85ECFAAF26943CA4003BAA69 /* ConditionVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionVariable.swift; sourceTree = "<group>"; };
 		A39732480DCE7C253EFD70F1 /* RCamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RCamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A93AA74B28F676D60079B575 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A93AA75128F6773B0079B575 /* ScreenVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenVariable.swift; sourceTree = "<group>"; };
+		A93AA75228F6773B0079B575 /* ConditionValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionValue.swift; sourceTree = "<group>"; };
+		A93AA75328F6773B0079B575 /* ConditionVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionVariable.swift; sourceTree = "<group>"; };
+		A93AA75428F6773B0079B575 /* CameraError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
+		A93AA75528F6773B0079B575 /* CaptureMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptureMode.swift; sourceTree = "<group>"; };
+		A93AA75628F6773B0079B575 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		A93AA75728F6773B0079B575 /* CameraImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraImpl.swift; sourceTree = "<group>"; };
+		A93AA75828F6773B0079B575 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A93AA75A28F6773B0079B575 /* UIImage+Orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
+		A93AA75B28F6773B0079B575 /* Comparable+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Comparable+Convenience.swift"; sourceTree = "<group>"; };
+		A93AA75C28F6773B0079B575 /* AVCapturePhoto+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVCapturePhoto+Convenience.swift"; sourceTree = "<group>"; };
+		A93AA75E28F6773B0079B575 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		A93AA75F28F6773B0079B575 /* BaseHighlightedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseHighlightedButton.swift; sourceTree = "<group>"; };
+		A93AA76128F6773B0079B575 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		A93AA76228F6773B0079B575 /* DefaultPermissionsPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPermissionsPlaceholderView.swift; sourceTree = "<group>"; };
+		A93AA76328F6773B0079B575 /* ZoomLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomLabelView.swift; sourceTree = "<group>"; };
 		C35189C2A2390F683ABEFDEC /* RCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F93E921E746157019856A7 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
-		EC46513D11D72572AE284A83 /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
-		EC4DC0503068D4D4FB7D05FC /* DefaultPermissionsPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPermissionsPlaceholderView.swift; sourceTree = "<group>"; };
-		EC4F2AECF6E2E4DE8A8FC2CD /* ZoomLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomLabelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,24 +68,12 @@
 		2028882D154125601B72F1E4 = {
 			isa = PBXGroup;
 			children = (
-				30F49E393A6C76CD0B1ED8A4 /* RCam */,
+				A93AA74A28F676D60079B575 /* RCam */,
+				A93AA74D28F6773B0079B575 /* Sources */,
 				475449E8585D8C7D3966089C /* RcamTests */,
 				7FDA6447F0BA6E21E1B00045 /* Products */,
 				85B86CB12644FFBF006FA596 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		30F49E393A6C76CD0B1ED8A4 /* RCam */ = {
-			isa = PBXGroup;
-			children = (
-				8546495B266A27AA00B2D449 /* Assets.xcassets */,
-				854648E92669E14600B2D449 /* Info.plist */,
-				85BD0D1F2644E8E9004EA51B /* Presentation */,
-				85BD0D1E2644E819004EA51B /* Extensions */,
-				85BD0D1D2644E811004EA51B /* Core */,
-			);
-			name = RCam;
-			path = Sources/RCam;
 			sourceTree = "<group>";
 		};
 		475449E8585D8C7D3966089C /* RcamTests */ = {
@@ -115,62 +103,81 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		85BD0D1D2644E811004EA51B /* Core */ = {
+		A93AA74A28F676D60079B575 /* RCam */ = {
 			isa = PBXGroup;
 			children = (
-				85ECFA9F26943CA4003BAA69 /* Variable */,
-				85BD0D152644E4C9004EA51B /* CameraError.swift */,
-				85BD0D0F2644E4B2004EA51B /* Camera.swift */,
-				85BD0D102644E4B2004EA51B /* CameraImpl.swift */,
-				858FBA1026B7F9AA00AAFA04 /* CaptureMode.swift */,
+				A93AA74B28F676D60079B575 /* Info.plist */,
+			);
+			path = RCam;
+			sourceTree = "<group>";
+		};
+		A93AA74D28F6773B0079B575 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A93AA74E28F6773B0079B575 /* Core */,
+				A93AA75828F6773B0079B575 /* Assets.xcassets */,
+				A93AA75928F6773B0079B575 /* Extensions */,
+				A93AA75D28F6773B0079B575 /* Presentation */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A93AA74E28F6773B0079B575 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A93AA74F28F6773B0079B575 /* Variable */,
+				A93AA75428F6773B0079B575 /* CameraError.swift */,
+				A93AA75528F6773B0079B575 /* CaptureMode.swift */,
+				A93AA75628F6773B0079B575 /* Camera.swift */,
+				A93AA75728F6773B0079B575 /* CameraImpl.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		85BD0D1E2644E819004EA51B /* Extensions */ = {
+		A93AA74F28F6773B0079B575 /* Variable */ = {
 			isa = PBXGroup;
 			children = (
-				85BD0D192644E750004EA51B /* Comparable+Convenience.swift */,
-				8503749726C647D90074856E /* AVCapturePhoto+Convenience.swift */,
-				8576542D27ED800700506784 /* UIImage+Orientation.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		85BD0D1F2644E8E9004EA51B /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */,
-				85BD0D282644EC05004EA51B /* CameraViewController.swift */,
-				EC48DC548A356DEE82F36788 /* Views */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		85ECFA9F26943CA4003BAA69 /* Variable */ = {
-			isa = PBXGroup;
-			children = (
-				85ECFAAC26943CA4003BAA69 /* DefaultVariables */,
-				85ECFAAE26943CA4003BAA69 /* ConditionValue.swift */,
-				85ECFAAF26943CA4003BAA69 /* ConditionVariable.swift */,
+				A93AA75028F6773B0079B575 /* DefaultVariables */,
+				A93AA75228F6773B0079B575 /* ConditionValue.swift */,
+				A93AA75328F6773B0079B575 /* ConditionVariable.swift */,
 			);
 			path = Variable;
 			sourceTree = "<group>";
 		};
-		85ECFAAC26943CA4003BAA69 /* DefaultVariables */ = {
+		A93AA75028F6773B0079B575 /* DefaultVariables */ = {
 			isa = PBXGroup;
 			children = (
-				85ECFAAD26943CA4003BAA69 /* ScreenVariable.swift */,
+				A93AA75128F6773B0079B575 /* ScreenVariable.swift */,
 			);
 			path = DefaultVariables;
 			sourceTree = "<group>";
 		};
-		EC48DC548A356DEE82F36788 /* Views */ = {
+		A93AA75928F6773B0079B575 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				EC4F2AECF6E2E4DE8A8FC2CD /* ZoomLabelView.swift */,
-				EC46513D11D72572AE284A83 /* FooterView.swift */,
-				EC4DC0503068D4D4FB7D05FC /* DefaultPermissionsPlaceholderView.swift */,
+				A93AA75A28F6773B0079B575 /* UIImage+Orientation.swift */,
+				A93AA75B28F6773B0079B575 /* Comparable+Convenience.swift */,
+				A93AA75C28F6773B0079B575 /* AVCapturePhoto+Convenience.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A93AA75D28F6773B0079B575 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				A93AA75E28F6773B0079B575 /* CameraViewController.swift */,
+				A93AA75F28F6773B0079B575 /* BaseHighlightedButton.swift */,
+				A93AA76028F6773B0079B575 /* Views */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		A93AA76028F6773B0079B575 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A93AA76128F6773B0079B575 /* FooterView.swift */,
+				A93AA76228F6773B0079B575 /* DefaultPermissionsPlaceholderView.swift */,
+				A93AA76328F6773B0079B575 /* ZoomLabelView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -246,7 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8546495C266A27AA00B2D449 /* Assets.xcassets in Resources */,
+				A93AA76B28F6773B0079B575 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,21 +294,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85BD0D122644E4B2004EA51B /* CameraImpl.swift in Sources */,
-				85BD0D1A2644E750004EA51B /* Comparable+Convenience.swift in Sources */,
-				8576542E27ED800700506784 /* UIImage+Orientation.swift in Sources */,
-				8503749826C647D90074856E /* AVCapturePhoto+Convenience.swift in Sources */,
-				85ECFABB26943CA4003BAA69 /* ConditionVariable.swift in Sources */,
-				85ECFAB926943CA4003BAA69 /* ScreenVariable.swift in Sources */,
-				854A25C4268DB14300670FDD /* BaseHighlightedButton.swift in Sources */,
-				85BD0D112644E4B2004EA51B /* Camera.swift in Sources */,
-				85BD0D292644EC05004EA51B /* CameraViewController.swift in Sources */,
-				858FBA1126B7F9AA00AAFA04 /* CaptureMode.swift in Sources */,
-				85BD0D162644E4C9004EA51B /* CameraError.swift in Sources */,
-				85ECFABA26943CA4003BAA69 /* ConditionValue.swift in Sources */,
-				EC4A3A0D5613A4BB9BF61718 /* ZoomLabelView.swift in Sources */,
-				EC483750482CAE907F9C52D1 /* FooterView.swift in Sources */,
-				EC4E195354F82B508DF83214 /* DefaultPermissionsPlaceholderView.swift in Sources */,
+				A93AA76F28F6773B0079B575 /* CameraViewController.swift in Sources */,
+				A93AA76A28F6773B0079B575 /* CameraImpl.swift in Sources */,
+				A93AA77028F6773B0079B575 /* BaseHighlightedButton.swift in Sources */,
+				A93AA76428F6773B0079B575 /* ScreenVariable.swift in Sources */,
+				A93AA77328F6773B0079B575 /* ZoomLabelView.swift in Sources */,
+				A93AA76528F6773B0079B575 /* ConditionValue.swift in Sources */,
+				A93AA76928F6773B0079B575 /* Camera.swift in Sources */,
+				A93AA76C28F6773B0079B575 /* UIImage+Orientation.swift in Sources */,
+				A93AA76D28F6773B0079B575 /* Comparable+Convenience.swift in Sources */,
+				A93AA76E28F6773B0079B575 /* AVCapturePhoto+Convenience.swift in Sources */,
+				A93AA77228F6773B0079B575 /* DefaultPermissionsPlaceholderView.swift in Sources */,
+				A93AA76828F6773B0079B575 /* CaptureMode.swift in Sources */,
+				A93AA76628F6773B0079B575 /* ConditionVariable.swift in Sources */,
+				A93AA77128F6773B0079B575 /* FooterView.swift in Sources */,
+				A93AA76728F6773B0079B575 /* CameraError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +403,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
-				INFOPLIST_FILE = Sources/RCam/Info.plist;
+				INFOPLIST_FILE = RCam/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -494,7 +501,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
-				INFOPLIST_FILE = Sources/RCam/Info.plist;
+				INFOPLIST_FILE = RCam/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

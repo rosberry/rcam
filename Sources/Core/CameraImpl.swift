@@ -174,11 +174,14 @@ public final class CameraImpl: Camera {
             session.sessionPreset = .photo
             session.commitConfiguration()
 
-            session.startRunning()
             captureSession = session
 
             usingBackCamera = false
             isTorchAvailable = camera.isTorchAvailable
+
+            DispatchQueue.global().async {
+                session.startRunning()
+            }
         }
         catch {
             captureSession = nil
