@@ -37,7 +37,6 @@
 		854A25C3268DB14300670FDD /* BaseHighlightedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseHighlightedButton.swift; sourceTree = "<group>"; };
 		8576542D27ED800700506784 /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
 		858FBA1026B7F9AA00AAFA04 /* CaptureMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureMode.swift; sourceTree = "<group>"; };
-		85944F6F264A43240036562C /* Framezilla.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Framezilla.framework; path = Carthage/Build/iOS/Framezilla.framework; sourceTree = "<group>"; };
 		85BD0D0F2644E4B2004EA51B /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		85BD0D102644E4B2004EA51B /* CameraImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraImpl.swift; sourceTree = "<group>"; };
 		85BD0D152644E4C9004EA51B /* CameraError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
@@ -112,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				8503746F26C62BBC0074856E /* Framezilla.xcframework */,
-				85944F6F264A43240036562C /* Framezilla.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
